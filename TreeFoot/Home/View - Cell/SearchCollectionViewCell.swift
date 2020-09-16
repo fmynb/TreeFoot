@@ -11,6 +11,10 @@ import SnapKit
 
 // TODO: 顶部搜索+左右列表滑动
 class SearchCollectionViewCell: UICollectionViewCell {
+    
+    // view
+    
+    
     // 背景
     lazy var backView:UIView = {
        let vi = UIView()
@@ -40,6 +44,8 @@ class SearchCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(150.fit)
         }
         
+        
+          
         
         
         
