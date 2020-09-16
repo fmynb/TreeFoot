@@ -21,7 +21,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configUI()
         configShadow()
     }
@@ -40,6 +39,10 @@ class SearchCollectionViewCell: UICollectionViewCell {
             make.centerY.equalTo(self)
             make.height.equalTo(150.fit)
         }
+        
+        
+        
+        
     }
     
     private func configShadow(){
