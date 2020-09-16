@@ -1,0 +1,6 @@
+module EachNavigationBar {
+  umbrella header "EachNavigationBar-umbrella.h"
+
+  export *
+  module * { export * }
+}

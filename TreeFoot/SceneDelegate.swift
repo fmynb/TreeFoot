@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESTabBarController_swift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        configVC()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -47,6 +49,51 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    func configVC() {
+        
+        let mainTabVC = mainTabBarVC()
+        self.window?.rootViewController = mainTabVC
+        self.window?.makeKeyAndVisible()
+
+    }
+    
+    func mainTabBarVC() -> ESTabBarController{
+
+           let homeVC = HomeViewController()
+           let recoderVC = RecoderViewController()
+           let archiveVC = ArchiveViewController()
+           let mineVC = MineViewController()
+           homeVC.tabBarItem = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
+           recoderVC.tabBarItem = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
+           archiveVC.tabBarItem = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
+           mineVC.tabBarItem = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(named: "me"), selectedImage: UIImage(named: "me_1"))
+
+           let homeNav = MainNavigationController.init(rootViewController: homeVC)
+           let recoderNav = MainNavigationController.init(rootViewController: recoderVC)
+           let archiveNav = MainNavigationController.init(rootViewController: archiveVC)
+           let mineNav = MainNavigationController.init(rootViewController: mineVC)
+           
+           homeNav.navigation.configuration.isEnabled = true
+           recoderNav.navigation.configuration.isEnabled = true
+           archiveNav.navigation.configuration.isEnabled = true
+           mineNav.navigation.configuration.isEnabled = true
+           
+           //diaryNav.navigation.configuration.barTintColor = .white
+           
+           if homeNav.children.count > 1 {
+               
+           }
+           
+           let tabBarController = ESTabBarController()
+           
+           tabBarController.viewControllers = [homeNav,recoderNav, archiveNav,mineNav]
+           tabBarController.tabBar.backgroundColor = .white
+           //tabBarController.tabBar.shadowImage = UIImage(named: "background")
+           
+           tabBarController.tabBar.backgroundImage = UIImage(named: "background")
+           return tabBarController
+       }
 
 
 }

@@ -1,16 +1,24 @@
 PODS:
+  - EachNavigationBar (1.14.4)
+  - ESTabBarController-swift (2.8.0)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
+  - EachNavigationBar
+  - ESTabBarController-swift
   - SnapKit
 
 SPEC REPOS:
   trunk:
+    - EachNavigationBar
+    - ESTabBarController-swift
     - SnapKit
 
 SPEC CHECKSUMS:
+  EachNavigationBar: 9000bc381312c65a86ab1f6c31b526ea675411f6
+  ESTabBarController-swift: 05593a6ad64700b03c0eb60ff625916370aa4136
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 425c9427037533eb03eb65d08594d7c2dcff1272
+PODFILE CHECKSUM: 049a420328c0cf8ed83b519d3a3701efc35687b6
 
 COCOAPODS: 1.9.3

@@ -7,5 +7,6 @@ target 'TreeFoot' do
 
   # Pods for TreeFoot
   pod 'SnapKit'
-
+  pod "ESTabBarController-swift"
+  pod 'EachNavigationBar'
 end

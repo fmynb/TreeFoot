@@ -3,16 +3,48 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		842744602511FBAC00281150 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427445F2511FBAC00281150 /* SearchCollectionViewCell.swift */; };
+		842744622511FDA500281150 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744612511FDA500281150 /* HomeHeaderView.swift */; };
+		842744642511FF7F00281150 /* HomeBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744632511FF7F00281150 /* HomeBaseCollectionViewCell.swift */; };
+		842744662511FFD800281150 /* HomeCellUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744652511FFD800281150 /* HomeCellUIModel.swift */; };
+		842744682512014900281150 /* DayRecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744672512014900281150 /* DayRecommendCollectionViewCell.swift */; };
+		8427446A251201D700281150 /* SupplementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84274469251201D700281150 /* SupplementCollectionViewCell.swift */; };
+		8427446C2512020800281150 /* SuggestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427446B2512020800281150 /* SuggestCollectionViewCell.swift */; };
+		8427446E2512022700281150 /* FavCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427446D2512022700281150 /* FavCollectionViewCell.swift */; };
+		84274471251203F400281150 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84274470251203F400281150 /* RecipeViewController.swift */; };
+		842744732512044600281150 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744722512044600281150 /* RecipeDetailViewController.swift */; };
+		842744782512057500281150 /* TopTotalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744772512057500281150 /* TopTotalCollectionViewCell.swift */; };
+		8427447A251205BC00281150 /* RecoderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84274479251205BC00281150 /* RecoderHeaderView.swift */; };
+		8427447C2512069600281150 /* ToDayInCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427447B2512069600281150 /* ToDayInCollectionViewCell.swift */; };
+		8427447E251206B300281150 /* WaterInCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427447D251206B300281150 /* WaterInCollectionViewCell.swift */; };
+		84274480251207E000281150 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427447F251207E000281150 /* CalendarViewController.swift */; };
+		842744832512082000281150 /* RecoderBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744822512082000281150 /* RecoderBarView.swift */; };
+		8427448625120BE000281150 /* MineBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427448525120BE000281150 /* MineBodyTableViewCell.swift */; };
+		8427448825120E9B00281150 /* MineHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427448725120E9B00281150 /* MineHeaderTableViewCell.swift */; };
+		8427448C25120F0500281150 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427448B25120F0500281150 /* EditUserInfoViewController.swift */; };
+		8427448E2512130100281150 /* MineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427448D2512130100281150 /* MineModel.swift */; };
+		84274490251222BC00281150 /* EditBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427448F251222BC00281150 /* EditBodyTableViewCell.swift */; };
+		842744922512230C00281150 /* EditHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744912512230C00281150 /* EditHeaderTableViewCell.swift */; };
+		842744942512235200281150 /* EditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744932512235200281150 /* EditModel.swift */; };
 		84CE62AC2510A09800A36915 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AB2510A09800A36915 /* AppDelegate.swift */; };
 		84CE62AE2510A09800A36915 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AD2510A09800A36915 /* SceneDelegate.swift */; };
 		84CE62B02510A09800A36915 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AF2510A09800A36915 /* ViewController.swift */; };
 		84CE62B32510A09800A36915 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CE62B12510A09800A36915 /* Main.storyboard */; };
 		84CE62B52510A09900A36915 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84CE62B42510A09900A36915 /* Assets.xcassets */; };
 		84CE62B82510A09900A36915 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84CE62B62510A09900A36915 /* LaunchScreen.storyboard */; };
+		84CE62C72510EBF200A36915 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62C62510EBF200A36915 /* HomeViewController.swift */; };
+		84CE62C92510EC0200A36915 /* RecoderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62C82510EC0200A36915 /* RecoderViewController.swift */; };
+		84CE62CB2510EC1400A36915 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62CA2510EC1400A36915 /* AddViewController.swift */; };
+		84CE62CD2510EC2200A36915 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62CC2510EC2200A36915 /* ArchiveViewController.swift */; };
+		84CE62CF2510EC2E00A36915 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62CE2510EC2E00A36915 /* MineViewController.swift */; };
+		84CE62D12510EC5700A36915 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D02510EC5700A36915 /* Extension.swift */; };
+		84CE62D32510EC6200A36915 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D22510EC6200A36915 /* Const.swift */; };
+		84CE62D52510F6E500A36915 /* CFBasicContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D42510F6E500A36915 /* CFBasicContentView.swift */; };
+		84CE62D72510F7FF00A36915 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D62510F7FF00A36915 /* MainNavigationController.swift */; };
 		9BD5984A77C08E7D1B169437 /* libPods-TreeFoot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE7E4D71700C5947ECDD2D8 /* libPods-TreeFoot.a */; };
 /* End PBXBuildFile section */
 
@@ -20,6 +52,29 @@
 		1FE7E4D71700C5947ECDD2D8 /* libPods-TreeFoot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TreeFoot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6692F2FFD35437399100B3E6 /* Pods-TreeFoot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreeFoot.debug.xcconfig"; path = "Target Support Files/Pods-TreeFoot/Pods-TreeFoot.debug.xcconfig"; sourceTree = "<group>"; };
 		66E6E2150EE562DB41DA2669 /* Pods-TreeFoot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreeFoot.release.xcconfig"; path = "Target Support Files/Pods-TreeFoot/Pods-TreeFoot.release.xcconfig"; sourceTree = "<group>"; };
+		8427445F2511FBAC00281150 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		842744612511FDA500281150 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		842744632511FF7F00281150 /* HomeBaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		842744652511FFD800281150 /* HomeCellUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellUIModel.swift; sourceTree = "<group>"; };
+		842744672512014900281150 /* DayRecommendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRecommendCollectionViewCell.swift; sourceTree = "<group>"; };
+		84274469251201D700281150 /* SupplementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementCollectionViewCell.swift; sourceTree = "<group>"; };
+		8427446B2512020800281150 /* SuggestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestCollectionViewCell.swift; sourceTree = "<group>"; };
+		8427446D2512022700281150 /* FavCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewCell.swift; sourceTree = "<group>"; };
+		84274470251203F400281150 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		842744722512044600281150 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
+		842744772512057500281150 /* TopTotalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTotalCollectionViewCell.swift; sourceTree = "<group>"; };
+		84274479251205BC00281150 /* RecoderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoderHeaderView.swift; sourceTree = "<group>"; };
+		8427447B2512069600281150 /* ToDayInCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDayInCollectionViewCell.swift; sourceTree = "<group>"; };
+		8427447D251206B300281150 /* WaterInCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterInCollectionViewCell.swift; sourceTree = "<group>"; };
+		8427447F251207E000281150 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		842744822512082000281150 /* RecoderBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoderBarView.swift; sourceTree = "<group>"; };
+		8427448525120BE000281150 /* MineBodyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineBodyTableViewCell.swift; sourceTree = "<group>"; };
+		8427448725120E9B00281150 /* MineHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		8427448B25120F0500281150 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
+		8427448D2512130100281150 /* MineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineModel.swift; sourceTree = "<group>"; };
+		8427448F251222BC00281150 /* EditBodyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyTableViewCell.swift; sourceTree = "<group>"; };
+		842744912512230C00281150 /* EditHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		842744932512235200281150 /* EditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModel.swift; sourceTree = "<group>"; };
 		84CE62A82510A09800A36915 /* TreeFoot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreeFoot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CE62AB2510A09800A36915 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84CE62AD2510A09800A36915 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +83,15 @@
 		84CE62B42510A09900A36915 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84CE62B72510A09900A36915 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84CE62B92510A09900A36915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84CE62C62510EBF200A36915 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		84CE62C82510EC0200A36915 /* RecoderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoderViewController.swift; sourceTree = "<group>"; };
+		84CE62CA2510EC1400A36915 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		84CE62CC2510EC2200A36915 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
+		84CE62CE2510EC2E00A36915 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
+		84CE62D02510EC5700A36915 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		84CE62D22510EC6200A36915 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		84CE62D42510F6E500A36915 /* CFBasicContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBasicContentView.swift; sourceTree = "<group>"; };
+		84CE62D62510F7FF00A36915 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +112,98 @@
 				1FE7E4D71700C5947ECDD2D8 /* libPods-TreeFoot.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8427445C2511F6B800281150 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		8427445D2511FA2600281150 /* View - Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8427445F2511FBAC00281150 /* SearchCollectionViewCell.swift */,
+				842744612511FDA500281150 /* HomeHeaderView.swift */,
+				842744632511FF7F00281150 /* HomeBaseCollectionViewCell.swift */,
+				842744672512014900281150 /* DayRecommendCollectionViewCell.swift */,
+				84274469251201D700281150 /* SupplementCollectionViewCell.swift */,
+				8427446B2512020800281150 /* SuggestCollectionViewCell.swift */,
+				8427446D2512022700281150 /* FavCollectionViewCell.swift */,
+			);
+			path = "View - Cell";
+			sourceTree = "<group>";
+		};
+		8427445E2511FA2C00281150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				842744652511FFD800281150 /* HomeCellUIModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8427446F251203CD00281150 /* Home - Two */ = {
+			isa = PBXGroup;
+			children = (
+				84274470251203F400281150 /* RecipeViewController.swift */,
+				842744722512044600281150 /* RecipeDetailViewController.swift */,
+			);
+			path = "Home - Two";
+			sourceTree = "<group>";
+		};
+		842744742512054900281150 /* View - Cell */ = {
+			isa = PBXGroup;
+			children = (
+				842744772512057500281150 /* TopTotalCollectionViewCell.swift */,
+				84274479251205BC00281150 /* RecoderHeaderView.swift */,
+				8427447B2512069600281150 /* ToDayInCollectionViewCell.swift */,
+				8427447D251206B300281150 /* WaterInCollectionViewCell.swift */,
+			);
+			path = "View - Cell";
+			sourceTree = "<group>";
+		};
+		842744752512055000281150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		842744762512055700281150 /* Recoder - Two */ = {
+			isa = PBXGroup;
+			children = (
+				8427447F251207E000281150 /* CalendarViewController.swift */,
+			);
+			path = "Recoder - Two";
+			sourceTree = "<group>";
+		};
+		8427448425120BC600281150 /* View - Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8427448525120BE000281150 /* MineBodyTableViewCell.swift */,
+				8427448725120E9B00281150 /* MineHeaderTableViewCell.swift */,
+			);
+			path = "View - Cell";
+			sourceTree = "<group>";
+		};
+		8427448925120EE200281150 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8427448D2512130100281150 /* MineModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8427448A25120EE700281150 /* Mine - Two */ = {
+			isa = PBXGroup;
+			children = (
+				8427448B25120F0500281150 /* EditUserInfoViewController.swift */,
+				8427448F251222BC00281150 /* EditBodyTableViewCell.swift */,
+				842744912512230C00281150 /* EditHeaderTableViewCell.swift */,
+				842744932512235200281150 /* EditModel.swift */,
+			);
+			path = "Mine - Two";
 			sourceTree = "<group>";
 		};
 		84CE629F2510A09800A36915 = {
@@ -71,6 +227,14 @@
 		84CE62AA2510A09800A36915 /* TreeFoot */ = {
 			isa = PBXGroup;
 			children = (
+				8427445C2511F6B800281150 /* DataBase */,
+				84CE62C52510EBD300A36915 /* Mine */,
+				84CE62C42510EB9A00A36915 /* Archive */,
+				84CE62C32510EB9200A36915 /* Add */,
+				84CE62C22510EB5700A36915 /* Recoder */,
+				84CE62C12510EB4E00A36915 /* Home */,
+				84CE62C02510EB0D00A36915 /* Ext+Const */,
+				84CE62BF2510EB0100A36915 /* Main */,
 				84CE62AB2510A09800A36915 /* AppDelegate.swift */,
 				84CE62AD2510A09800A36915 /* SceneDelegate.swift */,
 				84CE62AF2510A09800A36915 /* ViewController.swift */,
@@ -82,13 +246,80 @@
 			path = TreeFoot;
 			sourceTree = "<group>";
 		};
+		84CE62BF2510EB0100A36915 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				84CE62D42510F6E500A36915 /* CFBasicContentView.swift */,
+				84CE62D62510F7FF00A36915 /* MainNavigationController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		84CE62C02510EB0D00A36915 /* Ext+Const */ = {
+			isa = PBXGroup;
+			children = (
+				84CE62D02510EC5700A36915 /* Extension.swift */,
+				84CE62D22510EC6200A36915 /* Const.swift */,
+			);
+			path = "Ext+Const";
+			sourceTree = "<group>";
+		};
+		84CE62C12510EB4E00A36915 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8427446F251203CD00281150 /* Home - Two */,
+				8427445E2511FA2C00281150 /* Model */,
+				8427445D2511FA2600281150 /* View - Cell */,
+				84CE62C62510EBF200A36915 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		84CE62C22510EB5700A36915 /* Recoder */ = {
+			isa = PBXGroup;
+			children = (
+				842744762512055700281150 /* Recoder - Two */,
+				842744752512055000281150 /* Model */,
+				842744742512054900281150 /* View - Cell */,
+				84CE62C82510EC0200A36915 /* RecoderViewController.swift */,
+				842744822512082000281150 /* RecoderBarView.swift */,
+			);
+			path = Recoder;
+			sourceTree = "<group>";
+		};
+		84CE62C32510EB9200A36915 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				84CE62CA2510EC1400A36915 /* AddViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		84CE62C42510EB9A00A36915 /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				84CE62CC2510EC2200A36915 /* ArchiveViewController.swift */,
+			);
+			path = Archive;
+			sourceTree = "<group>";
+		};
+		84CE62C52510EBD300A36915 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				8427448A25120EE700281150 /* Mine - Two */,
+				8427448925120EE200281150 /* Model */,
+				8427448425120BC600281150 /* View - Cell */,
+				84CE62CE2510EC2E00A36915 /* MineViewController.swift */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
 		BB8240F2FA4FB71AEDD8A5ED /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				6692F2FFD35437399100B3E6 /* Pods-TreeFoot.debug.xcconfig */,
 				66E6E2150EE562DB41DA2669 /* Pods-TreeFoot.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -103,6 +334,7 @@
 				84CE62A42510A09800A36915 /* Sources */,
 				84CE62A52510A09800A36915 /* Frameworks */,
 				84CE62A62510A09800A36915 /* Resources */,
+				B896D9671452829F5F8469E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,6 +392,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		B896D9671452829F5F8469E3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C9AC7142CEB26D7F724AF1F2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -189,9 +438,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84CE62D12510EC5700A36915 /* Extension.swift in Sources */,
+				842744642511FF7F00281150 /* HomeBaseCollectionViewCell.swift in Sources */,
+				8427448625120BE000281150 /* MineBodyTableViewCell.swift in Sources */,
+				8427447A251205BC00281150 /* RecoderHeaderView.swift in Sources */,
+				8427448E2512130100281150 /* MineModel.swift in Sources */,
+				84274471251203F400281150 /* RecipeViewController.swift in Sources */,
 				84CE62B02510A09800A36915 /* ViewController.swift in Sources */,
+				8427447E251206B300281150 /* WaterInCollectionViewCell.swift in Sources */,
+				8427446A251201D700281150 /* SupplementCollectionViewCell.swift in Sources */,
 				84CE62AC2510A09800A36915 /* AppDelegate.swift in Sources */,
+				8427446C2512020800281150 /* SuggestCollectionViewCell.swift in Sources */,
+				842744782512057500281150 /* TopTotalCollectionViewCell.swift in Sources */,
+				8427446E2512022700281150 /* FavCollectionViewCell.swift in Sources */,
+				84CE62CB2510EC1400A36915 /* AddViewController.swift in Sources */,
+				84CE62CF2510EC2E00A36915 /* MineViewController.swift in Sources */,
+				842744682512014900281150 /* DayRecommendCollectionViewCell.swift in Sources */,
+				84CE62C92510EC0200A36915 /* RecoderViewController.swift in Sources */,
+				84CE62D72510F7FF00A36915 /* MainNavigationController.swift in Sources */,
+				842744662511FFD800281150 /* HomeCellUIModel.swift in Sources */,
+				8427447C2512069600281150 /* ToDayInCollectionViewCell.swift in Sources */,
 				84CE62AE2510A09800A36915 /* SceneDelegate.swift in Sources */,
+				842744832512082000281150 /* RecoderBarView.swift in Sources */,
+				842744922512230C00281150 /* EditHeaderTableViewCell.swift in Sources */,
+				842744942512235200281150 /* EditModel.swift in Sources */,
+				84CE62C72510EBF200A36915 /* HomeViewController.swift in Sources */,
+				842744602511FBAC00281150 /* SearchCollectionViewCell.swift in Sources */,
+				84CE62CD2510EC2200A36915 /* ArchiveViewController.swift in Sources */,
+				842744732512044600281150 /* RecipeDetailViewController.swift in Sources */,
+				8427448C25120F0500281150 /* EditUserInfoViewController.swift in Sources */,
+				84CE62D52510F6E500A36915 /* CFBasicContentView.swift in Sources */,
+				84274480251207E000281150 /* CalendarViewController.swift in Sources */,
+				84274490251222BC00281150 /* EditBodyTableViewCell.swift in Sources */,
+				8427448825120E9B00281150 /* MineHeaderTableViewCell.swift in Sources */,
+				842744622511FDA500281150 /* HomeHeaderView.swift in Sources */,
+				84CE62D32510EC6200A36915 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
