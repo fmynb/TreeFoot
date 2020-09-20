@@ -22,6 +22,7 @@ class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
     ]
     
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configUI()
