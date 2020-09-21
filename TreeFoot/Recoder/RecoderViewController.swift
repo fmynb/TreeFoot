@@ -20,15 +20,14 @@ fileprivate let FavCollectionViewCellID = "FavCollectionViewCell"
 class RecoderViewController: UIViewController {
 
     // 左边按钮
-    private lazy var leftBarButton:UIButton = {
+    private lazy var leftBarButton: UIButton = {
         let button = UIButton.init(type: .custom)
-        button.frame = CGRect(x:10, y:0, width:30, height: 30)
+        button.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         let imageView = UIImageView()
         imageView.image = UIImage(named: "mine_icon_set")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = UIColor.black
         button.tintColor = UIColor.black
         button.setImage(imageView.image, for: .normal)
-        //button.titleLabel?.font = UIFont.systemFont(ofSize: 26)
         button.addTarget(self, action: #selector(calendarClick), for: UIControl.Event.touchUpInside)
         button.setTitleColor(UIColor.white, for: .normal)
         return button
@@ -40,9 +39,9 @@ class RecoderViewController: UIViewController {
     }
     
     // 右边按钮
-    private lazy var rightBarButton:UIButton = {
+    private lazy var rightBarButton: UIButton = {
         let button = UIButton.init(type: .custom)
-        button.frame = CGRect(x:10, y:0, width:30, height: 30)
+        button.frame = CGRect(x: 10, y: 0, width:30, height: 30)
         let imageView = UIImageView()
         imageView.image = UIImage(named: "mine_icon_set")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = UIColor.black
@@ -92,11 +91,11 @@ class RecoderViewController: UIViewController {
     func configUI() {
         self.view.backgroundColor = .white
         self.view.addSubview(self.collectionView)
-        self.collectionView.snp.makeConstraints{ (make) in
+        self.collectionView.snp.makeConstraints { (make) in
              make.left.equalTo(self.view.snp.left).offset(0)
              make.right.equalTo(self.view.snp.right).offset(0)
              make.bottom.equalToSuperview()
-            make.top.equalTo(self.navigation.bar.snp.bottom).offset(0.fit)
+             make.top.equalTo(self.navigation.bar.snp.bottom).offset(0.fit)
          }
     }
     
@@ -113,7 +112,16 @@ class RecoderViewController: UIViewController {
 
 extension RecoderViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 4
+        case 2:
+            return 1
+        default:
+            return 0
+        }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -125,12 +133,15 @@ extension RecoderViewController: UICollectionViewDelegateFlowLayout, UICollectio
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopTotalCollectionViewCellID, for: indexPath) as! TopTotalCollectionViewCell
+            cell.updateUI(weight: 100, calories: 80, percent: 80)
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ToDayInCollectionViewCellID, for: indexPath) as! ToDayInCollectionViewCell
+            cell.setType(type: .Dinner)
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaterInCollectionViewCellID, for: indexPath) as! WaterInCollectionViewCell
+            cell.updateUI(target: 8.0, accomplish: 3.0)
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopTotalCollectionViewCellID, for: indexPath) as! TopTotalCollectionViewCell
@@ -146,11 +157,11 @@ extension RecoderViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
-            return CGSize(width: CFWidth, height: 220.fit)
+            return CGSize(width: CFWidth, height: 190.fit)
         case 1:
-            return CGSize(width: CFWidth, height: 310.fit)
+            return CGSize(width: 194.fit, height: 140.fit)
         case 2:
-            return CGSize(width: CFWidth, height: 200.fit)
+            return CGSize(width: CFWidth, height: 150.fit)
         case 3:
             return CGSize(width: CFWidth, height: 280.fit)
         case 4:
@@ -188,18 +199,28 @@ extension RecoderViewController {
     
     //每个分区的内边距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets(top: 0.fit, left: 0, bottom: 20.fit, right: 0)
-        
+        switch section {
+        case 0:
+            return UIEdgeInsets(top: 10.fit, left: 0.fit, bottom: 10.fit, right: 0.fit)
+        case 1:
+            return UIEdgeInsets(top: 10.fit, left: 20.fit, bottom: 10.fit, right: 0)
+        case 2:
+            return UIEdgeInsets(top: 10.fit, left: 0.fit, bottom: 10.fit, right: 0.fit)
+        default:
+            return UIEdgeInsets(top: 10.fit, left: 0.fit, bottom: 10.fit, right: 0.fit)
+        }
     }
     
     //最小 item 间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20.fit
+        if section == 1 {
+            return 0.fit
+        }
+        return 10.fit
     }
     
     //最小行间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20.fit
+        return 10.fit
     }
 }

@@ -335,6 +335,7 @@
 				84CE62A52510A09800A36915 /* Frameworks */,
 				84CE62A62510A09800A36915 /* Resources */,
 				B896D9671452829F5F8469E3 /* [CP] Copy Pods Resources */,
+				97FD6C71FA84C23163575DAA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -392,6 +393,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		97FD6C71FA84C23163575DAA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B896D9671452829F5F8469E3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
