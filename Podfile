@@ -9,4 +9,5 @@ target 'TreeFoot' do
   pod 'SnapKit'
   pod "ESTabBarController-swift"
   pod 'EachNavigationBar'
+  pod 'LookinServer', :configurations => ['Debug']
 end
