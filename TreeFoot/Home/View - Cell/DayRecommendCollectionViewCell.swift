@@ -11,7 +11,7 @@ import UIKit
 
 // TODO 每日推荐Cell
 
-let id = "reusedcell"
+let dayId = "reusedcell"
 class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
     override init(frame: CGRect) {
@@ -47,7 +47,7 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
         collect.dataSource = self as UICollectionViewDataSource
         collect.delegate = self as UICollectionViewDelegate
         collect.showsHorizontalScrollIndicator = false
-        collect.register(DayRecommendCollectionViewChildCell.classForCoder(), forCellWithReuseIdentifier: id)
+        collect.register(DayRecommendCollectionViewChildCell.classForCoder(), forCellWithReuseIdentifier: dayId)
         return collect
     }()   //定义collectionview
     
@@ -60,7 +60,7 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
         
         self.collectionview.snp.makeConstraints{ (make) in
             make.height.equalTo(270.fit)
-            make.width.equalTo(420.fit)
+            make.width.equalTo(CFWidth)
             make.top.equalToSuperview().offset(40.fit)
             make.left.equalToSuperview().offset(15.fit)
         }
@@ -68,7 +68,7 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
         
         self.daily.snp.makeConstraints{ (make) in
             make.height.equalTo(28.fit)
-            make.width.equalTo(86.fit)
+            make.width.equalTo(200.fit)
             make.left.equalToSuperview().offset(15.fit)
             make.top.equalToSuperview().offset(10.fit)
             }
@@ -84,7 +84,7 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: id, for: indexPath) as! DayRecommendCollectionViewChildCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: dayId, for: indexPath) as! DayRecommendCollectionViewChildCell
         cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
         cell.layer.shadowOffset = CGSize(width: 0.fit, height: 5.fit)
         cell.layer.shadowOpacity = 1

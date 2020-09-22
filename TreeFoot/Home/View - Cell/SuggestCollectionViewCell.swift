@@ -9,7 +9,7 @@
 import UIKit
 
 // TODO 建议补充Cell
-let id = "reusedcell"
+let suggestId = "reusedcell"
 let Frame = UIScreen.main.bounds
 let Width = Frame.width
 let Height = Frame.height
@@ -39,7 +39,7 @@ class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
         collect.backgroundColor = .clear
         collect.dataSource = self as UICollectionViewDataSource
         collect.delegate = self as UICollectionViewDelegate
-        collect.register(NewSuggestControllerViewCell.classForCoder(), forCellWithReuseIdentifier: id)
+        collect.register(NewSuggestControllerViewCell.classForCoder(), forCellWithReuseIdentifier: suggestId)
         return collect
     }()
     
@@ -82,7 +82,7 @@ class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
 extension SuggestCollectionViewCell: UICollectionViewDataSource,UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: id, for: indexPath) as! NewSuggestControllerViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: suggestId, for: indexPath) as! NewSuggestControllerViewCell
         cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor//颜色
         cell.layer.shadowOffset = CGSize(width: 0, height: 5)//阴影偏移量
         cell.layer.shadowOpacity = 1//阴影透明度
