@@ -20,3 +20,4 @@ struct MineHeaderModel {
     var bodyweight = ""
     var height = ""
 }
+

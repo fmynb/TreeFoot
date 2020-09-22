@@ -29,6 +29,9 @@ class NewSuggestControllerViewCell: UICollectionViewCell {
     }()
     
     
+    
+    
+    
     lazy var cheaklabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 1

@@ -113,7 +113,7 @@ extension SuggestCollectionViewCell: UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: Width-40, height: 100)
+        return CGSize(width: Width-40, height: 110)
     }//设置collectionviewcell的高宽
     
     
