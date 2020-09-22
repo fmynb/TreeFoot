@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5241159C2514F7070090C0F4 /* NewSuggestControllerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241159B2514F7070090C0F4 /* NewSuggestControllerViewCell.swift */; };
 		842744602511FBAC00281150 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427445F2511FBAC00281150 /* SearchCollectionViewCell.swift */; };
 		842744622511FDA500281150 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744612511FDA500281150 /* HomeHeaderView.swift */; };
 		842744642511FF7F00281150 /* HomeBaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744632511FF7F00281150 /* HomeBaseCollectionViewCell.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		1FE7E4D71700C5947ECDD2D8 /* libPods-TreeFoot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TreeFoot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5241159B2514F7070090C0F4 /* NewSuggestControllerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSuggestControllerViewCell.swift; sourceTree = "<group>"; };
 		6692F2FFD35437399100B3E6 /* Pods-TreeFoot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreeFoot.debug.xcconfig"; path = "Target Support Files/Pods-TreeFoot/Pods-TreeFoot.debug.xcconfig"; sourceTree = "<group>"; };
 		66E6E2150EE562DB41DA2669 /* Pods-TreeFoot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreeFoot.release.xcconfig"; path = "Target Support Files/Pods-TreeFoot/Pods-TreeFoot.release.xcconfig"; sourceTree = "<group>"; };
 		8427445F2511FBAC00281150 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				842744672512014900281150 /* DayRecommendCollectionViewCell.swift */,
 				84274469251201D700281150 /* SupplementCollectionViewCell.swift */,
 				8427446B2512020800281150 /* SuggestCollectionViewCell.swift */,
+				5241159B2514F7070090C0F4 /* NewSuggestControllerViewCell.swift */,
 				8427446D2512022700281150 /* FavCollectionViewCell.swift */,
 			);
 			path = "View - Cell";
@@ -488,6 +491,7 @@
 				84CE62D52510F6E500A36915 /* CFBasicContentView.swift in Sources */,
 				84274480251207E000281150 /* CalendarViewController.swift in Sources */,
 				84274490251222BC00281150 /* EditBodyTableViewCell.swift in Sources */,
+				5241159C2514F7070090C0F4 /* NewSuggestControllerViewCell.swift in Sources */,
 				8427448825120E9B00281150 /* MineHeaderTableViewCell.swift in Sources */,
 				842744622511FDA500281150 /* HomeHeaderView.swift in Sources */,
 				84CE62D32510EC6200A36915 /* Const.swift in Sources */,
