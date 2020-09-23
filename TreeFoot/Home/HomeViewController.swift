@@ -10,6 +10,8 @@ import UIKit
 import FanMenu
 import Macaw
 import DKCamera
+import HandyJSON
+import SwiftyJSON
 
 // MARK:  Register cellID
 fileprivate let SearchCollectionViewCellID = "SearchCollectionViewCell"
@@ -22,6 +24,8 @@ fileprivate let FavCollectionViewCellID = "FavCollectionViewCell"
 
 class HomeViewController: UIViewController {
 
+    // 数据源
+    var homeData = DataClass()
     // 主界面控件
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
@@ -147,7 +151,8 @@ class HomeViewController: UIViewController {
         configUI()
         configNavbar()
         configCenterButton()
-        // Do any additional setup after loading the view.
+        configData()
+        
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -229,6 +234,17 @@ class HomeViewController: UIViewController {
     func configTabbar() {
         
     }
+    
+    func configData() {
+        //1 获取json文件路径
+        let path = Bundle.main.path(forResource: "homelist", ofType: "json")
+        //2 获取json文件里面的内容,NSData格式
+        let jsonData=NSData(contentsOfFile: path!)
+        //3 解析json内容
+        let json = JSON(jsonData!)
+        homeData = JSONDeserializer<DataClass>.deserializeFrom(json: json["data"].description)!
+//        homeData = JSONDeserializer<DataClass>.deserializeModelArrayFrom(json: json["data"].description)
+    }
 
 }
 
@@ -249,18 +265,32 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             cell.photoCallBack = { ()
                 self.present(self.camera, animated: true, completion: nil)
             }
+            cell.eatCallBack = { (text) in
+                // 回调TODO：
+                switch text {
+                case "breakfast":
+                    let vc = RecipeViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                default:
+                    break;
+                }
+            }
+            cell.updateUI(with: homeData.eats)
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayRecommendCollectionViewCellID, for: indexPath) as! DayRecommendCollectionViewCell
+            cell.updateUI(with: homeData.dayRecommend)
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SupplementCollectionViewCellID, for: indexPath) as! SupplementCollectionViewCell
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuggestCollectionViewCellID, for: indexPath) as! SuggestCollectionViewCell
+            cell.updateUI(with: homeData.suggest)
             return cell
         case 4:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavCollectionViewCellID, for: indexPath) as! FavCollectionViewCell
+            cell.updateUI(with: homeData.fav)
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavCollectionViewCellID, for: indexPath) as! FavCollectionViewCell

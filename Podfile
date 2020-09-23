@@ -19,4 +19,9 @@ target 'TreeFoot' do
   pod 'DKCamera'
   # 页数
   pod 'CHIPageControl', '~> 0.1.3'
+  
+  #json
+  pod 'HandyJSON', :git => 'https://github.com/alibaba/HandyJSON.git', :branch => 'dev_for_swift5.0'
+  pod 'SwiftyJSON'
+  
 end

@@ -38,6 +38,10 @@
 		84A20BEB251B25F3009B8A27 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BEA251B25F3009B8A27 /* ResultView.swift */; };
 		84A20BED251B2AF1009B8A27 /* ArchivePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BEC251B2AF1009B8A27 /* ArchivePageController.swift */; };
 		84A20BF2251B3E60009B8A27 /* ArchiveBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BF1251B3E60009B8A27 /* ArchiveBodyViewController.swift */; };
+		84A20BF5251B6D72009B8A27 /* homelist.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A20BF4251B6D72009B8A27 /* homelist.json */; };
+		84A20BF7251B807A009B8A27 /* SupplementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BF6251B807A009B8A27 /* SupplementViewController.swift */; };
+		84A20BF9251B808E009B8A27 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BF8251B808E009B8A27 /* FavViewController.swift */; };
+		84A20BFB251B80A0009B8A27 /* DayRecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BFA251B80A0009B8A27 /* DayRecommendViewController.swift */; };
 		84CE62AC2510A09800A36915 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AB2510A09800A36915 /* AppDelegate.swift */; };
 		84CE62AE2510A09800A36915 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AD2510A09800A36915 /* SceneDelegate.swift */; };
 		84CE62B02510A09800A36915 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AF2510A09800A36915 /* ViewController.swift */; };
@@ -90,6 +94,10 @@
 		84A20BEA251B25F3009B8A27 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		84A20BEC251B2AF1009B8A27 /* ArchivePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivePageController.swift; sourceTree = "<group>"; };
 		84A20BF1251B3E60009B8A27 /* ArchiveBodyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveBodyViewController.swift; sourceTree = "<group>"; };
+		84A20BF4251B6D72009B8A27 /* homelist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = homelist.json; sourceTree = "<group>"; };
+		84A20BF6251B807A009B8A27 /* SupplementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementViewController.swift; sourceTree = "<group>"; };
+		84A20BF8251B808E009B8A27 /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
+		84A20BFA251B80A0009B8A27 /* DayRecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRecommendViewController.swift; sourceTree = "<group>"; };
 		84CE62A82510A09800A36915 /* TreeFoot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreeFoot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CE62AB2510A09800A36915 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84CE62AD2510A09800A36915 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +180,9 @@
 			children = (
 				84274470251203F400281150 /* RecipeViewController.swift */,
 				842744722512044600281150 /* RecipeDetailViewController.swift */,
+				84A20BF6251B807A009B8A27 /* SupplementViewController.swift */,
+				84A20BF8251B808E009B8A27 /* FavViewController.swift */,
+				84A20BFA251B80A0009B8A27 /* DayRecommendViewController.swift */,
 			);
 			path = "Home - Two";
 			sourceTree = "<group>";
@@ -240,6 +251,14 @@
 			path = AI;
 			sourceTree = "<group>";
 		};
+		84A20BF3251B6D5F009B8A27 /* API + Datas */ = {
+			isa = PBXGroup;
+			children = (
+				84A20BF4251B6D72009B8A27 /* homelist.json */,
+			);
+			path = "API + Datas";
+			sourceTree = "<group>";
+		};
 		84CE629F2510A09800A36915 = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +280,7 @@
 		84CE62AA2510A09800A36915 /* TreeFoot */ = {
 			isa = PBXGroup;
 			children = (
+				84A20BF3251B6D5F009B8A27 /* API + Datas */,
 				8412E9B0251AE3AB006A9FF9 /* CommonUI */,
 				848121B8251A1DF20093F006 /* AI */,
 				8427445C2511F6B800281150 /* DataBase */,
@@ -427,6 +447,7 @@
 			files = (
 				84CE62B82510A09900A36915 /* LaunchScreen.storyboard in Resources */,
 				84CE62B52510A09900A36915 /* Assets.xcassets in Resources */,
+				84A20BF5251B6D72009B8A27 /* homelist.json in Resources */,
 				84CE62B32510A09800A36915 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +508,7 @@
 				8427447A251205BC00281150 /* RecoderHeaderView.swift in Sources */,
 				8427448E2512130100281150 /* MineModel.swift in Sources */,
 				848121BA251A1E580093F006 /* RecognizeViewController.swift in Sources */,
+				84A20BFB251B80A0009B8A27 /* DayRecommendViewController.swift in Sources */,
 				84A20BF2251B3E60009B8A27 /* ArchiveBodyViewController.swift in Sources */,
 				84274471251203F400281150 /* RecipeViewController.swift in Sources */,
 				84CE62B02510A09800A36915 /* ViewController.swift in Sources */,
@@ -498,6 +520,7 @@
 				8427446E2512022700281150 /* FavCollectionViewCell.swift in Sources */,
 				84CE62CB2510EC1400A36915 /* AddViewController.swift in Sources */,
 				84CE62CF2510EC2E00A36915 /* MineViewController.swift in Sources */,
+				84A20BF9251B808E009B8A27 /* FavViewController.swift in Sources */,
 				842744682512014900281150 /* DayRecommendCollectionViewCell.swift in Sources */,
 				84CE62C92510EC0200A36915 /* RecoderViewController.swift in Sources */,
 				84CE62D72510F7FF00A36915 /* MainNavigationController.swift in Sources */,
@@ -509,6 +532,7 @@
 				848121BE251A26740093F006 /* ccViewController.m in Sources */,
 				84A20BE9251B1E6D009B8A27 /* RecommendView.swift in Sources */,
 				842744942512235200281150 /* EditModel.swift in Sources */,
+				84A20BF7251B807A009B8A27 /* SupplementViewController.swift in Sources */,
 				84CE62C72510EBF200A36915 /* HomeViewController.swift in Sources */,
 				842744602511FBAC00281150 /* SearchCollectionViewCell.swift in Sources */,
 				84CE62CD2510EC2200A36915 /* ArchiveViewController.swift in Sources */,

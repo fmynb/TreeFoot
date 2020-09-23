@@ -15,6 +15,12 @@ struct Pattern  {
 
 class NewSuggestControllerViewCell: UICollectionViewCell {
     
+    
+    public func updateUI(with data:Suggest) {
+        self.contentview.image = UIImage(named: "")
+        self.namelabel.text = data.name
+    }
+    
     lazy var contentview: UIImageView = {
         let imageview = UIImageView()
         return imageview

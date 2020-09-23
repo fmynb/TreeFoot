@@ -15,13 +15,28 @@ let Width = Frame.width
 let Height = Frame.height
 class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
     
+    var datas = [Suggest]()
+    public func updateUI(with data: [Suggest]){
+        self.datas = data
+        self.collection.reloadData()
+    }
     
     private var data = [
         Pattern(image: "SuggestCollection-1", name: "乳清蛋白粉"),
         Pattern(image: "SuggestCollection-2", name: "维生素C"),
     ]
     
-    
+    lazy var daily:UILabel = {
+       let label = UILabel()
+        let attrString = NSMutableAttributedString(string: "建议补充")
+        label.frame = CGRect(x: 15.fit, y: 264.fit, width: 86.fit, height: 28.fit)
+        label.numberOfLines = 0
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 20),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
+        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+        label.attributedText = attrString
+        label.alpha = 1;
+       return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,7 +79,19 @@ class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
                 make.right.equalTo(self).offset(-20.fit)
                 make.top.equalTo(self).offset(50.fit)
                 make.height.equalTo(300.fit)
-            }//设置collectionview的高宽
+            }
+            self.addSubview(daily)
+
+            
+            self.daily.snp.makeConstraints{ (make) in
+                make.height.equalTo(28.fit)
+                make.width.equalTo(200.fit)
+                make.left.equalToSuperview().offset(15.fit)
+                make.top.equalToSuperview().offset(10.fit)
+            }
+            
+    
+        //设置collectionview的高宽
     }
     
 //    private func configShadow(){
@@ -88,8 +115,9 @@ extension SuggestCollectionViewCell: UICollectionViewDataSource,UICollectionView
         cell.layer.shadowOpacity = 1//阴影透明度
         cell.layer.shadowRadius = 6//
         cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        cell.contentview.image = UIImage(named: data[indexPath.row].image)
-        cell.namelabel.text = data[indexPath.row].name
+        cell.updateUI(with: datas[indexPath.row])
+//        cell.contentview.image = UIImage(named: data[indexPath.row].image)
+//        cell.namelabel.text = data[indexPath.row].name
         cell.cheaklabel.text = "查看"
         cell.starone.image = UIImage(named: "mine_icon_set")
         cell.startwo.image = UIImage(named: "mine_icon_set")

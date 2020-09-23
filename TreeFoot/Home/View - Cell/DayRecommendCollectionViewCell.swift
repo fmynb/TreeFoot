@@ -14,6 +14,12 @@ import UIKit
 let dayId = "reusedcell"
 class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
+    var datas = [DayRecommend]()
+    public func updateUI(with data:[DayRecommend]) {
+        datas = data
+        self.collectionview.reloadData()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configUI()
@@ -79,7 +85,7 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return datas.count
     }
     
     
@@ -91,9 +97,10 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
         cell.layer.shadowRadius = 6
         cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         cell.layer.cornerRadius = 8
-        cell.contentimage.image = UIImage(named: "素食拼盘")
-        cell.namelabel.text = "素食拼盘"
-        cell.materialslabel.text = "用料：牛油果，鸡蛋，香菜，山楂"
+        cell.updateUI(with: datas[indexPath.row])
+//        cell.contentimage.image = UIImage(named: "素食拼盘")
+//        cell.namelabel.text = "素食拼盘"
+//        cell.materialslabel.text = "用料：牛油果，鸡蛋，香菜，山楂"
         return cell
     }
     
@@ -125,6 +132,13 @@ extension DayRecommendCollectionViewCell: UICollectionViewDelegateFlowLayout {
 
 
 class DayRecommendCollectionViewChildCell: UICollectionViewCell {
+    
+    
+    public func updateUI(with data: DayRecommend) {
+        self.namelabel.text = data.name
+        self.materialslabel.text = data.descrption
+        self.contentimage.image = UIImage(named: data.img)
+    }
     
     lazy var namelabel: UILabel = {
         let label = UILabel()
@@ -169,9 +183,6 @@ class DayRecommendCollectionViewChildCell: UICollectionViewCell {
             make.width.equalTo(142.fit)
             make.left.equalToSuperview().offset(13.fit)
             make.top.equalToSuperview().offset(197.fit)
-            
-            
-            
         }
     }
 }
