@@ -58,7 +58,19 @@ class RecoderViewController: UIViewController {
     }
     
     private lazy var titleView: RecoderBarView = {
-        let view = RecoderBarView()
+        let view = RecoderBarView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: kNavBarHeight))
+        view.clickAddButtonBlock = {
+            print("add")
+        }
+        view.clickCalendarButtonBlock = {
+            print("calendar")
+        }
+        view.clickRightArrowButtonBlock = {
+            print("rightArrow")
+        }
+        view.clickLeftArrowButtonBlock = {
+            print("leftArrow")
+        }
         return view
     }()
     
@@ -100,8 +112,8 @@ class RecoderViewController: UIViewController {
     }
     
     func configNavbar() {
-        self.navigation.item.rightBarButtonItem = UIBarButtonItem.init(customView: rightBarButton)
-        self.navigation.item.leftBarButtonItem = UIBarButtonItem.init(customView: leftBarButton)
+//        self.navigation.item.rightBarButtonItem = UIBarButtonItem.init(customView: rightBarButton)
+//        self.navigation.item.leftBarButtonItem = UIBarButtonItem.init(customView: leftBarButton)
         self.navigation.item.titleView = self.titleView
         self.navigation.bar.isShadowHidden = true
         self.navigation.bar.alpha = 1
