@@ -17,6 +17,13 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     public var photoCallBack: (() -> ())?
     
+    public var eatCallBack: ((String) -> ())?
+    
+    var datas = [Eat]()
+    public func updateUI(with data:[Eat]) {
+        self.datas = data
+        self.collectionView.reloadData()
+    }
     
     lazy var backView: UIView = {
         let vi = UIView()
@@ -134,14 +141,31 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
 }
 extension SearchCollectionViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return datas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchId, for: indexPath) as! searchCell
+        cell.updateUI(with: datas[indexPath.row])
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //print(indexPath.row)
+        if let callback = eatCallBack {
+            switch indexPath.row {
+            case 0:
+                callback("breakfast")
+            case 1:
+                callback("lunch")
+            case 2:
+                callback("dinner")
+            case 3:
+                callback("refreshments")
+            default:
+                break;
+            }
+        }
+    }
     
 }
 
@@ -168,12 +192,19 @@ extension SearchCollectionViewCell: UICollectionViewDelegateFlowLayout {
 
 
 class searchCell: UICollectionViewCell {
+    
+    public func updateUI(with data:Eat) {
+        self.imageView.image = UIImage(named: data.img)
+        self.infoLabel.text = data.name
+    }
+    
     lazy var imageView: UIImageView = {
         let image = UIImageView(frame: CGRect(x: 20, y: 50, width: 60, height: 60))
         image.layer.cornerRadius = 14
         image.backgroundColor = UIColor(red: 0.99, green: 0.98, blue: 0.97, alpha: 1)
         image.alpha = 1
         image.layer.masksToBounds = true
+        image.image = UIImage(named: "shop_coffee")
         return image
     }()
 
@@ -181,6 +212,8 @@ class searchCell: UICollectionViewCell {
         let label = UILabel(frame: CGRect(x: 20, y: 100, width: 350, height: 40))
         label.layer.cornerRadius = 10
         label.backgroundColor = .clear
+        label.text = "早餐"
+        label.textAlignment = .center
         return label
     }()
 
@@ -204,9 +237,38 @@ class searchCell: UICollectionViewCell {
         backgroundColor = UIColor(red: 0.98, green: 0.97, blue: 0.97, alpha: 1)
         layer.cornerRadius = 14
         alpha = 1
-        contentView.addSubview(imageView)
+//        contentView.addSubview(imageView)
         contentView.addSubview(effectView)
 //        self.contentView.addSubview(infoLabel)
     }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configUI()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configUI() {
+        backgroundColor = .white
+        addSubview(imageView)
+        imageView.snp.makeConstraints{ make in
+            make.left.equalTo(self).offset(10.fit)
+            make.right.equalTo(self).offset(-10.fit)
+            make.top.equalTo(self).offset(5.fit)
+            make.height.equalTo(50.fit)
+            }
+        self.addSubview(infoLabel)
+
+        
+        self.infoLabel.snp.makeConstraints{ (make) in
+            make.height.equalTo(30.fit)
+            make.left.equalTo(self).offset(10.fit)
+            make.right.equalTo(self).offset(-10.fit)
+            make.bottom.equalTo(self).offset(-5.fit)
+        }
+    }
+    
 }
 

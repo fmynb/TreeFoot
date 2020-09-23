@@ -22,11 +22,13 @@ PODS:
   - ESTabBarController-swift (2.8.0)
   - FanMenu (0.7.5):
     - Macaw
+  - HandyJSON (5.0.0-beta.1)
   - LookinServer (1.0.0)
   - Macaw (0.9.7):
     - SWXMLHash
   - pop (1.0.11)
   - SnapKit (4.2.0)
+  - SwiftyJSON (5.0.0)
   - SWXMLHash (5.0.1)
 
 DEPENDENCIES:
@@ -36,9 +38,11 @@ DEPENDENCIES:
   - EachNavigationBar
   - ESTabBarController-swift
   - FanMenu
+  - HandyJSON (from `https://github.com/alibaba/HandyJSON.git`, branch `dev_for_swift5.0`)
   - LookinServer
   - pop (from `https://github.com/facebook/pop.git`)
   - SnapKit
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
@@ -51,13 +55,20 @@ SPEC REPOS:
     - LookinServer
     - Macaw
     - SnapKit
+    - SwiftyJSON
     - SWXMLHash
 
 EXTERNAL SOURCES:
+  HandyJSON:
+    :branch: dev_for_swift5.0
+    :git: https://github.com/alibaba/HandyJSON.git
   pop:
     :git: https://github.com/facebook/pop.git
 
 CHECKOUT OPTIONS:
+  HandyJSON:
+    :commit: a2ba4e537711ae1fcd9183679c4db878eb171a78
+    :git: https://github.com/alibaba/HandyJSON.git
   pop:
     :commit: 87d1f8b74cdaa4699d7a9f6be1ff5202014c581f
     :git: https://github.com/facebook/pop.git
@@ -69,12 +80,14 @@ SPEC CHECKSUMS:
   EachNavigationBar: 9000bc381312c65a86ab1f6c31b526ea675411f6
   ESTabBarController-swift: 05593a6ad64700b03c0eb60ff625916370aa4136
   FanMenu: f26be76147954666be0b89ae6ffeb12b72167f2b
+  HandyJSON: 582477127ab3ab65bd2e471815f1a7b846856978
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   Macaw: 4a931baf9a9826b06d0d8ecf300014c962ab9d50
   pop: ae3ae187018759968252242e175c21f7f9be5dd2
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: f191318f486cc14ee3274e1199310cadcc82afb5
+PODFILE CHECKSUM: 878e9af0e8a92d7dddfb697183a921b2f965d4e6
 
 COCOAPODS: 1.10.0.beta.2
