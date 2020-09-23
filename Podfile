@@ -10,6 +10,7 @@ target 'TreeFoot' do
   pod 'SnapKit'
   pod "ESTabBarController-swift"
   pod 'EachNavigationBar'
+  pod 'DNSPageView'
   #动画
   pod 'pop', :git => 'https://github.com/facebook/pop.git'
   pod 'FanMenu'
