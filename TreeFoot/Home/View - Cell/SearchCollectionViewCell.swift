@@ -8,15 +8,66 @@
 
 import SnapKit
 import UIKit
+import Macaw
+
 fileprivate let searchId = "reusedCell"
 
 // TODO: 顶部搜索+左右列表滑动
-class SearchCollectionViewCell: UICollectionViewCell {
+class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
+    
+    public var photoCallBack: (() -> ())?
+    
+    
     lazy var backView: UIView = {
         let vi = UIView()
         vi.layer.cornerRadius = 15.fit
         return vi
     }()
+    // 搜索大背景
+    private lazy var searchView: UIView = {
+        let vi = UIView()
+        vi.backgroundColor = UIColor.init(r: 240, g: 240, b: 240)
+        return vi
+    }()
+    
+    // 搜索
+    lazy var searchBar :UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "搜索"
+        //tf.delegate = self
+    //       tf.clearButtonMode = .whileEditing
+        tf.returnKeyType = .go
+        // tf.borderStyle = .roundedRect
+        tf.delegate = self
+        tf.backgroundColor = .clear
+        tf.clearButtonMode = .never
+        tf.isEnabled = false
+        return tf
+    }()
+    
+    private lazy var searchBtn:UIButton = {
+       let btn = UIButton()
+        btn.setImage(UIImage(named: "diary_icon_search"), for: .normal)
+        btn.isUserInteractionEnabled = false
+        btn.backgroundColor = .red
+        return btn
+    }()
+    private lazy var photoBtn:UIButton = {
+       let btn = UIButton()
+        btn.setImage(UIImage(named: "diary_icon_search"), for: .normal)
+       // btn.isUserInteractionEnabled = false
+        btn.backgroundColor = .red
+        btn.addTarget(self, action: #selector(photo), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc func photo() {
+        print("photocallback")
+        if let callback = photoCallBack {
+            callback()
+        }
+    }
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -46,8 +97,28 @@ class SearchCollectionViewCell: UICollectionViewCell {
         collectionView.snp.makeConstraints{ make in
             make.left.equalTo(self).offset(15.fit)
             make.right.equalTo(self).offset(-20.fit)
-            make.centerY.equalTo(self)
+            make.bottom.equalTo(self).offset(-10.fit)
             make.height.equalTo(122.fit)
+        }
+        addSubview(searchView)
+        searchView.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(20.fit)
+            make.right.equalTo(self).offset(-20.fit)
+            make.top.equalTo(self).offset(0.fit)
+            make.height.equalTo(60.fit)
+        }
+        searchView.addSubview(searchBar)
+        searchBar.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(40.fit)
+            make.right.equalTo(self).offset(-90.fit)
+            make.centerY.equalTo(self.searchView.snp.centerY)
+            make.height.equalTo(50.fit)
+        }
+        searchView.addSubview(photoBtn)
+        photoBtn.snp.makeConstraints { (make) in
+            make.right.equalTo(self).offset(-40.fit)
+            make.centerY.equalTo(self.searchView.snp.centerY)
+            make.width.height.equalTo(30.fit)
         }
     }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14B625FC88D3C8817B2CE56C /* Pods_TreeFoot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */; };
 		5241159C2514F7070090C0F4 /* NewSuggestControllerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241159B2514F7070090C0F4 /* NewSuggestControllerViewCell.swift */; };
 		842744602511FBAC00281150 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427445F2511FBAC00281150 /* SearchCollectionViewCell.swift */; };
 		842744622511FDA500281150 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744612511FDA500281150 /* HomeHeaderView.swift */; };
@@ -31,6 +32,12 @@
 		84274490251222BC00281150 /* EditBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8427448F251222BC00281150 /* EditBodyTableViewCell.swift */; };
 		842744922512230C00281150 /* EditHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744912512230C00281150 /* EditHeaderTableViewCell.swift */; };
 		842744942512235200281150 /* EditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842744932512235200281150 /* EditModel.swift */; };
+		848121BA251A1E580093F006 /* RecognizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848121B9251A1E580093F006 /* RecognizeViewController.swift */; };
+		848121BE251A26740093F006 /* ccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848121BD251A26740093F006 /* ccViewController.m */; };
+		84A20BE9251B1E6D009B8A27 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BE8251B1E6D009B8A27 /* RecommendView.swift */; };
+		84A20BEB251B25F3009B8A27 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BEA251B25F3009B8A27 /* ResultView.swift */; };
+		84A20BED251B2AF1009B8A27 /* ArchivePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BEC251B2AF1009B8A27 /* ArchivePageController.swift */; };
+		84A20BF2251B3E60009B8A27 /* ArchiveBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A20BF1251B3E60009B8A27 /* ArchiveBodyViewController.swift */; };
 		84CE62AC2510A09800A36915 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AB2510A09800A36915 /* AppDelegate.swift */; };
 		84CE62AE2510A09800A36915 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AD2510A09800A36915 /* SceneDelegate.swift */; };
 		84CE62B02510A09800A36915 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62AF2510A09800A36915 /* ViewController.swift */; };
@@ -46,11 +53,9 @@
 		84CE62D32510EC6200A36915 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D22510EC6200A36915 /* Const.swift */; };
 		84CE62D52510F6E500A36915 /* CFBasicContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D42510F6E500A36915 /* CFBasicContentView.swift */; };
 		84CE62D72510F7FF00A36915 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D62510F7FF00A36915 /* MainNavigationController.swift */; };
-		9BD5984A77C08E7D1B169437 /* libPods-TreeFoot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE7E4D71700C5947ECDD2D8 /* libPods-TreeFoot.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1FE7E4D71700C5947ECDD2D8 /* libPods-TreeFoot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TreeFoot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5241159B2514F7070090C0F4 /* NewSuggestControllerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSuggestControllerViewCell.swift; sourceTree = "<group>"; };
 		6692F2FFD35437399100B3E6 /* Pods-TreeFoot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreeFoot.debug.xcconfig"; path = "Target Support Files/Pods-TreeFoot/Pods-TreeFoot.debug.xcconfig"; sourceTree = "<group>"; };
 		66E6E2150EE562DB41DA2669 /* Pods-TreeFoot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreeFoot.release.xcconfig"; path = "Target Support Files/Pods-TreeFoot/Pods-TreeFoot.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +82,14 @@
 		8427448F251222BC00281150 /* EditBodyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyTableViewCell.swift; sourceTree = "<group>"; };
 		842744912512230C00281150 /* EditHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		842744932512235200281150 /* EditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModel.swift; sourceTree = "<group>"; };
+		848121B9251A1E580093F006 /* RecognizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeViewController.swift; sourceTree = "<group>"; };
+		848121BB251A26740093F006 /* TreeFoot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TreeFoot-Bridging-Header.h"; sourceTree = "<group>"; };
+		848121BC251A26740093F006 /* ccViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccViewController.h; sourceTree = "<group>"; };
+		848121BD251A26740093F006 /* ccViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ccViewController.m; sourceTree = "<group>"; };
+		84A20BE8251B1E6D009B8A27 /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
+		84A20BEA251B25F3009B8A27 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		84A20BEC251B2AF1009B8A27 /* ArchivePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivePageController.swift; sourceTree = "<group>"; };
+		84A20BF1251B3E60009B8A27 /* ArchiveBodyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveBodyViewController.swift; sourceTree = "<group>"; };
 		84CE62A82510A09800A36915 /* TreeFoot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreeFoot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CE62AB2510A09800A36915 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84CE62AD2510A09800A36915 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +107,7 @@
 		84CE62D22510EC6200A36915 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		84CE62D42510F6E500A36915 /* CFBasicContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBasicContentView.swift; sourceTree = "<group>"; };
 		84CE62D62510F7FF00A36915 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TreeFoot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BD5984A77C08E7D1B169437 /* libPods-TreeFoot.a in Frameworks */,
+				14B625FC88D3C8817B2CE56C /* Pods_TreeFoot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,9 +125,16 @@
 		541AAFCF6A374E5F62A41EAC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1FE7E4D71700C5947ECDD2D8 /* libPods-TreeFoot.a */,
+				EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8412E9B0251AE3AB006A9FF9 /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CommonUI;
 			sourceTree = "<group>";
 		};
 		8427445C2511F6B800281150 /* DataBase */ = {
@@ -209,6 +230,16 @@
 			path = "Mine - Two";
 			sourceTree = "<group>";
 		};
+		848121B8251A1DF20093F006 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				848121B9251A1E580093F006 /* RecognizeViewController.swift */,
+				84A20BE8251B1E6D009B8A27 /* RecommendView.swift */,
+				84A20BEA251B25F3009B8A27 /* ResultView.swift */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
 		84CE629F2510A09800A36915 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +261,8 @@
 		84CE62AA2510A09800A36915 /* TreeFoot */ = {
 			isa = PBXGroup;
 			children = (
+				8412E9B0251AE3AB006A9FF9 /* CommonUI */,
+				848121B8251A1DF20093F006 /* AI */,
 				8427445C2511F6B800281150 /* DataBase */,
 				84CE62C52510EBD300A36915 /* Mine */,
 				84CE62C42510EB9A00A36915 /* Archive */,
@@ -245,6 +278,9 @@
 				84CE62B42510A09900A36915 /* Assets.xcassets */,
 				84CE62B62510A09900A36915 /* LaunchScreen.storyboard */,
 				84CE62B92510A09900A36915 /* Info.plist */,
+				848121BC251A26740093F006 /* ccViewController.h */,
+				848121BD251A26740093F006 /* ccViewController.m */,
+				848121BB251A26740093F006 /* TreeFoot-Bridging-Header.h */,
 			);
 			path = TreeFoot;
 			sourceTree = "<group>";
@@ -302,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				84CE62CC2510EC2200A36915 /* ArchiveViewController.swift */,
+				84A20BEC251B2AF1009B8A27 /* ArchivePageController.swift */,
+				84A20BF1251B3E60009B8A27 /* ArchiveBodyViewController.swift */,
 			);
 			path = Archive;
 			sourceTree = "<group>";
@@ -337,7 +375,6 @@
 				84CE62A42510A09800A36915 /* Sources */,
 				84CE62A52510A09800A36915 /* Frameworks */,
 				84CE62A62510A09800A36915 /* Resources */,
-				B896D9671452829F5F8469E3 /* [CP] Copy Pods Resources */,
 				97FD6C71FA84C23163575DAA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -361,6 +398,7 @@
 				TargetAttributes = {
 					84CE62A72510A09800A36915 = {
 						CreatedOnToolsVersion = 11.7;
+						LastSwiftMigration = 1170;
 					};
 				};
 			};
@@ -413,23 +451,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B896D9671452829F5F8469E3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TreeFoot/Pods-TreeFoot-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C9AC7142CEB26D7F724AF1F2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -459,11 +480,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A20BED251B2AF1009B8A27 /* ArchivePageController.swift in Sources */,
 				84CE62D12510EC5700A36915 /* Extension.swift in Sources */,
 				842744642511FF7F00281150 /* HomeBaseCollectionViewCell.swift in Sources */,
 				8427448625120BE000281150 /* MineBodyTableViewCell.swift in Sources */,
 				8427447A251205BC00281150 /* RecoderHeaderView.swift in Sources */,
 				8427448E2512130100281150 /* MineModel.swift in Sources */,
+				848121BA251A1E580093F006 /* RecognizeViewController.swift in Sources */,
+				84A20BF2251B3E60009B8A27 /* ArchiveBodyViewController.swift in Sources */,
 				84274471251203F400281150 /* RecipeViewController.swift in Sources */,
 				84CE62B02510A09800A36915 /* ViewController.swift in Sources */,
 				8427447E251206B300281150 /* WaterInCollectionViewCell.swift in Sources */,
@@ -482,6 +506,8 @@
 				84CE62AE2510A09800A36915 /* SceneDelegate.swift in Sources */,
 				842744832512082000281150 /* RecoderBarView.swift in Sources */,
 				842744922512230C00281150 /* EditHeaderTableViewCell.swift in Sources */,
+				848121BE251A26740093F006 /* ccViewController.m in Sources */,
+				84A20BE9251B1E6D009B8A27 /* RecommendView.swift in Sources */,
 				842744942512235200281150 /* EditModel.swift in Sources */,
 				84CE62C72510EBF200A36915 /* HomeViewController.swift in Sources */,
 				842744602511FBAC00281150 /* SearchCollectionViewCell.swift in Sources */,
@@ -493,6 +519,7 @@
 				84274490251222BC00281150 /* EditBodyTableViewCell.swift in Sources */,
 				5241159C2514F7070090C0F4 /* NewSuggestControllerViewCell.swift in Sources */,
 				8427448825120E9B00281150 /* MineHeaderTableViewCell.swift in Sources */,
+				84A20BEB251B25F3009B8A27 /* ResultView.swift in Sources */,
 				842744622511FDA500281150 /* HomeHeaderView.swift in Sources */,
 				84CE62D32510EC6200A36915 /* Const.swift in Sources */,
 			);
@@ -639,15 +666,19 @@
 			baseConfigurationReference = 6692F2FFD35437399100B3E6 /* Pods-TreeFoot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9Z3S272VTB;
 				INFOPLIST_FILE = TreeFoot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.cone.TreeFoot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TreeFoot/TreeFoot-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -658,15 +689,18 @@
 			baseConfigurationReference = 66E6E2150EE562DB41DA2669 /* Pods-TreeFoot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9Z3S272VTB;
 				INFOPLIST_FILE = TreeFoot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.cone.TreeFoot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TreeFoot/TreeFoot-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

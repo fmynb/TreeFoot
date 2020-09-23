@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AC283E29C073537248EC3F3F26142C29"
-               BuildableName = "libEachNavigationBar.a"
+               BuildableName = "EachNavigationBar.framework"
                BlueprintName = "EachNavigationBar"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

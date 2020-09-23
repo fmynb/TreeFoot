@@ -62,23 +62,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
            let homeVC = HomeViewController()
            let recoderVC = RecoderViewController()
-           let archiveVC = ArchiveViewController()
+           let archiveVC = PageViewController()
            let mineVC = MineViewController()
+           let addVC = UIViewController()
            homeVC.tabBarItem = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
            recoderVC.tabBarItem = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
-           archiveVC.tabBarItem = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
-           mineVC.tabBarItem = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(named: "me"), selectedImage: UIImage(named: "me_1"))
+           archiveVC.tabBarItem = ESTabBarItem.init(CFBouncesContentViewRight(), title: "", image: UIImage(named: "favor"), selectedImage: UIImage(named: "favor_1"))
+           mineVC.tabBarItem = ESTabBarItem.init(CFBouncesContentViewRight(), title: "", image: UIImage(named: "me"), selectedImage: UIImage(named: "me_1"))
 
+           // addVC.tabBarItem = ESTabBarItem.init(CenterTabBarItem(), title: nil, image: UIImage(named: "addphoto_icon"), selectedImage: UIImage(named: "addphoto_icon"))
+
+                let item  = ESTabBarItem.init(CFBouncesContentView(), title: "", image: UIImage(), selectedImage: UIImage())
+        
+                    addVC.tabBarItem = item
            let homeNav = MainNavigationController.init(rootViewController: homeVC)
            let recoderNav = MainNavigationController.init(rootViewController: recoderVC)
            let archiveNav = MainNavigationController.init(rootViewController: archiveVC)
            let mineNav = MainNavigationController.init(rootViewController: mineVC)
-           
+           let addNav = MainNavigationController(rootViewController: addVC)
+            
+          
+        
            homeNav.navigation.configuration.isEnabled = true
            recoderNav.navigation.configuration.isEnabled = true
            archiveNav.navigation.configuration.isEnabled = true
            mineNav.navigation.configuration.isEnabled = true
-           
+        addNav.navigation.configuration.isEnabled = true
            //diaryNav.navigation.configuration.barTintColor = .white
            
            if homeNav.children.count > 1 {
@@ -87,10 +96,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            
            let tabBarController = ESTabBarController()
            
-           tabBarController.viewControllers = [homeNav,recoderNav, archiveNav,mineNav]
+        tabBarController.shouldHijackHandler = {
+            tabbarController, viewController, index in
+            if index == 2 {
+                return true
+            }
+            return false
+        }
+        tabBarController.didHijackHandler = {
+            [weak tabBarController] tabbarController, viewController, index in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
+                let takePhotoAction = UIAlertAction(title: "Take a photo", style: .default, handler: nil)
+                alertController.addAction(takePhotoAction)
+                let selectFromAlbumAction = UIAlertAction(title: "Select from album", style: .default, handler: nil)
+                alertController.addAction(selectFromAlbumAction)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                
+//                let notesVC = AddViewController()
+//                let noteNav = MainNavigationController(rootViewController: notesVC)
+//                noteNav.navigation.configuration.isEnabled = true
+//                noteNav.navigation.configuration.barTintColor = .white
+//                noteNav.navigation.configuration.tintColor = .white
+//                noteNav.modalPresentationStyle = .fullScreen
+//                tabBarController?.present(noteNav, animated: true, completion: nil)
+            }
+        }
+        
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().tintColor = .white
+        tabBarController.tabBar.barStyle = .default
+        tabBarController.tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBarController.tabBar.layer.shadowOffset = CGSize(width: 0, height: -3.fit)
+        tabBarController.tabBar.layer.shadowOpacity = 0.2
+           tabBarController.viewControllers = [homeNav,recoderNav,addNav, archiveNav,mineNav]
            tabBarController.tabBar.backgroundColor = .white
-           //tabBarController.tabBar.shadowImage = UIImage(named: "background")
-           
+           tabBarController.tabBar.shadowImage = UIImage(named: "background")
+        tabBarController.tabBar.barTintColor = UIColor.red
            tabBarController.tabBar.backgroundImage = UIImage(named: "background")
            return tabBarController
        }
@@ -98,3 +142,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+// 重写hitTest方法 响应tabbar 以外的点击事件
+extension ESTabBar {
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+
+        if (!self.isUserInteractionEnabled || self.isHidden || self.alpha <= 0.01 ){
+            return nil
+        }
+        let resultView  = super.hitTest(point, with: event)
+        if resultView != nil {
+            return resultView
+        } else {
+            for subView in self.subviews.reversed() {
+                let convertPoint : CGPoint = subView.convert(point, from: self)
+                let hitView = subView.hitTest(convertPoint, with: event)
+                if (hitView != nil) {
+                    return hitView
+                }
+            }
+        }
+        return nil
+    }
+    
+}
+
+extension ESTabBarController {
+}
