@@ -7,17 +7,35 @@
 //
 
 import UIKit
+let editid="reusedcell"
+let bodycell="EditBodyTableViewCell"
+let headercell="EditHeaderTableViewCell"
+
+let bodydata:[EditModel] = [EditModel(leftText: "修改名字", centerText: "去冰无糖"),EditModel(leftText: "身高", centerText: "168cm"),EditModel(leftText: "体重", centerText: "52kg"),EditModel(leftText: "性别", centerText: "女"),EditModel(leftText: "生日", centerText: "2001-07-15")]
 
 class EditUserInfoViewController: UIViewController {
 
     
     private lazy var tableview: UITableView = {
         let tableview = UITableView()
+        tableview.isScrollEnabled = false
         tableview.delegate = self
         tableview.dataSource = self
         tableview.separatorStyle = .none
         tableview.backgroundColor = UIColor.init(r: 247, g: 247, b: 247)
+        tableview.register(EditBodyTableViewCell.classForCoder(), forCellReuseIdentifier: bodycell)
+        tableview.register(EditHeaderTableViewCell.classForCoder(), forCellReuseIdentifier: headercell)
         return tableview
+    }()
+    
+    lazy var editordatalabel:UILabel = {
+        let label = UILabel()
+        label.text = "编辑资料"
+        label.numberOfLines = 0
+        label.font = UIFont(name: "PingFang SC", size: 16)
+        label.textColor = UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1)
+        label.alpha = 1
+        return label
     }()
     
     override func viewDidLoad() {
@@ -28,10 +46,17 @@ class EditUserInfoViewController: UIViewController {
     }
     
     func configUI() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor.init(r: 247, g: 247, b: 247)
         view.addSubview(tableview)
-        tableview.frame = CGRect(x: 0, y: 0, width: CFWidth, height: CFHeight)
+        tableview.frame = CGRect(x: 0, y: 140, width: CFWidth, height: CFHeight)
         self.navigation.bar.backgroundColor = UIColor.init(r: 247, g: 247, b: 247)
+        self.view.addSubview(editordatalabel)
+        editordatalabel.snp.makeConstraints{(make) in
+            make.width.equalTo(128.fit)
+            make.height.equalTo(22.fit)
+            make.left.equalToSuperview().offset(22.fit)
+            make.top.equalToSuperview().offset(100.fit)
+        }
     }
     
     func configNavbar() {
@@ -50,17 +75,69 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellid = "setCellID"
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellid)
-        if cell == nil {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: cellid)
-        }
-        cell?.accessoryType = .disclosureIndicator
+//        let cellid = "setCellID"
+//        var cell = tableView.dequeueReusableCell(withIdentifier: cellid)
+//        if cell == nil {
+//            cell = UITableViewCell(style: .value1, reuseIdentifier: cellid)
+//        }
+       
         //cell?.selectionStyle = .none
-        return cell!
+        if(indexPath.row == 0)
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: headercell) as! EditHeaderTableViewCell
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+        else
+        {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: bodycell) as! EditBodyTableViewCell
+            let index = indexPath.row
+            
+      //修改字体
+            cell.lefttext.numberOfLines = 0
+            cell.lefttext.font = UIFont(name: "PingFang SC", size: 16)
+            cell.lefttext.textColor = UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1)
+            cell.lefttext.alpha = 1;
+            
+            cell.centertext.numberOfLines = 0
+            cell.centertext.font = UIFont(name: "PingFang SC", size: 16)
+            cell.centertext.textColor = UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1)
+            cell.centertext.alpha = 1;
+            switch index {
+            case 1:
+                cell.lefttext.text = bodydata[index-1].leftText
+                cell.centertext.text = bodydata[index-1].centerText
+            case 2:
+                cell.lefttext.text = bodydata[index-1].leftText
+                cell.centertext.text = bodydata[index-1].centerText
+            case 3:
+                cell.lefttext.text = bodydata[index-1].leftText
+                cell.centertext.text = bodydata[index-1].centerText
+            case 4:
+                cell.lefttext.text = bodydata[index-1].leftText
+                cell.centertext.text = bodydata[index-1].centerText
+            case 5:
+                cell.lefttext.text = bodydata[index-1].leftText
+                cell.centertext.text = bodydata[index-1].centerText
+            default :
+                break
+                
+            }
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        }
+
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(indexPath.row == 0)
+        {
+            return 100
+        }
+        else
+        {
         return 50
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -92,3 +169,4 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
     }
     
 }
+

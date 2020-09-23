@@ -17,6 +17,7 @@ PODS:
   - CHIPageControl/Paprika (0.1.8)
   - CHIPageControl/Puya (0.1.8)
   - DKCamera (1.6.7)
+  - DNSPageView (2.1.0)
   - EachNavigationBar (1.14.4)
   - ESTabBarController-swift (2.8.0)
   - FanMenu (0.7.5):
@@ -33,6 +34,7 @@ PODS:
 DEPENDENCIES:
   - CHIPageControl (~> 0.1.3)
   - DKCamera
+  - DNSPageView
   - EachNavigationBar
   - ESTabBarController-swift
   - FanMenu
@@ -46,6 +48,7 @@ SPEC REPOS:
   trunk:
     - CHIPageControl
     - DKCamera
+    - DNSPageView
     - EachNavigationBar
     - ESTabBarController-swift
     - FanMenu
@@ -73,6 +76,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CHIPageControl: 76b35c8309d8dd155e869c109cc6ffc0aaa465ff
   DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
+  DNSPageView: 4d77a61f49a5668ec330fb7bd620d81354371ea7
   EachNavigationBar: 9000bc381312c65a86ab1f6c31b526ea675411f6
   ESTabBarController-swift: 05593a6ad64700b03c0eb60ff625916370aa4136
   FanMenu: f26be76147954666be0b89ae6ffeb12b72167f2b
@@ -86,4 +90,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 878e9af0e8a92d7dddfb697183a921b2f965d4e6
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0.beta.2
