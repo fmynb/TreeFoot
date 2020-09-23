@@ -1,4 +1,4 @@
-module EachNavigationBar {
+framework module EachNavigationBar {
   umbrella header "EachNavigationBar-umbrella.h"
 
   export *

@@ -12,8 +12,18 @@ class AddViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configUI()
+        configNavbar()
         // Do any additional setup after loading the view.
+    }
+    
+    func configUI() {
+        self.view.backgroundColor = .white
+    }
+    
+    func configNavbar() {
+        self.navigation.bar.isShadowHidden = true
+        self.navigation.bar.alpha = 0
     }
     
 

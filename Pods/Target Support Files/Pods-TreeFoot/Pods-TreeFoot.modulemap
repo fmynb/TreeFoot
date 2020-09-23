@@ -1,4 +1,4 @@
-module Pods_TreeFoot {
+framework module Pods_TreeFoot {
   umbrella header "Pods-TreeFoot-umbrella.h"
 
   export *

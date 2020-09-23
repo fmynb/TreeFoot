@@ -54,7 +54,8 @@ class RecoderViewController: UIViewController {
     }()
     
     @objc func addClick() {
-        
+        let vc = RecognizeViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private lazy var titleView: RecoderBarView = {
