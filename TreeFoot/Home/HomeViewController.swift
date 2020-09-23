@@ -309,7 +309,7 @@ extension HomeViewController {
         case 1:
             return CGSize(width: CFWidth, height: 310.fit)
         case 2:
-            return CGSize(width: CFWidth, height: 200.fit)
+            return CGSize(width: CFWidth, height: 330.fit)
         case 3:
             return CGSize(width: CFWidth, height: 300.fit)
         case 4:
