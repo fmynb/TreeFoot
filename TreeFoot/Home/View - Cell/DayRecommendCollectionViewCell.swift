@@ -14,6 +14,8 @@ import UIKit
 let dayId = "reusedcell"
 class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
+    var cellCallBack: ((DayRecommend) -> ())?
+    
     var datas = [DayRecommend]()
     public func updateUI(with data:[DayRecommend]) {
         datas = data
@@ -28,22 +30,7 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    lazy var daily:UILabel = {
-       let label = UILabel()
-        let attrString = NSMutableAttributedString(string: "每日推荐")
-        label.frame = CGRect(x: 15.fit, y: 264.fit, width: 86.fit, height: 28.fit)
-        label.numberOfLines = 0
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 20),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-        label.attributedText = attrString
-        label.alpha = 1;
-       return label
-    }()
-    
-    
-    
+
     
     lazy var collectionview:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -62,7 +49,7 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     func configUI() {
         
         self.addSubview(collectionview)
-        self.addSubview(daily)
+        self.titleLabel.text = "每日推荐"
         
         self.collectionview.snp.makeConstraints{ (make) in
             make.height.equalTo(270.fit)
@@ -70,15 +57,8 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
             make.top.equalToSuperview().offset(40.fit)
             make.left.equalToSuperview().offset(15.fit)
         }
+    }
         
-        
-        self.daily.snp.makeConstraints{ (make) in
-            make.height.equalTo(28.fit)
-            make.width.equalTo(200.fit)
-            make.left.equalToSuperview().offset(15.fit)
-            make.top.equalToSuperview().offset(10.fit)
-            }
-        }
 }
 
 extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectionViewDelegate{
@@ -102,6 +82,13 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
 //        cell.namelabel.text = "素食拼盘"
 //        cell.materialslabel.text = "用料：牛油果，鸡蛋，香菜，山楂"
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let callback = self.cellCallBack {
+            print("每日推荐cell 回调")
+            callback(datas[indexPath.row])
+        }
     }
     
     

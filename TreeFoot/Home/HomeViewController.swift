@@ -262,6 +262,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCellID, for: indexPath) as! SearchCollectionViewCell
+            cell.searchBarCallBack = { ()
+                let vc = SearchViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             cell.photoCallBack = { ()
                 self.present(self.camera, animated: true, completion: nil)
             }
@@ -279,18 +283,54 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayRecommendCollectionViewCellID, for: indexPath) as! DayRecommendCollectionViewCell
+
+            cell.moreButtonBlock = { ()
+                let vc = DayRecommendViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            cell.cellCallBack = { (data) in
+                let vc = RecipeDetailViewController(data: data)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             cell.updateUI(with: homeData.dayRecommend)
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SupplementCollectionViewCellID, for: indexPath) as! SupplementCollectionViewCell
+
+            cell.moreButtonBlock = { ()
+                let vc = SupplementViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            cell.cellCallBack = { (data) in
+                let vc = RecipeDetailViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            cell.updateUI(with: homeData.paln)
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuggestCollectionViewCellID, for: indexPath) as! SuggestCollectionViewCell
+
+            cell.moreButtonBlock = { ()
+                let vc = FavViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            cell.cellCallBack = { (data) in
+                let vc = RecipeDetailViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             cell.updateUI(with: homeData.suggest)
             return cell
         case 4:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavCollectionViewCellID, for: indexPath) as! FavCollectionViewCell
             cell.updateUI(with: homeData.fav)
+            cell.moreButtonBlock = { ()
+                let vc = FavViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            cell.cellCallBack = { (data) in
+                let vc = RecipeDetailViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavCollectionViewCellID, for: indexPath) as! FavCollectionViewCell

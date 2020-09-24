@@ -1,14 +1,14 @@
 //
-//  RecipeViewController.swift
+//  SearchViewController.swift
 //  TreeFoot
 //
-//  Created by zhangchi on 2020/9/16.
+//  Created by zhangchi on 2020/9/24.
 //  Copyright © 2020 Hut. All rights reserved.
 //
 
 import UIKit
 
-class RecipeViewController: UIViewController {
+class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,4 +25,5 @@ class RecipeViewController: UIViewController {
         self.navigation.bar.isShadowHidden = true
         self.navigation.bar.alpha = 0
     }
+
 }

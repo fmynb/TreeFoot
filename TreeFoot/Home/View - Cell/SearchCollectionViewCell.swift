@@ -16,7 +16,7 @@ fileprivate let searchId = "reusedCell"
 class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     public var photoCallBack: (() -> ())?
-    
+    public var searchBarCallBack: (() -> ())?
     public var eatCallBack: ((String) -> ())?
     
     var datas = [Eat]()
@@ -34,36 +34,45 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     private lazy var searchView: UIView = {
         let vi = UIView()
         vi.backgroundColor = UIColor.init(r: 240, g: 240, b: 240)
+        vi.layer.cornerRadius = 20.fit
+        vi.layer.masksToBounds = true
         return vi
     }()
-    
-    // 搜索
-    lazy var searchBar :UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "搜索"
-        //tf.delegate = self
-    //       tf.clearButtonMode = .whileEditing
-        tf.returnKeyType = .go
-        // tf.borderStyle = .roundedRect
-        tf.delegate = self
-        tf.backgroundColor = .clear
-        tf.clearButtonMode = .never
-        tf.isEnabled = false
-        return tf
+    private lazy var searchBarBtn:UIButton = {
+       let btn = UIButton()
+        btn.titleLabel?.textAlignment = .left
+        //btn.setImage(UIImage(named: "diary_icon_search"), for: .normal)
+        //btn.isUserInteractionEnabled = false
+        btn.addTarget(self, action: #selector(searchBarClick), for: .touchUpInside)
+        return btn
+    }()
+    @objc func searchBarClick() {
+        if let callback = searchBarCallBack {
+            callback()
+        }
+    }
+    // 标题
+     var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14.fit)
+        label.textColor = UIColor.init(r: 56, g: 56, b: 56 )
+        label.text = "搜索"
+        
+        return label
     }()
     
     private lazy var searchBtn:UIButton = {
        let btn = UIButton()
         btn.setImage(UIImage(named: "diary_icon_search"), for: .normal)
         btn.isUserInteractionEnabled = false
-        btn.backgroundColor = .red
+        //btn.backgroundColor = .red
         return btn
     }()
     private lazy var photoBtn:UIButton = {
        let btn = UIButton()
         btn.setImage(UIImage(named: "diary_icon_search"), for: .normal)
        // btn.isUserInteractionEnabled = false
-        btn.backgroundColor = .red
+//        btn.backgroundColor = .red
         btn.addTarget(self, action: #selector(photo), for: .touchUpInside)
         return btn
     }()
@@ -111,19 +120,33 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
         searchView.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(20.fit)
             make.right.equalTo(self).offset(-20.fit)
-            make.top.equalTo(self).offset(0.fit)
-            make.height.equalTo(60.fit)
+            make.top.equalTo(self).offset(10.fit)
+            make.height.equalTo(40.fit)
         }
-        searchView.addSubview(searchBar)
-        searchBar.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(40.fit)
+        searchView.addSubview(searchBtn)
+        searchBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(30.fit)
+            make.width.equalTo(30.fit)
+            make.centerY.equalTo(self.searchView.snp.centerY)
+            make.height.equalTo(30.fit)
+        }
+        searchView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(70.fit)
+            make.width.equalTo(40.fit)
+            make.centerY.equalTo(self.searchView.snp.centerY)
+            make.height.equalTo(30.fit)
+        }
+        searchView.addSubview(searchBarBtn)
+        searchBarBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(70.fit)
             make.right.equalTo(self).offset(-90.fit)
             make.centerY.equalTo(self.searchView.snp.centerY)
-            make.height.equalTo(50.fit)
+            make.height.equalTo(30.fit)
         }
         searchView.addSubview(photoBtn)
         photoBtn.snp.makeConstraints { (make) in
-            make.right.equalTo(self).offset(-40.fit)
+            make.right.equalTo(self).offset(-30.fit)
             make.centerY.equalTo(self.searchView.snp.centerY)
             make.width.height.equalTo(30.fit)
         }

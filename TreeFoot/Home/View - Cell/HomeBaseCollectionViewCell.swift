@@ -11,6 +11,7 @@ import UIKit
 // TODO 基础Cell
 class HomeBaseCollectionViewCell: UICollectionViewCell {
     
+    var titleText = ""
     // 更新title
     public func updateUI(with text: String) {
         self.titleLabel.text = text
@@ -23,7 +24,7 @@ class HomeBaseCollectionViewCell: UICollectionViewCell {
     // 标题
      var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.init(name: "PingFangSC-Semibold", size: 24.fit)
+        label.font = UIFont.init(name: "PingFangSC-Semibold", size: 20.fit)
         label.textColor = UIColor.init(r: 56, g: 56, b: 56 )
         
         return label
@@ -62,11 +63,18 @@ class HomeBaseCollectionViewCell: UICollectionViewCell {
     
     func setUpUI(){
         self.addSubview(titleLabel)
-        self.titleLabel.snp.makeConstraints { (make) in
-            make.centerY.equalTo(self.snp.centerY)
-            make.left.equalTo(20.fit)
-            make.width.equalTo(300.fit)
-            make.height.equalTo(30.fit)
+        self.titleLabel.snp.makeConstraints{ (make) in
+            make.height.equalTo(28.fit)
+            make.width.equalTo(200.fit)
+            make.left.equalToSuperview().offset(15.fit)
+            make.top.equalToSuperview().offset(10.fit)
+        }
+        self.addSubview(moreBtn)
+        self.moreBtn.snp.makeConstraints{ (make) in
+            make.height.equalTo(28.fit)
+            make.width.equalTo(80.fit)
+            make.right.equalToSuperview().offset(-10.fit)
+            make.top.equalToSuperview().offset(10.fit)
         }
     }
 }

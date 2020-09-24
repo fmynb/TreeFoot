@@ -15,6 +15,9 @@ let Width = Frame.width
 let Height = Frame.height
 class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
     
+    
+    var cellCallBack: ((Suggest) -> ())?
+    
     var datas = [Suggest]()
     public func updateUI(with data: [Suggest]){
         self.datas = data
@@ -80,15 +83,7 @@ class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
                 make.top.equalTo(self).offset(50.fit)
                 make.height.equalTo(300.fit)
             }
-            self.addSubview(daily)
-
-            
-            self.daily.snp.makeConstraints{ (make) in
-                make.height.equalTo(28.fit)
-                make.width.equalTo(200.fit)
-                make.left.equalToSuperview().offset(15.fit)
-                make.top.equalToSuperview().offset(10.fit)
-            }
+        self.titleLabel.text = "建议补充"
             
     
         //设置collectionview的高宽
@@ -132,6 +127,13 @@ extension SuggestCollectionViewCell: UICollectionViewDataSource,UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let callback = self.cellCallBack {
+            print("建议cell回调")
+            callback(datas[indexPath.row])
+        }
     }
     
     
