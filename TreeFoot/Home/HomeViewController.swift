@@ -81,7 +81,10 @@ class HomeViewController: UIViewController {
             switch button.id {
             case "breakfast":
                 let vc = AddViewController()
-                self.tabBarController?.present(vc, animated: true, completion: nil)
+                let nav = MainNavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+
+                self.tabBarController?.present(nav, animated: true, completion: nil)
             default:
                 break;
             }

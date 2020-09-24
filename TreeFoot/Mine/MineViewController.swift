@@ -88,7 +88,7 @@ class MineViewController: UIViewController {
         self.navigation.bar.alpha = 0
     }
     
-    func configData(){
+    func configData() {
         let data = MineHeaderModel(img: "mine_img_header", username: "去冰无糖", sex: "女", bodyweight: "52", height: "168")
         self.headerData = data
         self.bodyDatas1.append(MineModel(leftIcon: "", titleText: "本周食谱"))

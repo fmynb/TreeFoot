@@ -27,5 +27,6 @@ target 'TreeFoot' do
   
   #日历
   pod 'FSCalendar'
-  
+  # 颜色
+  #pod 'Colours/Swift'
 end
