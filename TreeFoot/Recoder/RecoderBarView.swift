@@ -80,6 +80,25 @@ class RecoderBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func hiddenRightButton(){
+        self.rightArrowButton.isHidden = true
+    }
+    public func hiddenLeftButton(){
+        self.leftArrowButton.isHidden = true
+    }
+    public func showRightButton(){
+        self.rightArrowButton.isHidden = false
+    }
+    public func showLeftButton(){
+        self.leftArrowButton.isHidden = false
+    }
+    
+    public func updateTilte(with text:String) {
+        let attrString = NSMutableAttributedString(string: text)
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 17)!,.foregroundColor: UIColor(red: 0.26, green: 0.26, blue: 0.26,alpha:1), ]
+        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+        dateTitleLabel.attributedText = attrString
+    }
     // 点击事件
     
     @objc func clickLeftArrowButton() {

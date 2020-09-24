@@ -52,6 +52,7 @@ class ToDayInCollectionViewCell: UICollectionViewCell {
     private lazy var addButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor(red: 1, green: 0.68, blue: 0.5, alpha: 1)
+        button.setImage(UIImage(named: "menu_plus"), for: .normal)
         button.addTarget(self, action: #selector(clickAddButton), for: .touchUpInside)
         button.layer.cornerRadius = 20.fit
         return button

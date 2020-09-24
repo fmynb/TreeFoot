@@ -10,6 +10,46 @@ import UIKit
 
 class AddViewController: UIViewController {
 
+    var searchVC: UISearchController!
+    var searchResultVC: SearchResultViewController = SearchResultViewController()
+    
+    // 左边按钮
+    private lazy var leftBarButton: UIButton = {
+        let button = UIButton.init(type: .custom)
+        button.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "custom_close")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = UIColor.black
+        button.tintColor = UIColor.black
+        button.setImage(imageView.image, for: .normal)
+        button.addTarget(self, action: #selector(leftClick), for: UIControl.Event.touchUpInside)
+        button.setTitleColor(UIColor.white, for: .normal)
+        return button
+    }()
+    
+    @objc func leftClick() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // 右边按钮
+    private lazy var rightBarButton: UIButton = {
+        let button = UIButton.init(type: .custom)
+        button.frame = CGRect(x: 10, y: 0, width:30, height: 30)
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "mine_icon_set")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = UIColor.black
+        button.tintColor = UIColor.black
+        button.setImage(imageView.image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(addClick), for: UIControl.Event.touchUpInside)
+        button.setTitleColor(UIColor.black, for: .normal)
+        return button
+    }()
+    
+    @objc func addClick() {
+        let vc = RecognizeViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     lazy var breakfasttableview:UITableView = {
        let tableview = UITableView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: CFHeight))
@@ -31,11 +71,25 @@ class AddViewController: UIViewController {
     func configUI() {
         self.view.backgroundColor = .white
         self.view.addSubview(breakfasttableview)
+         definesPresentationContext = true
+         view.backgroundColor = UIColor.white
+         self.navigationItem.title = "早餐"
+
+
     }
     
     func configNavbar() {
-        self.navigation.bar.isShadowHidden = true
-        self.navigation.bar.alpha = 0
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftBarButton)
+         if #available(iOS 11.0, *) {
+             self.navigationItem.largeTitleDisplayMode = UINavigationItem.LargeTitleDisplayMode.automatic
+        // self.navigationController?.navigationBar.prefersLargeTitles = true
+             searchVC = UISearchController(searchResultsController: searchResultVC)
+             searchVC.searchBar.placeholder = "请输入搜索内容"
+             searchVC.searchResultsUpdater = self
+             searchVC.delegate = self
+             self.navigationItem.searchController = searchVC
+             self.navigationItem.hidesSearchBarWhenScrolling = true
+         }
     }
 
 }
@@ -139,4 +193,33 @@ extension AddViewController:UITableViewDataSource,UITableViewDelegate {
         //self.addbutton.setImage(image, for: .normal)
     }
     
+}
+
+
+extension AddViewController: UISearchResultsUpdating, UISearchControllerDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+
+    }
+}
+
+class SearchResultViewController: UITableViewController {
+
+    var resultTableView: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "resultCellID")
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "resultCellID")
+        cell?.textLabel?.text = "result\(indexPath.row)"
+        return cell!
+    }
+
 }

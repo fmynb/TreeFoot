@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import HandyJSON
+import SwiftyJSON
 // MARK:  Register cellID
 fileprivate let TopTotalCollectionViewCellID = "TopTotalCollectionViewCell"
 fileprivate let ToDayInCollectionViewCellID = "ToDayInCollectionViewCell"
@@ -18,7 +19,10 @@ fileprivate let FavCollectionViewCellID = "FavCollectionViewCell"
 
 
 class RecoderViewController: UIViewController {
-
+    // 之前数据索引
+    var index = -1
+    var recorderData = RecoderDataClass()
+    var datas = Today()
     // 左边按钮
     private lazy var leftBarButton: UIButton = {
         let button = UIButton.init(type: .custom)
@@ -70,10 +74,35 @@ class RecoderViewController: UIViewController {
         }
         view.clickRightArrowButtonBlock = {
             print("rightArrow")
+            guard self.index > -1 else {
+                return
+            }
+            view.showLeftButton()
+            self.index -= 1
+            guard self.index != -1 else {
+                self.updateUI(with: self.recorderData.today)
+                view.hiddenRightButton()
+                return
+            }
+             
+            self.updateUI(with: self.recorderData.old_datas[self.index])
+
         }
         view.clickLeftArrowButtonBlock = {
             print("leftArrow")
+            guard self.index < self.recorderData.old_datas.count - 1 else {
+                
+                return
+            }
+            view.showRightButton()
+            self.index += 1
+            self.updateUI(with: self.recorderData.old_datas[self.index])
+            if self.index == self.recorderData.old_datas.count - 1  {
+                view.hiddenLeftButton()
+            }
+
         }
+        view.hiddenRightButton()
         return view
     }()
     
@@ -100,6 +129,7 @@ class RecoderViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         configNavbar()
+        configData()
         // Do any additional setup after loading the view.
     }
     
@@ -120,6 +150,25 @@ class RecoderViewController: UIViewController {
         self.navigation.item.titleView = self.titleView
         self.navigation.bar.isShadowHidden = true
         self.navigation.bar.alpha = 1
+    }
+    
+    func configData() {
+        //1 获取json文件路径
+               let path = Bundle.main.path(forResource: "recorder", ofType: "json")
+               //2 获取json文件里面的内容,NSData格式
+               let jsonData=NSData(contentsOfFile: path!)
+               //3 解析json内容
+               let json = JSON(jsonData!)
+        print(json)
+               recorderData = JSONDeserializer<RecoderDataClass>.deserializeFrom(json: json["data"].description)!
+        print(recorderData)
+        self.updateUI(with: recorderData.today)
+    }
+    
+    func updateUI(with data:Today) {
+        self.datas = data
+        self.titleView.updateTilte(with: self.datas.time)
+        self.collectionView.reloadData()
     }
 
 }
@@ -148,7 +197,8 @@ extension RecoderViewController: UICollectionViewDelegateFlowLayout, UICollectio
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopTotalCollectionViewCellID, for: indexPath) as! TopTotalCollectionViewCell
-            cell.updateUI(weight: 100, calories: 80, percent: 80)
+           // cell.updateUI(weight: 100, calories: 80, percent: 80)
+            cell.updateUI(weight: Int(datas.body.weight), calories: Int(datas.body.attract), percent: Int(datas.body.rest))
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ToDayInCollectionViewCellID, for: indexPath) as! ToDayInCollectionViewCell
@@ -156,7 +206,8 @@ extension RecoderViewController: UICollectionViewDelegateFlowLayout, UICollectio
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaterInCollectionViewCellID, for: indexPath) as! WaterInCollectionViewCell
-            cell.updateUI(target: 8.0, accomplish: 3.0)
+            //cell.updateUI(target: 8.0, accomplish: 3.0)
+            cell.updateUI(target:CGFloat(datas.water_attract.target) , accomplish: CGFloat(datas.water_attract.attracted))
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopTotalCollectionViewCellID, for: indexPath) as! TopTotalCollectionViewCell
