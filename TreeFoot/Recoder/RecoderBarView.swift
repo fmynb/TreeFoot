@@ -69,7 +69,7 @@ class RecoderBarView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(leftCalendarButton)
+        //addSubview(leftCalendarButton)
         addSubview(dateTitleLabel)
         addSubview(rightAddButton)
         addSubview(leftArrowButton)

@@ -25,4 +25,7 @@ target 'TreeFoot' do
   pod 'HandyJSON', :git => 'https://github.com/alibaba/HandyJSON.git', :branch => 'dev_for_swift5.0'
   pod 'SwiftyJSON'
   
+  #日历
+  pod 'FSCalendar'
+  
 end

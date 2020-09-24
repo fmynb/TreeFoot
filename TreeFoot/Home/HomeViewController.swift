@@ -263,7 +263,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCellID, for: indexPath) as! SearchCollectionViewCell
             cell.searchBarCallBack = { ()
-                let vc = SearchViewController()
+                let vc = RecognizeViewController()//SearchViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.photoCallBack = { ()

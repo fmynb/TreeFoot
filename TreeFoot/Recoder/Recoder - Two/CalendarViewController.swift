@@ -24,6 +24,7 @@ class CalendarViewController: UIViewController {
     func configNavbar() {
         self.navigation.bar.isShadowHidden = true
         self.navigation.bar.alpha = 0
+        self.navigation.item.title = "日历"
     }
 
 }

@@ -22,6 +22,7 @@ PODS:
   - ESTabBarController-swift (2.8.0)
   - FanMenu (0.7.5):
     - Macaw
+  - FSCalendar (2.8.1)
   - HandyJSON (5.0.0-beta.1)
   - LookinServer (1.0.0)
   - Macaw (0.9.7):
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - EachNavigationBar
   - ESTabBarController-swift
   - FanMenu
+  - FSCalendar
   - HandyJSON (from `https://github.com/alibaba/HandyJSON.git`, branch `dev_for_swift5.0`)
   - LookinServer
   - pop (from `https://github.com/facebook/pop.git`)
@@ -52,6 +54,7 @@ SPEC REPOS:
     - EachNavigationBar
     - ESTabBarController-swift
     - FanMenu
+    - FSCalendar
     - LookinServer
     - Macaw
     - SnapKit
@@ -80,6 +83,7 @@ SPEC CHECKSUMS:
   EachNavigationBar: 9000bc381312c65a86ab1f6c31b526ea675411f6
   ESTabBarController-swift: 05593a6ad64700b03c0eb60ff625916370aa4136
   FanMenu: f26be76147954666be0b89ae6ffeb12b72167f2b
+  FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   HandyJSON: 582477127ab3ab65bd2e471815f1a7b846856978
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   Macaw: 4a931baf9a9826b06d0d8ecf300014c962ab9d50
@@ -88,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: 4612c6f4397c827778d9266a80ce02459c21ea5b
+PODFILE CHECKSUM: 1329881394bc68d521915fc02eaa030d5b196c58
 
 COCOAPODS: 1.9.3
