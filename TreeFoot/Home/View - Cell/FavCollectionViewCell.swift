@@ -13,7 +13,7 @@ fileprivate let FavId = "reusedCell"
 class FavCollectionViewCell: HomeBaseCollectionViewCell {
     
     var datas = [Fav]()
-    
+        var cellCallBack: ((Fav) -> ())?
     
     public func updateUI(with data:[Fav]) {
         self.datas = data
@@ -69,15 +69,7 @@ class FavCollectionViewCell: HomeBaseCollectionViewCell {
             make.top.equalTo(self).offset(60.fit)
             make.height.equalTo(180.fit)
             }
-        self.addSubview(daily)
-
-        
-        self.daily.snp.makeConstraints{ (make) in
-            make.height.equalTo(28.fit)
-            make.width.equalTo(200.fit)
-            make.left.equalToSuperview().offset(15.fit)
-            make.top.equalToSuperview().offset(10.fit)
-        }
+        self.titleLabel.text = "最近偏爱"
     }
 }
 
@@ -93,6 +85,12 @@ extension FavCollectionViewCell: UICollectionViewDataSource, UICollectionViewDel
         cell.Favcontentview.image = UIImage(named: self.datas[indexPath.row].img)
         //cell.Favcontentview.image = UIImage(named: "FavCollectionViewCell-1")
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let callback = self.cellCallBack {
+            print("建议cell回调")
+            callback(datas[indexPath.row])
+        }
     }
     
 }
