@@ -78,16 +78,32 @@ class HomeViewController: UIViewController {
         fanMenu.delay = 0.0
         fanMenu.onItemDidClick = { button in
             print("ItemDidClick: \(button.id)")
+            var vc = UIViewController()
             switch button.id {
             case "breakfast":
-                let vc = AddViewController()
+                 vc = AddViewController(type: .BreakFast)
                 let nav = MainNavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
-
+                self.tabBarController?.present(nav, animated: true, completion: nil)
+            case "lunch":
+                vc = AddViewController(type: .Launch)
+                let nav = MainNavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.tabBarController?.present(nav, animated: true, completion: nil)
+            case "dinner":
+                vc = AddViewController(type: .Dinner)
+                let nav = MainNavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.tabBarController?.present(nav, animated: true, completion: nil)
+            case "refreshments":
+                vc = AddViewController(type: .Snacks)
+                let nav = MainNavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
                 self.tabBarController?.present(nav, animated: true, completion: nil)
             default:
                 break;
             }
+            
             
         }
 
@@ -272,10 +288,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             cell.photoCallBack = { ()
                 self.present(self.camera, animated: true, completion: nil)
             }
-            cell.eatCallBack = { (text) in
+            cell.eatCallBack = { (type) in
                 // 回调TODO：
-                switch text {
-                case "breakfast":
+                switch type {
+                case .BreakFast:
                     let vc = RecipeViewController()
                     self.navigationController?.pushViewController(vc, animated: true)
                 default:

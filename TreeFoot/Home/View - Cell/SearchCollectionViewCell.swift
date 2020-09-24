@@ -17,7 +17,7 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     public var photoCallBack: (() -> ())?
     public var searchBarCallBack: (() -> ())?
-    public var eatCallBack: ((String) -> ())?
+    public var eatCallBack: ((IntakeOfType) -> ())?
     
     var datas = [Eat]()
     public func updateUI(with data:[Eat]) {
@@ -177,13 +177,13 @@ extension SearchCollectionViewCell: UICollectionViewDataSource, UICollectionView
         if let callback = eatCallBack {
             switch indexPath.row {
             case 0:
-                callback("breakfast")
+                callback(.BreakFast)
             case 1:
-                callback("lunch")
+                callback(.Launch)
             case 2:
-                callback("dinner")
+                callback(.Dinner)
             case 3:
-                callback("refreshments")
+                callback(.Snacks)
             default:
                 break;
             }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class TopTotalCollectionViewCell: UICollectionViewCell {
     // MARK: - 私有属性
     
