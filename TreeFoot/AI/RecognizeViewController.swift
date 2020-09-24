@@ -39,7 +39,7 @@ class RecognizeViewController: UIViewController, UIScrollViewDelegate {
     
     lazy var image: UIImageView = {
         let imageview = UIImageView()
-                imageview.image = UIImage(named: "素食拼盘")
+        imageview.image = UIImage(named: "素食拼盘")
         return imageview
     }()
     
@@ -172,21 +172,21 @@ class RecognizeViewController: UIViewController, UIScrollViewDelegate {
             make.top.equalTo(resultView.snp.bottom).offset(10.fit)
             make.left.equalToSuperview().offset(10.fit)
             make.right.equalToSuperview().offset(-10.fit)
-            make.height.equalTo(300.fit)
+            make.height.equalTo(305.fit)
         }
         recommendView.addSubview(recommendViewLeft)
         recommendViewLeft.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(10.fit)
-            make.left.equalToSuperview().offset(10.fit)
-            make.width.equalTo((CFWidth-20.fit)/2)
-            make.height.equalTo(300.fit)
+            make.top.equalToSuperview().offset(40.fit)
+            make.left.equalToSuperview().offset(30.fit)
+            make.width.equalTo(153.fit)
+            make.height.equalTo(237.fit)
         }
         recommendView.addSubview(recommendViewRight)
         recommendViewRight.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(10.fit)
-            make.right.equalToSuperview().offset(-10.fit)
-            make.width.equalTo((CFWidth-20.fit)/2)
-            make.height.equalTo(300.fit)
+            make.top.equalToSuperview().offset(40.fit)
+            make.right.equalToSuperview().offset(-31.fit)
+            make.width.equalTo(153.fit)
+            make.height.equalTo(237.fit)
         }
     }
     
