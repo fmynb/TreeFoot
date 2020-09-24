@@ -37,7 +37,7 @@ class PageViewController: UIViewController {
                                           options: nil)
         pageVc.dataSource = self
         pageVc.delegate = self
-        pageVc.view.backgroundColor = .orange
+        // pageVc.view.backgroundColor = .orange
         return pageVc
     }()
     let leftVC = ArchiveViewController()
@@ -62,7 +62,7 @@ class PageViewController: UIViewController {
 
     }
     func configUI() {
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.97, alpha: 1)
     }
     
     func configNavbar() {
@@ -129,7 +129,6 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
         rightFlag = true
         
         return rightVC
-        print(currentIndex,222)
         // 显示后一个视图页面
         if currentIndex + 1 < viewControllers.count {
             currentIndex += 1
