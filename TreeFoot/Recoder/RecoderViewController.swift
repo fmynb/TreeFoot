@@ -61,10 +61,12 @@ class RecoderViewController: UIViewController {
     private lazy var titleView: RecoderBarView = {
         let view = RecoderBarView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: kNavBarHeight))
         view.clickAddButtonBlock = {
-            print("add")
+              let calendarVC = CalendarViewController()
+            self.navigationController?.pushViewController(calendarVC, animated: true)
         }
         view.clickCalendarButtonBlock = {
             print("calendar")
+            
         }
         view.clickRightArrowButtonBlock = {
             print("rightArrow")

@@ -70,7 +70,7 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     }()
     private lazy var photoBtn:UIButton = {
        let btn = UIButton()
-        btn.setImage(UIImage(named: "diary_icon_search"), for: .normal)
+        btn.setImage(UIImage(named: "home_takephoto"), for: .normal)
        // btn.isUserInteractionEnabled = false
 //        btn.backgroundColor = .red
         btn.addTarget(self, action: #selector(photo), for: .touchUpInside)
