@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import HandyJSON
+import SwiftyJSON
 
 class AddViewController: UIViewController {
 
     var searchVC: UISearchController!
     var searchResultVC: SearchResultViewController = SearchResultViewController()
+    
+    
+    var addDatas = AddModel()
+    var datas = [Content]()
+    var type: IntakeOfType = .BreakFast
+    
+    convenience init(type:IntakeOfType) {
+        self.init()
+        self.type = type
+    }
     
     // 左边按钮
     private lazy var leftBarButton: UIButton = {
@@ -66,6 +78,7 @@ class AddViewController: UIViewController {
         configUI()
         configNavbar()
         // Do any additional setup after loading the view.
+        configData()
     }
     
     func configUI() {
@@ -73,7 +86,7 @@ class AddViewController: UIViewController {
         self.view.addSubview(breakfasttableview)
          definesPresentationContext = true
          view.backgroundColor = UIColor.white
-         self.navigationItem.title = "早餐"
+        self.navigationItem.title = getIntakeOfTypeString(self.type)
 
 
     }
@@ -91,17 +104,42 @@ class AddViewController: UIViewController {
              self.navigationItem.hidesSearchBarWhenScrolling = true
          }
     }
+    
+    func configData() {
+        //1 获取json文件路径
+        let path = Bundle.main.path(forResource: "add", ofType: "json")
+        //2 获取json文件里面的内容,NSData格式
+        let jsonData=NSData(contentsOfFile: path!)
+        //3 解析json内
+        let json = JSON(jsonData!)
+        addDatas = JSONDeserializer<AddModel>.deserializeFrom(json: json["data"].description)!
+        switch self.type {
+        case .BreakFast:
+            self.updateUI(with: addDatas.eats[0].content)
+        case .Launch:
+            self.updateUI(with: addDatas.eats[1].content)
+        case .Dinner:
+            self.updateUI(with: addDatas.eats[2].content)
+        case .Snacks:
+            self.updateUI(with: addDatas.eats[3].content)
+        }
+    }
+    
+    func updateUI(with data:[Content]) {
+        self.datas = data
+        self.breakfasttableview.reloadData()
+    }
 
 }
 
 extension AddViewController:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return self.datas.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reusedcell") as! breakfastcell
-        cell.foodimageview.image = UIImage(named: "素食拼盘")
+        cell.updateUI(with: datas[indexPath.row])
         return cell
     }
     
@@ -117,6 +155,12 @@ extension AddViewController:UITableViewDataSource,UITableViewDelegate {
 
 
  class breakfastcell:UITableViewCell {
+    
+    public func updateUI(with data: Content) {
+        self.foodimageview.image = UIImage(named: data.image)
+        self.namelabel.text = data.name
+        self.heatlabel.text = data.kaluli
+    }
     
     lazy var foodimageview:UIImageView = {
        let imageview = UIImageView()
