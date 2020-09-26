@@ -66,6 +66,9 @@
 		84CE62D32510EC6200A36915 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D22510EC6200A36915 /* Const.swift */; };
 		84CE62D52510F6E500A36915 /* CFBasicContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D42510F6E500A36915 /* CFBasicContentView.swift */; };
 		84CE62D72510F7FF00A36915 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE62D62510F7FF00A36915 /* MainNavigationController.swift */; };
+		94115393251EFF69003ED869 /* BodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115391251EFF69003ED869 /* BodyTableViewCell.swift */; };
+		94115394251EFF69003ED869 /* ChangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115392251EFF69003ED869 /* ChangeTableViewCell.swift */; };
+		94115396251EFFE3003ED869 /* RecipeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115395251EFFE2003ED869 /* RecipeDetailHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +136,9 @@
 		84CE62D22510EC6200A36915 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		84CE62D42510F6E500A36915 /* CFBasicContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBasicContentView.swift; sourceTree = "<group>"; };
 		84CE62D62510F7FF00A36915 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		94115391251EFF69003ED869 /* BodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyTableViewCell.swift; sourceTree = "<group>"; };
+		94115392251EFF69003ED869 /* ChangeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTableViewCell.swift; sourceTree = "<group>"; };
+		94115395251EFFE2003ED869 /* RecipeDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailHeaderView.swift; sourceTree = "<group>"; };
 		EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TreeFoot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -286,6 +292,7 @@
 		84A40E47251C37ED0084287F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				94115395251EFFE2003ED869 /* RecipeDetailHeaderView.swift */,
 				842744722512044600281150 /* RecipeDetailViewController.swift */,
 				84A40E45251C37E60084287F /* SupplementDetailViewController.swift */,
 			);
@@ -392,6 +399,7 @@
 		84CE62C42510EB9A00A36915 /* Archive */ = {
 			isa = PBXGroup;
 			children = (
+				94115390251EFF69003ED869 /* View - Cell */,
 				84CE62CC2510EC2200A36915 /* ArchiveViewController.swift */,
 				84A20BEC251B2AF1009B8A27 /* ArchivePageController.swift */,
 				84A20BF1251B3E60009B8A27 /* ArchiveBodyViewController.swift */,
@@ -408,6 +416,15 @@
 				84CE62CE2510EC2E00A36915 /* MineViewController.swift */,
 			);
 			path = Mine;
+			sourceTree = "<group>";
+		};
+		94115390251EFF69003ED869 /* View - Cell */ = {
+			isa = PBXGroup;
+			children = (
+				94115391251EFF69003ED869 /* BodyTableViewCell.swift */,
+				94115392251EFF69003ED869 /* ChangeTableViewCell.swift */,
+			);
+			path = "View - Cell";
 			sourceTree = "<group>";
 		};
 		BB8240F2FA4FB71AEDD8A5ED /* Pods */ = {
@@ -567,12 +584,14 @@
 				842744662511FFD800281150 /* HomeCellUIModel.swift in Sources */,
 				8427447C2512069600281150 /* ToDayInCollectionViewCell.swift in Sources */,
 				84CE62AE2510A09800A36915 /* SceneDelegate.swift in Sources */,
+				94115396251EFFE3003ED869 /* RecipeDetailHeaderView.swift in Sources */,
 				842744832512082000281150 /* RecoderBarView.swift in Sources */,
 				842744922512230C00281150 /* EditHeaderTableViewCell.swift in Sources */,
 				848121BE251A26740093F006 /* ccViewController.m in Sources */,
 				84A20BE9251B1E6D009B8A27 /* RecommendView.swift in Sources */,
 				842744942512235200281150 /* EditModel.swift in Sources */,
 				84A20BF7251B807A009B8A27 /* SupplementViewController.swift in Sources */,
+				94115394251EFF69003ED869 /* ChangeTableViewCell.swift in Sources */,
 				84CE62C72510EBF200A36915 /* HomeViewController.swift in Sources */,
 				84A40E49251C4C8A0084287F /* RecoderModel.swift in Sources */,
 				842744602511FBAC00281150 /* SearchCollectionViewCell.swift in Sources */,
@@ -590,6 +609,7 @@
 				842744622511FDA500281150 /* HomeHeaderView.swift in Sources */,
 				84CE62D32510EC6200A36915 /* Const.swift in Sources */,
 				84A40E55251C76970084287F /* CalandarTableViewCell.swift in Sources */,
+				94115393251EFF69003ED869 /* BodyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

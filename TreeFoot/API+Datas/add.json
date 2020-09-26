@@ -8,12 +8,22 @@
                 "content":[
                     {
                         "name":"苹果",
-                        "image":"apple",
+                        "image":"素食拼盘",
                         "kaluli":"53kg/100g"
                     },
                     {
                         "name":"梨子",
-                        "image":"pari",
+                        "image":"素食拼盘",
+                        "kaluli":"53kg/100g"
+                    },
+                    {
+                        "name":"苹果",
+                        "image":"素食拼盘",
+                        "kaluli":"53kg/100g"
+                    },
+                    {
+                        "name":"梨子",
+                        "image":"素食拼盘",
                         "kaluli":"53kg/100g"
                     }
                 ]
