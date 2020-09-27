@@ -23,11 +23,14 @@ fileprivate let FavCollectionViewCellID = "FavCollectionViewCell"
 
 
 class HomeViewController: UIViewController {
-
-    // 数据源
-    var homeData = DataClass()
-    // 主界面控件
-    lazy var collectionView: UICollectionView = {
+    
+    // MARK: - 私有属性
+    
+    // MARK: - 数据源
+    
+    private var homeData = DataClass()
+    
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
         let collection = UICollectionView.init(frame:.zero, collectionViewLayout: layout)
         collection.delegate = self
@@ -49,8 +52,8 @@ class HomeViewController: UIViewController {
     
     
     // 标签栏中间按钮
-    lazy var fanMenu: FanMenu = {
-       let fanMenu = FanMenu()
+    private lazy var fanMenu: FanMenu = {
+        let fanMenu = FanMenu()
         let items = [
             ("breakfast", 0x9F85FF),
             ("lunch", 0x85B1FF),
@@ -70,7 +73,7 @@ class HomeViewController: UIViewController {
                 color: Color(val: button.1)
             )
         }
-               
+        
         fanMenu.menuRadius = 90.0
         fanMenu.duration = 0.2
         fanMenu.interval = (Double.pi + Double.pi/6, Double.pi + 5 * Double.pi/6)
@@ -81,7 +84,7 @@ class HomeViewController: UIViewController {
             var vc = UIViewController()
             switch button.id {
             case "breakfast":
-                 vc = AddViewController(type: .BreakFast)
+                vc = AddViewController(type: .BreakFast)
                 let nav = MainNavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.tabBarController?.present(nav, animated: true, completion: nil)
@@ -106,47 +109,44 @@ class HomeViewController: UIViewController {
             
             
         }
-
+        
         fanMenu.onItemWillClick = { button in
             print("ItemWillClick: \(button.id)")
         }
-               
+        
         fanMenu.backgroundColor = .clear
         return fanMenu
     }()
-
-    lazy var centerView:CenterUIView = {
-       let vi = CenterUIView()
-        
+    
+    private lazy var centerView:CenterUIView = {
+        let vi = CenterUIView()
         return vi
     }()
     
-    lazy var circleView: UIView = {
+    private lazy var circleView: UIView = {
         let backView = UIView()
         backView.backgroundColor = UIColor(r: 248, g: 248, b: 248)
-//        backView.layer.cornerRadius = 15.fit
-//        backView.layer.masksToBounds = false
         backView.layer.shadowColor = UIColor.black.cgColor
         backView.layer.shadowOffset = CGSize(width: 0, height: -3.fit)
         backView.layer.shadowOpacity = 0.2
         return backView
     }()
     
-    lazy var coverView: UIView = {
-       let vi = UIView()
+    private lazy var coverView: UIView = {
+        let vi = UIView()
         vi.backgroundColor = .white
         return vi
     }()
     
     // 相机
-    lazy var camera: DKCamera = {
-       let camera = DKCamera()
+    private lazy var camera: DKCamera = {
+        let camera = DKCamera()
         camera.didCancel = {
             print("didCancel")
-
+            
             self.dismiss(animated: true, completion: nil)
         }
-
+        
         camera.didFinishCapturingImage = { (image: UIImage?, metadata: [AnyHashable : Any]?) in
             print("didFinishCapturingImage")
             
@@ -159,6 +159,8 @@ class HomeViewController: UIViewController {
         }
         return camera
     }()
+    
+    // MARK: - 公有方法
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -173,30 +175,32 @@ class HomeViewController: UIViewController {
         configData()
         
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         fanMenu.updateNode()
     }
     
-    func configUI() {
-        self.view.backgroundColor = .white
-        self.view.addSubview(self.collectionView)
+    // MARK: - 私有方法
+    
+    private func configUI() {
+        view.backgroundColor = .white
+        view.addSubview(collectionView)
         self.collectionView.snp.makeConstraints{ (make) in
-             make.left.equalTo(self.view.snp.left).offset(0)
-             make.right.equalTo(self.view.snp.right).offset(0)
-             make.bottom.equalToSuperview()
+            make.left.equalTo(self.view.snp.left).offset(0)
+            make.right.equalTo(self.view.snp.right).offset(0)
+            make.bottom.equalToSuperview()
             make.top.equalTo(self.navigation.bar.snp.top).offset(0.fit)
-         }
+        }
     }
     
-    func configNavbar() {
+    private func configNavbar() {
         self.navigation.bar.isHidden = true
         self.navigation.bar.isShadowHidden = true
         self.navigation.bar.alpha = 0
     }
-
-    func configCenterButton() {
+    
+    private func configCenterButton() {
         self.tabBarController?.tabBar.addSubview(centerView)
         // 设置按钮的位置
         let rect = self.tabBarController?.tabBar.frame
@@ -207,38 +211,6 @@ class HomeViewController: UIViewController {
             make.width.equalTo(1.5 * value)
             make.height.equalTo(value)
         }
-//        let circle = UIBezierPath(arcCenter:   CGPoint(x: 0.75 * value , y: 0), radius: 0.75 * value, startAngle: CGFloat(Double.pi), endAngle: CGFloat(2*Double.pi), clockwise: false)
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.path = circle.cgPath
-//        shapeLayer.fillColor = UIColor.white.cgColor
-//        //shapeLayer.strokeColor = UIColor.lightGray.cgColor
-//
-//        //shapeLayer.lineWidth = 2
-//        shapeLayer.shadowColor = UIColor.black.cgColor
-//        shapeLayer.shadowOffset = CGSize(width: 0, height: -3.fit)
-//        shapeLayer.shadowOpacity = 0.2
-//
-//        centerView.layer.addSublayer(shapeLayer)
-        
-//        centerView.addSubview(circleView)
-//        circleView.snp.makeConstraints { (make) in
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(centerView.snp.top)
-//            make.width.equalTo(1.5 * value)
-//            make.height.equalTo(0.75 * value)
-//        }
-//        circleView.layer.cornerRadius = 0.75 * value
-//        circleView.layer.masksToBounds = true
-//        DispatchQueue.main.async {
-//            self.circleView.corner(byRoundingCorners: [.bottomLeft,.bottomRight], radii:  0.75 * value)
-//        }
-//        centerView.addSubview(coverView)
-//        coverView.snp.makeConstraints { (make) in
-//            make.centerX.equalToSuperview()
-//            make.bottom.equalTo(centerView.snp.top)
-//            make.width.equalTo(2 * value)
-//            make.height.equalTo(1 * value)
-//        }
         centerView.addSubview(fanMenu)
         fanMenu.snp.makeConstraints { (make) in
             make.centerX.equalTo(centerView.snp.centerX)
@@ -246,8 +218,6 @@ class HomeViewController: UIViewController {
             make.height.equalTo(value*3)
             make.width.equalTo(CFWidth/2)
         }
-        
-        print("加载中间按钮")
     }
     
     func configTabbar() {
@@ -258,16 +228,16 @@ class HomeViewController: UIViewController {
         //1 获取json文件路径
         let path = Bundle.main.path(forResource: "homelist", ofType: "json")
         //2 获取json文件里面的内容,NSData格式
-        let jsonData=NSData(contentsOfFile: path!)
+        let jsonData = NSData(contentsOfFile: path!)
         //3 解析json内容
         let json = JSON(jsonData!)
         homeData = JSONDeserializer<DataClass>.deserializeFrom(json: json["data"].description)!
-//        homeData = JSONDeserializer<DataClass>.deserializeModelArrayFrom(json: json["data"].description)
     }
-
+    
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -282,7 +252,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCellID, for: indexPath) as! SearchCollectionViewCell
             cell.searchBarCallBack = { ()
-                let vc = RecognizeViewController()//SearchViewController()
+                let vc = RecognizeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.photoCallBack = { ()
@@ -302,7 +272,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayRecommendCollectionViewCellID, for: indexPath) as! DayRecommendCollectionViewCell
-
+            
             cell.moreButtonBlock = { ()
                 let vc = DayRecommendViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -315,7 +285,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SupplementCollectionViewCellID, for: indexPath) as! SupplementCollectionViewCell
-
+            
             cell.moreButtonBlock = { ()
                 let vc = SupplementViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -328,7 +298,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuggestCollectionViewCellID, for: indexPath) as! SuggestCollectionViewCell
-
+            
             cell.moreButtonBlock = { ()
                 let vc = FavViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -364,9 +334,9 @@ extension HomeViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:
-            return CGSize(width: CFWidth, height: 220.fit)
+            return CGSize(width: CFWidth, height: 175.fit)
         case 1:
-            return CGSize(width: CFWidth, height: 310.fit)
+            return CGSize(width: CFWidth, height: 300.fit)
         case 2:
             return CGSize(width: CFWidth, height: 330.fit)
         case 3:
@@ -374,9 +344,9 @@ extension HomeViewController {
         case 4:
             return CGSize(width: CFWidth, height: 250.fit)
         default:
-             return CGSize(width: CFWidth, height: 0)
+            return CGSize(width: CFWidth, height: 0)
         }
-            
+        
     }
     
     // 头部
@@ -384,15 +354,16 @@ extension HomeViewController {
         guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeHeaderViewID, for: indexPath) as? HomeHeaderView else {
             return UICollectionReusableView()
         }
-        headerView.backgroundColor = .lightGray
+        headerView.backgroundColor = UIColor(red: 0.99, green: 0.98, blue: 0.98, alpha: 1)
         return headerView
     }
+    
     // 头部高度
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
             return CGSize(width: CFWidth, height: 0)
         }
-        return CGSize(width: CFWidth, height: 10.fit)
+        return CGSize(width: CFWidth, height: 15.fit)
     }
     
     //每个分区的内边距
@@ -416,7 +387,7 @@ extension HomeViewController {
 
 class CenterUIView: UIView {
     open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-
+        
         if (!self.isUserInteractionEnabled || self.isHidden || self.alpha <= 0.01 ){
             return nil
         }

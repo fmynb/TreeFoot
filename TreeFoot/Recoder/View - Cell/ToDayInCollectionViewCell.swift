@@ -136,7 +136,7 @@ class ToDayInCollectionViewCell: UICollectionViewCell {
         }
         
         backView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.snp.left)//.offset(20.fit)
+            make.left.equalTo(self.snp.left)
             make.right.equalTo(self.snp.right).offset(-20.fit)
             make.top.equalToSuperview().offset(5.fit)
             make.bottom.equalToSuperview().offset(-5.fit)

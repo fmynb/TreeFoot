@@ -14,10 +14,27 @@ import UIKit
 let dayId = "reusedcell"
 class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
-    var cellCallBack: ((DayRecommend) -> ())?
+    // MARK: - 公有属性
+    public var cellCallBack: ((DayRecommend) -> ())?
     
-    var datas = [DayRecommend]()
-    public func updateUI(with data:[DayRecommend]) {
+    // MARK: - 私有属性
+    private var datas = [DayRecommend]()
+    
+    private lazy var collectionview: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collect = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collect.backgroundColor = .clear
+        collect.dataSource = self as UICollectionViewDataSource
+        collect.delegate = self as UICollectionViewDelegate
+        collect.showsHorizontalScrollIndicator = false
+        collect.register(DayRecommendCollectionViewChildCell.classForCoder(), forCellWithReuseIdentifier: dayId)
+        return collect
+    }()
+    
+    // MARK: - 公有方法
+    
+    public func updateUI(with data: [DayRecommend]) {
         datas = data
         self.collectionview.reloadData()
     }
@@ -30,32 +47,19 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     
-    lazy var collectionview:UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collect = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collect.backgroundColor = .clear
-        collect.dataSource = self as UICollectionViewDataSource
-        collect.delegate = self as UICollectionViewDelegate
-        collect.showsHorizontalScrollIndicator = false
-        collect.register(DayRecommendCollectionViewChildCell.classForCoder(), forCellWithReuseIdentifier: dayId)
-        return collect
-    }()   //定义collectionview
+    // MARK: - 私有方法
     
-    
-    
-    func configUI() {
+    private func configUI() {
         
-        self.addSubview(collectionview)
-        self.titleLabel.text = "每日推荐"
-        
-        self.collectionview.snp.makeConstraints{ (make) in
-            make.height.equalTo(270.fit)
-            make.width.equalTo(CFWidth)
-            make.top.equalToSuperview().offset(40.fit)
-            make.left.equalToSuperview().offset(15.fit)
+        addSubview(collectionview)
+        titleLabel.text = "每日推荐"
+    
+        collectionview.snp.makeConstraints{ (make) in
+            make.right.equalToSuperview()
+            make.top.equalToSuperview().offset(44.fit)
+            make.left.equalToSuperview().offset(10.fit)
+            make.bottom.equalToSuperview()
         }
     }
         
@@ -71,16 +75,7 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: dayId, for: indexPath) as! DayRecommendCollectionViewChildCell
-        cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
-        cell.layer.shadowOffset = CGSize(width: 0.fit, height: 5.fit)
-        cell.layer.shadowOpacity = 1
-        cell.layer.shadowRadius = 6
-        cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        cell.layer.cornerRadius = 8
         cell.updateUI(with: datas[indexPath.row])
-//        cell.contentimage.image = UIImage(named: "素食拼盘")
-//        cell.namelabel.text = "素食拼盘"
-//        cell.materialslabel.text = "用料：牛油果，鸡蛋，香菜，山楂"
         return cell
     }
     
@@ -98,78 +93,99 @@ extension DayRecommendCollectionViewCell: UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 153.fit, height: 260.fit)
+        return CGSize(width: 165.fit, height: 250.fit)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 15.fit
+        return 10.fit
     }
     
 }
 
 
-//
-//  DayRecommendCollectionViewChildCell.swift
-//  TreeFoot
-//
-//  Created by 樊鸣远 on 2020/9/17.
-//  Copyright © 2020 Hut. All rights reserved.
-//
-
-
 class DayRecommendCollectionViewChildCell: UICollectionViewCell {
     
+    private lazy var backView: UIView = {
+        let layerView = UIView()
+        // shadowCode
+        layerView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
+        layerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        layerView.layer.shadowOpacity = 1
+        layerView.layer.shadowRadius = 6
+        // fill
+        layerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        layerView.layer.cornerRadius = 6
+        return layerView
+    }()
     
-    public func updateUI(with data: DayRecommend) {
-        self.namelabel.text = data.name
-        self.materialslabel.text = data.descrption
-        self.contentimage.image = UIImage(named: data.img)
-    }
-    
-    lazy var namelabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 1
-        return label
-    }()//菜品名字
-    
-    lazy var materialslabel: UILabel = {
+    lazy var nameLabel: UILabel = {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "素食拼盘")
-        label.numberOfLines = 2
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 13),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
+        label.numberOfLines = 0
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Semibold", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         label.alpha = 1
         return label
-    }()//原料内容
+    }()
     
-    lazy var contentimage: UIImageView = {
+    lazy var materialslabel: UILabel = {
+        let label = UILabel()
+        let attrString = NSMutableAttributedString(string: "用料：牛油果、鸡蛋、青菜")
+        label.frame = CGRect(x: 28, y: 502, width: 122, height: 14)
+        label.numberOfLines = 0
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 10)!,.foregroundColor: UIColor(red: 0.71, green: 0.68, blue: 0.68,alpha:1), ]
+        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+        label.attributedText = attrString
+        return label
+    }()
+    
+    lazy var contentImageView: UIImageView = {
         let imageview = UIImageView()
+        imageview.contentMode = .scaleAspectFill
+        imageview.clipsToBounds = true
         return imageview
-    }()//菜品图片
+    }()
     
-    override func layoutSubviews() {
-        self.addSubview(contentimage)
-        self.addSubview(namelabel)
-        self.addSubview(materialslabel)
-        self.contentimage.snp.makeConstraints{ (make) in
-            make.height.equalTo(164.fit)
-            make.width.equalTo(153.fit)
-            make.left.equalToSuperview().offset(0.fit)
-            make.top.equalToSuperview().offset(0.fit)
+    public func updateUI(with data: DayRecommend) {
+        self.nameLabel.text = data.name
+        self.materialslabel.text = data.descrption
+        self.contentImageView.image = UIImage(named: data.img)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(backView)
+        backView.snp.makeConstraints { (make) in
+            make.left.top.equalToSuperview().offset(6.fit)
+            make.right.bottom.equalToSuperview().offset(-6.fit)
         }
-        self.namelabel.snp.makeConstraints{ (make) in
-            make.height.equalTo(28.fit)
+        backView.addSubview(contentImageView)
+        backView.addSubview(nameLabel)
+        backView.addSubview(materialslabel)
+        contentImageView.snp.makeConstraints{ (make) in
+            make.height.equalTo(160.fit)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+        nameLabel.snp.makeConstraints{ (make) in
+            make.height.equalTo(20.fit)
             make.width.equalTo(80.fit)
-            make.left.equalToSuperview().offset(13.fit)
-            make.top.equalToSuperview().offset(180.fit)
+            make.left.equalToSuperview().offset(14.fit)
+            make.top.equalTo(self.contentImageView.snp.bottom).offset(10.fit)
         }
-        self.materialslabel.snp.makeConstraints{ (make) in
-            make.height.equalTo(50.fit)
-            make.width.equalTo(142.fit)
-            make.left.equalToSuperview().offset(13.fit)
-            make.top.equalToSuperview().offset(197.fit)
+        materialslabel.snp.makeConstraints{ (make) in
+            make.bottom.equalToSuperview().offset(-4.fit)
+            make.right.equalToSuperview().offset(-14.fit)
+            make.left.equalToSuperview().offset(14.fit)
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(4.fit)
         }
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
