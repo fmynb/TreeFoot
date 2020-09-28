@@ -263,6 +263,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 switch type {
                 case .BreakFast:
                     let vc = RecipeViewController()
+                    vc.updateUI(with: self.homeData.mealdetail)
                     self.navigationController?.pushViewController(vc, animated: true)
                 default:
                     break;

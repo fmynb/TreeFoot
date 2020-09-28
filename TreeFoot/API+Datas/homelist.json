@@ -158,6 +158,38 @@
                 "to_use": ["牛油果","鸡蛋","青菜","山楂"],
                 "img":"FavCollectionViewCell-1"
             }
-        ]
+        ],
+        "mealdetail":[
+            {
+                "name": "素食拼盘",
+                "materialslabel":"用料：牛油果、鸡蛋、青菜、山楂",
+                "img":"素食拼盘"
+            },
+            {
+                "name": "牛油果鸡蛋吐司",
+                "materialslabel":"用料：牛油果、鸡蛋、青菜、吐司",
+                "img":"牛油果鸡蛋吐司"
+            },
+            {
+                "name": "鸡丝凉面",
+                "materialslabel":"用料：西葫芦、鸡肉、凉粉、甜椒",
+                "img":"鸡丝凉面"
+            },
+            {
+                "name": "鹰嘴豆沙拉",
+                "materialslabel":"用料：鹰嘴豆、柠檬、面饼、玉米粒",
+                "img":"鹰嘴豆沙拉"
+            },
+            {
+                "name": "芝麻煎饺",
+                "materialslabel":"用料：速冻饺子、小米椒、醋、生抽、白糖",
+                "img":"芝麻煎饺"
+            },
+            {
+                "name": "意大利面沙拉",
+                "materialslabel":"用料：意大利面、牛油果、西红柿、鸡肉",
+                "img":"意大利面沙拉"
+            }
+        ],
     }
 }
