@@ -62,7 +62,8 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     private lazy var searchBtn: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(named: "diary_icon_search"), for: .normal)
+        btn.setImage(UIImage(systemName: "magnifyingglass.circle"), for: .normal)
+        btn.setTitleColor(UIColor.black, for: .normal)
         btn.isUserInteractionEnabled = false
         return btn
     }()
@@ -133,7 +134,7 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
         
         
         collectionView.snp.makeConstraints{ make in
-            make.left.equalTo(self).offset(12.fit)
+            make.left.equalTo(self).offset(16.fit)
             make.right.equalToSuperview()
             make.top.equalTo(self.searchView.snp.bottom).offset(18.fit)
             make.height.equalTo(110.fit)
@@ -170,7 +171,7 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
         photoBtn.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-30.fit)
             make.centerY.equalTo(self.searchView.snp.centerY)
-            make.width.height.equalTo(30.fit)
+            make.width.height.equalTo(40.fit)
         }
     }
     

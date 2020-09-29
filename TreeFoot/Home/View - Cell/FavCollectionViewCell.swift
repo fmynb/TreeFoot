@@ -13,7 +13,7 @@ fileprivate let FavId = "reusedCell"
 class FavCollectionViewCell: HomeBaseCollectionViewCell {
     
     var datas = [Fav]()
-        var cellCallBack: ((Fav) -> ())?
+    var cellCallBack: ((Fav) -> ())?
     
     public func updateUI(with data:[Fav]) {
         self.datas = data
@@ -26,7 +26,7 @@ class FavCollectionViewCell: HomeBaseCollectionViewCell {
         return vi
     }()
     lazy var daily:UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         let attrString = NSMutableAttributedString(string: "最近偏爱")
         label.frame = CGRect(x: 15.fit, y: 264.fit, width: 86.fit, height: 28.fit)
         label.numberOfLines = 0
@@ -34,7 +34,7 @@ class FavCollectionViewCell: HomeBaseCollectionViewCell {
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         label.alpha = 1;
-       return label
+        return label
     }()
     
     lazy var FavcollectionView: UICollectionView = {
@@ -65,16 +65,16 @@ class FavCollectionViewCell: HomeBaseCollectionViewCell {
         addSubview(FavcollectionView)
         FavcollectionView.snp.makeConstraints{ make in
             make.left.equalTo(self).offset(15.fit)
-            make.right.equalTo(self).offset(-20.fit)
-            make.top.equalTo(self).offset(60.fit)
+            make.right.equalTo(self)
+            make.top.equalTo(self).offset(50.fit)
             make.height.equalTo(180.fit)
-            }
+        }
         self.titleLabel.text = "最近偏爱"
     }
 }
 
 extension FavCollectionViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.datas.count
     }
@@ -83,7 +83,6 @@ extension FavCollectionViewCell: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavId, for: indexPath) as! FavCell
         cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         cell.Favcontentview.image = UIImage(named: self.datas[indexPath.row].img)
-        //cell.Favcontentview.image = UIImage(named: "FavCollectionViewCell-1")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -116,12 +115,12 @@ class FavCell: UICollectionViewCell {
     
     
     override func layoutSubviews(){
-         self.addSubview(Favcontentview)
+        self.addSubview(Favcontentview)
         self.Favcontentview.snp.makeConstraints{ (make) in
-         make.left.equalToSuperview().offset(0.fit)
-         make.top.equalToSuperview().offset(0.fit)
-         make.height.equalTo(164.fit)
-        make.width.equalTo(153.fit)
+            make.left.equalToSuperview()
+            make.top.equalToSuperview()
+            make.height.equalTo(160.fit)
+            make.width.equalTo(160.fit)
         }
     }
 }
