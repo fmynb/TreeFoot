@@ -58,7 +58,7 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
         collectionview.snp.makeConstraints{ (make) in
             make.right.equalToSuperview()
             make.top.equalToSuperview().offset(44.fit)
-            make.left.equalToSuperview().offset(10.fit)
+            make.left.equalToSuperview().offset(12.fit)
             make.bottom.equalToSuperview()
         }
     }

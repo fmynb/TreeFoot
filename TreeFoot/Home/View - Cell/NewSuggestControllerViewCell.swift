@@ -17,123 +17,88 @@ class NewSuggestControllerViewCell: UICollectionViewCell {
     
     
     public func updateUI(with data:Suggest) {
-        self.contentview.image = UIImage(named: "")
-        self.namelabel.text = data.name
+        self.leftImageView.image = UIImage(named: "素食拼盘")
+        self.nameLabel.text = data.name
     }
     
-    lazy var contentview: UIImageView = {
-        let imageview = UIImageView()
-        return imageview
+    private lazy var backView: UIView = {
+        let layerView = UIView()
+        // shadowCode
+        layerView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.22).cgColor
+        layerView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        layerView.layer.shadowOpacity = 1
+        layerView.layer.shadowRadius = 6
+        // fill
+        layerView.backgroundColor = UIColor(red: 0.96, green: 0.97, blue: 0.99, alpha: 1)
+        layerView.alpha = 0.35
+        layerView.layer.cornerRadius = 4;
+        return layerView
     }()
     
-    lazy var namelabel: UILabel = {
-       let label = UILabel()
-        label.numberOfLines = 1
-        label.textColor = UIColor(red: 116/225.0, green: 116/225.0, blue: 116/225.0, alpha: 1.0)
-        label.font = UIFont.init(name: "PingFangSC-Semibold", size: 20.fit)
+    private lazy var leftImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 4
+        imageView.layer.masksToBounds = true
+        imageView.alpha = 1
+        return imageView
+    }()
+    
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        let attrString = NSMutableAttributedString(string: "乳清蛋白粉")
+        label.frame = CGRect(x: 126, y: 691, width: 78, height: 21)
+        label.numberOfLines = 0
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 15)!,.foregroundColor: UIColor(red: 0.45, green: 0.45, blue: 0.45,alpha:1), ]
+        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+        label.attributedText = attrString
         return label
     }()
     
-    
-    
-    
-    
-    lazy var cheaklabel: UILabel = {
-       let label = UILabel()
-        label.numberOfLines = 1
-        label.textColor = UIColor(red: 84/255.0, green: 88/255.0, blue: 90/255.0, alpha: 1.0)
-        label.font = UIFont.init(name: "PingFangSC-Semibold", size: 20.fit)
-        return label
-    }()
-    
-    lazy var starone: UIImageView = {
-        let starone = UIImageView()
-        return starone
-        }()
-    
-    lazy var startwo: UIImageView = {
-        let starone = UIImageView()
-        return starone
-    }()
-    
-    lazy var starthree: UIImageView = {
-        let starone = UIImageView()
-        return starone
-    }()
-    lazy var starfour: UIImageView = {
-            let starone = UIImageView()
-        return starone
-    }()
-    
-    lazy var starfive: UIImageView = {
-        let starone = UIImageView()
-        return starone
-    }()
-    
-    override func layoutSubviews() {
-//        super.layoutSubviews()
-        self.addSubview(contentview)
-        self.addSubview(namelabel)
-        self.addSubview(cheaklabel)
-        self.addSubview(starone)
-        self.addSubview(startwo)
-        self.addSubview(starthree)
-        self.addSubview(starfour)
-        self.addSubview(starfive)
-        self.contentview.snp.makeConstraints{ (make) in
-            make.left.equalToSuperview().offset(0.fit)
-            make.top.equalToSuperview().offset(-2.fit)
-            make.height.equalTo(120.fit)
-            make.width.equalTo(120.fit)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(backView)
+        addSubview(leftImageView)
+        addSubview(nameLabel)
+        
+        backView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(16.fit)
+            make.right.equalToSuperview().offset(-16.fit)
+            make.top.equalToSuperview().offset(4.fit)
+            make.bottom.equalToSuperview().offset(-4.fit)
         }
-        self.namelabel.snp.makeConstraints{ (make) in
+        
+        leftImageView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(16.fit)
+            make.width.equalTo(90.fit)
+            make.top.equalToSuperview().offset(4.fit)
+            make.bottom.equalToSuperview().offset(-4.fit)
+        }
+        
+        nameLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(20.fit)
             make.left.equalToSuperview().offset(130.fit)
-            make.top.equalToSuperview().offset(30.fit)
-            make.height.equalTo(20.fit)
             make.width.equalTo(150.fit)
-        }
-
-        self.cheaklabel.snp.makeConstraints{ (make) in
-            make.right.equalToSuperview().offset(-10.fit)
-            make.top.equalToSuperview().offset(30.fit)
-            make.height.equalTo(20.fit)
-            make.width.equalTo(60.fit)
-        }
-
-        self.starone.snp.makeConstraints{ (make) in
-            make.left.equalToSuperview().offset(130.fit)
-            make.top.equalToSuperview().offset(75.fit)
-            make.height.equalTo(15.fit)
-            make.width.equalTo(15.fit)
+            make.height.equalTo(26.fit)
         }
         
-        self.startwo.snp.makeConstraints{ (make) in
-            make.left.equalToSuperview().offset(155.fit)
-            make.top.equalToSuperview().offset(75.fit)
-            make.height.equalTo(15.fit)
-            make.width.equalTo(15.fit)
-        }
-        
-        self.starthree.snp.makeConstraints{ (make) in
-            make.left.equalToSuperview().offset(180.fit)
-            make.top.equalToSuperview().offset(75.fit)
-            make.height.equalTo(15.fit)
-            make.width.equalTo(15.fit)
-        }
-        
-        self.starfour.snp.makeConstraints{ (make) in
-            make.left.equalToSuperview().offset(205.fit)
-            make.top.equalToSuperview().offset(75.fit)
-            make.height.equalTo(15.fit)
-            make.width.equalTo(15.fit)
-        }
-        
-        self.starfive.snp.makeConstraints{ (make) in
-            make.left.equalToSuperview().offset(230.fit)
-            make.top.equalToSuperview().offset(75.fit)
-            make.height.equalTo(15.fit)
-            make.width.equalTo(15.fit)
+        var base: CGFloat = 0
+        for _ in 0 ..< 5 {
+            let imageView = UIImageView()
+            imageView.image = UIImage(systemName: "star.fill")
+            imageView.tintColor = .orange
+            addSubview(imageView)
+            imageView.snp.makeConstraints { (make) in
+                make.top.equalTo(self.nameLabel.snp.bottom).offset(10.fit)
+                make.left.equalToSuperview().offset(130.fit + base)
+                make.width.equalTo(16.fit)
+                make.height.equalTo(16.fit)
+            }
+            base = base + 24.fit
         }
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
