@@ -11,10 +11,15 @@ let editid="reusedcell"
 let bodycell="EditBodyTableViewCell"
 let headercell="EditHeaderTableViewCell"
 
-let bodydata:[EditModel] = [EditModel(leftText: "修改名字", centerText: "去冰无糖"),EditModel(leftText: "身高", centerText: "168cm"),EditModel(leftText: "体重", centerText: "52kg"),EditModel(leftText: "性别", centerText: "女"),EditModel(leftText: "生日", centerText: "2001-07-15")]
+var bodydata:[EditModel] = [EditModel(leftText: "修改名字", centerText: "去冰无糖"),EditModel(leftText: "身高", centerText: "168"),EditModel(leftText: "体重", centerText: "52"),EditModel(leftText: "性别", centerText: "女"),EditModel(leftText: "生日", centerText: "2001-07-15")]
 
-class EditUserInfoViewController: UIViewController {
-
+class EditUserInfoViewController: UIViewController{
+    
+     
+     
+   
+    var imagepick:UIImagePickerController!
+    var headerimage = UIImage(named: "去冰无糖头像")
     
     private lazy var tableview: UITableView = {
         let tableview = UITableView()
@@ -42,7 +47,6 @@ class EditUserInfoViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         configNavbar()
-        // Do any additional setup after loading the view.
     }
     
     func configUI() {
@@ -75,17 +79,11 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let cellid = "setCellID"
-//        var cell = tableView.dequeueReusableCell(withIdentifier: cellid)
-//        if cell == nil {
-//            cell = UITableViewCell(style: .value1, reuseIdentifier: cellid)
-//        }
-       
-        //cell?.selectionStyle = .none
         if(indexPath.row == 0)
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: headercell) as! EditHeaderTableViewCell
             cell.accessoryType = .disclosureIndicator
+            cell.headerimageview.image = headerimage
             return cell
         }
         else
@@ -110,10 +108,10 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                 cell.centertext.text = bodydata[index-1].centerText
             case 2:
                 cell.lefttext.text = bodydata[index-1].leftText
-                cell.centertext.text = bodydata[index-1].centerText
+                cell.centertext.text = bodydata[index-1].centerText + "cm"
             case 3:
                 cell.lefttext.text = bodydata[index-1].leftText
-                cell.centertext.text = bodydata[index-1].centerText
+                cell.centertext.text = bodydata[index-1].centerText + "kg"
             case 4:
                 cell.lefttext.text = bodydata[index-1].leftText
                 cell.centertext.text = bodydata[index-1].centerText
@@ -122,7 +120,6 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                 cell.centertext.text = bodydata[index-1].centerText
             default :
                 break
-                
             }
             cell.accessoryType = .disclosureIndicator
             return cell
@@ -143,30 +140,112 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.tableview.deselectRow(at: indexPath, animated: true)
-        
         let index = indexPath.row
-        var url: URL?
-        switch index {
-        case 0:
-            url = URL(string: String(format: "mqq://im/chat?chat_type=wpa&uin=\(1525163730)&version=1&src_type=web"))
-        case 1:
-            url = URL(string: "sinaweibo://userinfo?uid=6360764560")
-        case 2:
-             url = URL(string: "mailto:zc@zhangchione.cc")
-        case 3:
-             url = URL(string: "sms:1525163730@qq.com")
-        case 4:
-            url = URL(string: "telprompt://15274737502")
-        case 5:
-            url = nil
-        default:
-            break
-        }
-        if let u = url {
-            
-        }
-        
+                switch index {
+                case 0:
+                    alert1()
+                    
+                case 1:
+                    let nameView = NameViewController()
+                    nameView.callBack { (value) in
+                    bodydata[0].centerText = value
+                    tableView.reloadData()
+                    }
+                    self.navigationController?.pushViewController(nameView, animated: true)
+                    
+                case 2:
+                    let heightView = HeightViewController()
+                    heightView.callBack { (value) in
+                    bodydata[1].centerText = value
+                    tableView.reloadData()
+                    }
+                   self.navigationController?.pushViewController(heightView, animated: true)
+                    
+                case 3:
+                    let weightView = WeightViewController()
+                    weightView.callBack { (value) in
+                    bodydata[2].centerText = value
+                    tableView.reloadData()
+                    }
+                  self.navigationController?.pushViewController(weightView, animated: true)
+
+                case 4:
+                    let sexView = SexViewController()
+                    sexView.callBack { (value) in
+                      bodydata[3].centerText = value
+                      tableView.reloadData()
+                      }
+                    self.navigationController?.pushViewController(sexView, animated: true)
+
+                    
+                 case 5:
+                    let birthdayView = birthdayViewController()
+                    birthdayView.callBack { (value) in
+                    bodydata[4].centerText = value
+                    tableView.reloadData()
+                    }
+                    self.navigationController?.pushViewController(birthdayView, animated: true)
+                default:
+                    break
+                }
+     
     }
-    
+     func alert1()
+    {
+        let alert=UIAlertController(title: "更换头像", message: nil, preferredStyle: .alert)
+
+        let yes = UIAlertAction(title: "拍照选取", style: .default, handler: {(alert:
+            UIAlertAction)->Void in
+            self.pickCamera()
+            print("调用相机")
+        })
+
+        let no = UIAlertAction(title: "从相册选取", style: .default, handler: {(alert:
+            UIAlertAction)->Void in
+            print("调用相册")
+            self.pickAlbum()
+
+        })
+        let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+
+        alert.addAction(yes)
+        alert.addAction(no)
+        alert.addAction(cancel)
+        self.present(alert,animated: true,completion: nil)
+    }
+}
+
+extension EditUserInfoViewController:UINavigationControllerDelegate,UIImagePickerControllerDelegate{
+
+     func pickAlbum(){
+        self.imagepick=UIImagePickerController()
+        self.imagepick.delegate=self
+        self.imagepick.allowsEditing=true
+        self.imagepick.sourceType = .photoLibrary
+        self.present(self.imagepick,animated: true,completion: nil)
+    }
+
+    func pickCamera(){
+        if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+        {
+            self.imagepick = UIImagePickerController()
+            self.imagepick.sourceType = .camera
+            self.imagepick.showsCameraControls = true
+            self.imagepick.delegate = self
+            self.imagepick.allowsEditing = true
+            self.imagepick.cameraDevice = .front
+            self.present(self.imagepick,animated: true,completion: nil)
+        }
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        self.headerimage = info[.originalImage] as? UIImage
+        tableview.reloadData()
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
