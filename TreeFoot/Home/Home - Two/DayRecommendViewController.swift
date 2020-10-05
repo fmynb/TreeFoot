@@ -7,6 +7,71 @@
 //
 
 import UIKit
+//
+//class DayRecommendViewController: UIViewController {
+//
+//    lazy var collectionView:UICollectionView = {
+//          let layout = UICollectionViewFlowLayout()
+//          layout.scrollDirection = .vertical
+//          let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//          collectionView.backgroundColor = .clear
+//          collectionView.dataSource = self as UICollectionViewDataSource
+//          collectionView.delegate = self as UICollectionViewDelegate
+//          collectionView.showsVerticalScrollIndicator = false
+//          collectionView.alwaysBounceVertical = true
+//          collectionView.register(DayRecommendViewControllerCell.classForCoder(), forCellWithReuseIdentifier: "reusedcell")
+//          return collectionView
+//      }()
+//
+//    override func viewDidLoad() {
+//         super.viewDidLoad()
+//         configUI()
+//         configNavbar()
+//         // Do any additional setup after loading the view.
+//     }
+//
+//     func configUI() {
+//         self.view.backgroundColor = .white
+//         self.view.addSubview(collectionView)
+//         self.collectionView.snp.makeConstraints{ (make) in
+//                 make.height.equalTo(CFHeight-120)
+//                 make.width.equalTo(CFWidth-60)
+//                 make.top.equalToSuperview().offset(110.fit)
+//                 make.left.equalToSuperview().offset(30.fit)
+//             }
+//     }
+//
+//     func configNavbar() {
+//         self.navigation.bar.isShadowHidden = true
+//         self.navigation.bar.alpha = 0
+//        self.navigation.item.title = "晚餐"
+//     }
+//
+//}
+//
+//extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDataSource {
+//
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 8
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reusedcell", for: indexPath) as! DayRecommendViewControllerCell
+//        // shadowCode
+//        cell.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+//        cell.layer.shadowOffset = CGSize(width: 0, height: 5)
+//        cell.layer.shadowOpacity = 1
+//        cell.layer.shadowRadius = 6
+//        // fill
+//        cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+//        cell.layer.cornerRadius = 8;
+//        cell.alpha = 0.35
+//        return cell
+//    }
+//
+//
+//}
 
 class DayRecommendViewController: UIViewController {
     
@@ -18,7 +83,7 @@ class DayRecommendViewController: UIViewController {
           collectionView.dataSource = self as UICollectionViewDataSource
           collectionView.delegate = self as UICollectionViewDelegate
           collectionView.showsVerticalScrollIndicator = false
-          collectionView.alwaysBounceVertical = true
+          //collectionView.alwaysBounceVertical = true
           collectionView.register(DayRecommendViewControllerCell.classForCoder(), forCellWithReuseIdentifier: "reusedcell")
           return collectionView
       }()
@@ -34,9 +99,9 @@ class DayRecommendViewController: UIViewController {
          self.view.backgroundColor = .white
          self.view.addSubview(collectionView)
          self.collectionView.snp.makeConstraints{ (make) in
-                 make.height.equalTo(CFHeight-120)
-                 make.width.equalTo(CFWidth-60)
-                 make.top.equalToSuperview().offset(110.fit)
+            make.height.equalTo(CFHeight-78.fit)
+            make.width.equalTo(CFWidth-60.fit)
+                 make.top.equalToSuperview().offset(78.fit)
                  make.left.equalToSuperview().offset(30.fit)
              }
      }
@@ -44,7 +109,7 @@ class DayRecommendViewController: UIViewController {
      func configNavbar() {
          self.navigation.bar.isShadowHidden = true
          self.navigation.bar.alpha = 0
-        self.navigation.item.title = "晚餐"
+         self.navigation.item.title = "每日推荐"
      }
 
 }
@@ -53,7 +118,7 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return 9
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -65,8 +130,8 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
         cell.layer.shadowRadius = 6
         // fill
         cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        cell.layer.cornerRadius = 8;
-        cell.alpha = 0.35
+        cell.layer.cornerRadius = 8
+        cell.alpha = 1
         return cell
     }
     
@@ -76,37 +141,37 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
 extension DayRecommendViewController: UICollectionViewDelegateFlowLayout {
 
 
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return CGSize(width: 153.fit, height: 237.fit)
-    }
-
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 30.fit
+        return CGSize(width: 345.fit, height: 175.fit)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 35.fit
-    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 60.fit
+       }
+    
+    
+    
 
 }
 
 class DayRecommendViewControllerCell:UICollectionViewCell {
     
     
-    lazy var namelabel: UILabel = {
+    lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         let attrString = NSMutableAttributedString(string: "素食拼盘")
-               label.numberOfLines = 2
-               let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 13),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-               attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-               label.attributedText = attrString
-               label.alpha = 1
+        label.numberOfLines = 2
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 13),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
+        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+        label.attributedText = attrString
+        label.alpha = 1
         return label
     }()//菜品名字
     
-    lazy var materialslabel: UILabel = {
+    lazy var materialsLabel: UILabel = {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "素食拼盘")
         label.numberOfLines = 2
@@ -117,7 +182,7 @@ class DayRecommendViewControllerCell:UICollectionViewCell {
         return label
     }()//原料内容
     
-    lazy var contentimage: UIImageView = {
+    lazy var contentImage: UIImageView = {
         let imageview = UIImageView()
         let image = UIImage(named: "素食拼盘")
         imageview.image = image
@@ -125,27 +190,27 @@ class DayRecommendViewControllerCell:UICollectionViewCell {
     }()//菜品图片
     
     override func layoutSubviews() {
-        self.addSubview(contentimage)
-        self.addSubview(namelabel)
-        self.addSubview(materialslabel)
-        self.contentimage.snp.makeConstraints{ (make) in
-            make.height.equalTo(164.fit)
-            make.width.equalTo(153.fit)
+        self.addSubview(contentImage)
+        self.addSubview(nameLabel)
+        self.addSubview(materialsLabel)
+        self.contentImage.snp.makeConstraints{ (make) in
+            make.height.equalTo(175.fit)
+            make.width.equalTo(345.fit)
             make.left.equalToSuperview().offset(0.fit)
             make.top.equalToSuperview().offset(0.fit)
         }
-        self.namelabel.snp.makeConstraints{ (make) in
+        self.nameLabel.snp.makeConstraints{ (make) in
             make.height.equalTo(18.fit)
             make.width.equalTo(60.fit)
-            make.left.equalToSuperview().offset(13.fit)
-            make.top.equalToSuperview().offset(170.fit)
+            make.left.equalToSuperview().offset(0.fit)
+            make.top.equalToSuperview().offset(190.fit)
         }
-        self.materialslabel.snp.makeConstraints{ (make) in
-            make.height.equalTo(50.fit)
-            make.width.equalTo(142.fit)
-            make.left.equalToSuperview().offset(13.fit)
-            make.top.equalToSuperview().offset(180.fit)
-        }
+//        self.materialslabel.snp.makeConstraints{ (make) in
+//            make.height.equalTo(50.fit)
+//            make.width.equalTo(142.fit)
+//            make.left.equalToSuperview().offset(13.fit)
+//            make.top.equalToSuperview().offset(180.fit)
+//        }
     }
   }
     
