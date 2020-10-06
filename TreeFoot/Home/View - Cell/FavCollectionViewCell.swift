@@ -20,23 +20,6 @@ class FavCollectionViewCell: HomeBaseCollectionViewCell {
         self.FavcollectionView.reloadData()
     }
     
-    lazy var backView: UIView = {
-        let vi = UIView()
-        vi.layer.cornerRadius = 15.fit
-        return vi
-    }()
-    lazy var daily:UILabel = {
-        let label = UILabel()
-        let attrString = NSMutableAttributedString(string: "最近偏爱")
-        label.frame = CGRect(x: 15.fit, y: 264.fit, width: 86.fit, height: 28.fit)
-        label.numberOfLines = 0
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 20),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-        label.attributedText = attrString
-        label.alpha = 1;
-        return label
-    }()
-    
     lazy var FavcollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let FavcollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -66,10 +49,10 @@ class FavCollectionViewCell: HomeBaseCollectionViewCell {
         FavcollectionView.snp.makeConstraints{ make in
             make.left.equalTo(self).offset(15.fit)
             make.right.equalTo(self)
-            make.top.equalTo(self).offset(50.fit)
+            make.top.equalTo(self).offset(CellTopOffset - 8.fit)
             make.height.equalTo(180.fit)
         }
-        self.titleLabel.text = "最近偏爱"
+        titleLabel.text = "最近偏爱"
     }
 }
 

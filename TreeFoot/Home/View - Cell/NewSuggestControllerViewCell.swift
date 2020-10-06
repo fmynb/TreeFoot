@@ -61,8 +61,8 @@ class NewSuggestControllerViewCell: UICollectionViewCell {
         addSubview(nameLabel)
         
         backView.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(16.fit)
-            make.right.equalToSuperview().offset(-16.fit)
+            make.left.equalToSuperview().offset(18.fit)
+            make.right.equalToSuperview().offset(-18.fit)
             make.top.equalToSuperview().offset(4.fit)
             make.bottom.equalToSuperview().offset(-4.fit)
         }

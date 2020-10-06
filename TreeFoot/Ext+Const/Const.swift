@@ -63,6 +63,9 @@ let kTopBarDifHeight: CGFloat = isIphoneX ? 24.0 : 0
 /*导航条和Tabbar总高度*/
 let kNavAndTabHeight = kNavBarAndStatusBarHeight + kTabBarHeight
 
+// cell顶部间距
+let CellTopOffset = 54.fit
+
 /// 主题背景色
 let backColor = UIColor.init(r: 247, g: 249, b: 254)
 

@@ -337,14 +337,14 @@ extension HomeViewController {
         case 0:
             return CGSize(width: CFWidth, height: 175.fit)
         case 1:
-            return CGSize(width: CFWidth, height: 290.fit)
-        case 2:
             return CGSize(width: CFWidth, height: 300.fit)
+        case 2:
+            return CGSize(width: CFWidth, height: 310.fit)
         case 3:
-            return CGSize(width: CFWidth, height: 270.fit)
+            return CGSize(width: CFWidth, height: 275.fit)
         case 4:
             return CGSize(width: CFWidth, height: 230.fit)
-        default:
+        default: 
             return CGSize(width: CFWidth, height: 0)
         }
         
@@ -370,18 +370,18 @@ extension HomeViewController {
     //每个分区的内边距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 0.fit, left: 0, bottom: 20.fit, right: 0)
+        return UIEdgeInsets(top: 0.fit, left: 0, bottom: 15.fit, right: 0)
         
     }
     
     //最小 item 间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20.fit
+        return 10.fit
     }
     
     //最小行间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20.fit
+        return 10.fit
     }
 }
 
