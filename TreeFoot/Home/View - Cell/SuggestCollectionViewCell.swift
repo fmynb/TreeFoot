@@ -29,18 +29,6 @@ class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
         Pattern(image: "SuggestCollection-2", name: "维生素C"),
     ]
     
-    lazy var daily: UILabel = {
-        let label = UILabel()
-        let attrString = NSMutableAttributedString(string: "建议补充")
-        label.frame = CGRect(x: 15.fit, y: 264.fit, width: 86.fit, height: 28.fit)
-        label.numberOfLines = 0
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 20)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-        label.attributedText = attrString
-        label.alpha = 1;
-        return label
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configUI()
@@ -62,13 +50,13 @@ class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
         return colletcionView
     }()
     
-    private func configUI(){
+    private func configUI() {
         self.backgroundColor = .white
         addSubview(collectionView)
         collectionView.snp.makeConstraints{ (make) in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.top.equalTo(self).offset(50.fit)
+            make.top.equalToSuperview().offset(CellTopOffset)
             make.bottom.equalToSuperview().offset(-5.fit)
         }
         titleLabel.text = "建议补充"

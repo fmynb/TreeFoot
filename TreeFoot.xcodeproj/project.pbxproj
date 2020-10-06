@@ -69,6 +69,11 @@
 		94115393251EFF69003ED869 /* BodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115391251EFF69003ED869 /* BodyTableViewCell.swift */; };
 		94115394251EFF69003ED869 /* ChangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115392251EFF69003ED869 /* ChangeTableViewCell.swift */; };
 		94115396251EFFE3003ED869 /* RecipeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115395251EFFE2003ED869 /* RecipeDetailHeaderView.swift */; };
+		941153A2252C046B003ED869 /* birthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A1252C046B003ED869 /* birthdayViewController.swift */; };
+		941153A4252C0475003ED869 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A3252C0474003ED869 /* NameViewController.swift */; };
+		941153A6252C047E003ED869 /* SexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A5252C047E003ED869 /* SexViewController.swift */; };
+		941153A8252C0484003ED869 /* HeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A7252C0484003ED869 /* HeightViewController.swift */; };
+		941153AA252C048B003ED869 /* WeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A9252C048B003ED869 /* WeightViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +144,11 @@
 		94115391251EFF69003ED869 /* BodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyTableViewCell.swift; sourceTree = "<group>"; };
 		94115392251EFF69003ED869 /* ChangeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTableViewCell.swift; sourceTree = "<group>"; };
 		94115395251EFFE2003ED869 /* RecipeDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailHeaderView.swift; sourceTree = "<group>"; };
+		941153A1252C046B003ED869 /* birthdayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = birthdayViewController.swift; sourceTree = "<group>"; };
+		941153A3252C0474003ED869 /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		941153A5252C047E003ED869 /* SexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexViewController.swift; sourceTree = "<group>"; };
+		941153A7252C0484003ED869 /* HeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeightViewController.swift; sourceTree = "<group>"; };
+		941153A9252C048B003ED869 /* WeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightViewController.swift; sourceTree = "<group>"; };
 		EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TreeFoot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -261,8 +271,13 @@
 		8427448A25120EE700281150 /* Mine - Two */ = {
 			isa = PBXGroup;
 			children = (
+				941153A1252C046B003ED869 /* birthdayViewController.swift */,
 				8427448B25120F0500281150 /* EditUserInfoViewController.swift */,
 				8427448F251222BC00281150 /* EditBodyTableViewCell.swift */,
+				941153A7252C0484003ED869 /* HeightViewController.swift */,
+				941153A3252C0474003ED869 /* NameViewController.swift */,
+				941153A9252C048B003ED869 /* WeightViewController.swift */,
+				941153A5252C047E003ED869 /* SexViewController.swift */,
 				842744912512230C00281150 /* EditHeaderTableViewCell.swift */,
 				842744932512235200281150 /* EditModel.swift */,
 			);
@@ -572,11 +587,14 @@
 				8427447E251206B300281150 /* WaterInCollectionViewCell.swift in Sources */,
 				8427446A251201D700281150 /* SupplementCollectionViewCell.swift in Sources */,
 				84CE62AC2510A09800A36915 /* AppDelegate.swift in Sources */,
+				941153A6252C047E003ED869 /* SexViewController.swift in Sources */,
 				8427446C2512020800281150 /* SuggestCollectionViewCell.swift in Sources */,
 				842744782512057500281150 /* TopTotalCollectionViewCell.swift in Sources */,
 				8427446E2512022700281150 /* FavCollectionViewCell.swift in Sources */,
 				84CE62CB2510EC1400A36915 /* AddViewController.swift in Sources */,
+				941153A8252C0484003ED869 /* HeightViewController.swift in Sources */,
 				84CE62CF2510EC2E00A36915 /* MineViewController.swift in Sources */,
+				941153AA252C048B003ED869 /* WeightViewController.swift in Sources */,
 				84A20BF9251B808E009B8A27 /* FavViewController.swift in Sources */,
 				842744682512014900281150 /* DayRecommendCollectionViewCell.swift in Sources */,
 				84CE62C92510EC0200A36915 /* RecoderViewController.swift in Sources */,
@@ -593,6 +611,7 @@
 				84A20BF7251B807A009B8A27 /* SupplementViewController.swift in Sources */,
 				94115394251EFF69003ED869 /* ChangeTableViewCell.swift in Sources */,
 				84CE62C72510EBF200A36915 /* HomeViewController.swift in Sources */,
+				941153A4252C0475003ED869 /* NameViewController.swift in Sources */,
 				84A40E49251C4C8A0084287F /* RecoderModel.swift in Sources */,
 				842744602511FBAC00281150 /* SearchCollectionViewCell.swift in Sources */,
 				84CE62CD2510EC2200A36915 /* ArchiveViewController.swift in Sources */,
@@ -600,6 +619,7 @@
 				84A40E44251C343C0084287F /* SearchViewController.swift in Sources */,
 				8427448C25120F0500281150 /* EditUserInfoViewController.swift in Sources */,
 				84CE62D52510F6E500A36915 /* CFBasicContentView.swift in Sources */,
+				941153A2252C046B003ED869 /* birthdayViewController.swift in Sources */,
 				84A40E59251C7A620084287F /* AddModel.swift in Sources */,
 				84274480251207E000281150 /* CalendarViewController.swift in Sources */,
 				84274490251222BC00281150 /* EditBodyTableViewCell.swift in Sources */,

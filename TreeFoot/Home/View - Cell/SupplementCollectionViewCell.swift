@@ -25,7 +25,7 @@ class SupplementCollectionViewCell: HomeBaseCollectionViewCell {
             }
             controllers.append(vc)
         }
-        self.Pageview = PageView(frame: CGRect(x: 12.fit, y: 45.fit, width: CFWidth - 24.fit, height: 300.fit), style: self.style, titles: titles, childViewControllers: controllers)
+        self.Pageview = PageView(frame: CGRect(x: 12.fit, y: CellTopOffset - 10.fit, width: Int(CFWidth) - 24.fit, height: 300.fit), style: self.style, titles: titles, childViewControllers: controllers)
         self.addSubview(Pageview)
     }
     
@@ -49,7 +49,6 @@ class SupplementCollectionViewCell: HomeBaseCollectionViewCell {
     
     lazy var style: PageStyle = {
         let style = PageStyle()
-        //        style.titleViewHeight =
         style.isShowCoverView = true
         style.coverViewBackgroundColor = UIColor(red: 0.97, green: 0.58, blue: 0.48, alpha: 1)
         style.coverViewAlpha = 1
@@ -71,6 +70,7 @@ class SupplementCollectionViewCell: HomeBaseCollectionViewCell {
         self.titleLabel.text = "营养补给"
     }
 }
+
 class containview: UIViewController {
     
     var cellCallBack: ((Suggest) -> ())?
@@ -101,6 +101,7 @@ class containview: UIViewController {
         view.self.addSubview(collection)
     }
 }
+
 extension containview: UICollectionViewDataSource,UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
