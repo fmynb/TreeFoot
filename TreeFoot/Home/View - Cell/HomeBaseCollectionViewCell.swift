@@ -36,7 +36,6 @@ class HomeBaseCollectionViewCell: UICollectionViewCell {
     lazy var moreBtn: UIButton = {
         let btn = UIButton()
         btn.addTarget(self, action: #selector(more), for: .touchUpInside)
-        btn.alpha = 0
         return btn
     }()
     
@@ -77,8 +76,8 @@ class HomeBaseCollectionViewCell: UICollectionViewCell {
         
         addSubview(titleLabel)
         addSubview(moreLabel)
-        addSubview(moreBtn)
         addSubview(moreImageView)
+        addSubview(moreBtn)
         
         moreLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(TopSpacing)
