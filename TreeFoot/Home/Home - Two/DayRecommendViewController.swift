@@ -10,6 +10,8 @@ import UIKit
 
 class DayRecommendViewController: UIViewController {
     
+    var data:[DayRecommendmore] = [DayRecommendmore(name:"早餐-鸡丝凉粉",img:"鸡丝凉粉")]
+    
     lazy var collectionView:UICollectionView = {
           let layout = UICollectionViewFlowLayout()
           layout.scrollDirection = .vertical
@@ -66,6 +68,7 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
         cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         cell.layer.cornerRadius = 8
         cell.alpha = 1
+        cell.updataUI(with: data[0])
         return cell
     }
     
@@ -85,48 +88,61 @@ extension DayRecommendViewController: UICollectionViewDelegateFlowLayout {
         return 60.fit
        }
     
-    
-    
-
 }
 
 class DayRecommendViewControllerCell:UICollectionViewCell {
     
     
+    func updataUI(with data: DayRecommendmore){
+        contentImage.image = UIImage(named: data.img)
+        nameLabel.numberOfLines = 1
+        let attrString = NSMutableAttributedString(string: data.name)
+        nameLabel.numberOfLines = 2
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Regular", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
+               attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+        nameLabel.attributedText = attrString
+        nameLabel.alpha = 1
+    }
+    
+    
     lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 1
-        let attrString = NSMutableAttributedString(string: "素食拼盘")
-        label.numberOfLines = 2
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-        label.attributedText = attrString
-        label.alpha = 1
         return label
     }()//菜品名字
     
-    lazy var materialsLabel: UILabel = {
-        let label = UILabel()
-        let attrString = NSMutableAttributedString(string: "素食拼盘")
-        label.numberOfLines = 2
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-        label.attributedText = attrString
-        label.alpha = 1
-        return label
-    }()//原料内容
+//    lazy var materialsLabel: UILabel = {
+//        let label = UILabel()
+//        let attrString = NSMutableAttributedString(string: "素食拼盘")
+//        label.numberOfLines = 2
+//        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Regular", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
+//        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+//        label.attributedText = attrString
+//        label.alpha = 1
+//        return label
+//    }()//原料内容
     
     lazy var contentImage: UIImageView = {
         let imageview = UIImageView()
-        let image = UIImage(named: "素食拼盘")
-        imageview.image = image
+       // let image = UIImage(named: "素食拼盘")
+       // imageview.image = image
         return imageview
     }()//菜品图片
+
     
-    override func layoutSubviews() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configUI()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func configUI(){
         self.addSubview(contentImage)
         self.addSubview(nameLabel)
-        self.addSubview(materialsLabel)
         self.contentImage.snp.makeConstraints{ (make) in
             make.height.equalTo(175.fit)
             make.width.equalTo(345.fit)
@@ -135,10 +151,11 @@ class DayRecommendViewControllerCell:UICollectionViewCell {
         }
         self.nameLabel.snp.makeConstraints{ (make) in
             make.height.equalTo(18.fit)
-            make.width.equalTo(60.fit)
+            make.width.equalTo(260.fit)
             make.left.equalToSuperview().offset(0.fit)
             make.top.equalToSuperview().offset(190.fit)
         }
+
     }
   }
     

@@ -95,3 +95,9 @@ struct Mealdetail: HandyJSON {
     let materialslabel: String = ""
     let img = ""
 }
+// MARK: - DayRecommendmore
+struct DayRecommendmore {
+    var name:String
+    var img:String
+}
+
