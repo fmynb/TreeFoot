@@ -19,7 +19,7 @@ class WeightViewController: UIViewController {
 
        lazy var nameLabel:UILabel={
            let label = UILabel()
-           let attrString = NSMutableAttributedString(string: "请正确填写你的体重哦")
+           let attrString = NSMutableAttributedString(string: "   请正确填写你的体重哦")
            label.numberOfLines = 0
            let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16),.foregroundColor: UIColor(red: 0.6, green: 0.56, blue: 0.56,alpha:1), ]
            attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
@@ -30,7 +30,7 @@ class WeightViewController: UIViewController {
        
        lazy var textField:UITextField={
           let textfield = UITextField()
-           var information:String = bodydata[2].centerText
+           var information:String = "   "+bodydata[2].centerText
            let attrString = NSMutableAttributedString(string: information)
            let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 17),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
            attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
