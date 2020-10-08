@@ -13,7 +13,7 @@ class PageViewController: UIViewController {
     
     lazy var image: UIImageView = {
        let image = UIImageView()
-        image.image = UIImage(named: "SuggestCollection-1")
+        image.image = UIImage(named: "apple")
         return image
     }()
     
@@ -80,8 +80,8 @@ class PageViewController: UIViewController {
         image.snp.makeConstraints { (make) in
             make.top.equalTo(view).offset(kStatusBarHeight)
             make.centerX.equalTo(view)
-            make.height.equalTo(100.fit)
-            make.width.equalTo(100.fit)
+            make.height.equalTo(80.fit)
+            make.width.equalTo(80.fit)
         }
         self.view.addSubview(pageControl)
         

@@ -17,23 +17,19 @@ class RecoderBarView: UIView {
     public var clickCalendarButtonBlock: (() -> ())?
     
     public var clickAddButtonBlock: (() -> ())?
-    
-    // 左部日历按钮
-    private lazy var leftCalendarButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 20.fit, y: kNavBarHeight / 2 - 12.fit, width: 24.fit, height: 24.fit))
-        button.setTitle("日历", for: .normal)
-        button.setTitleColor(.orange, for: .normal)
-        button.addTarget(self, action: #selector(clickCalendarButton), for: .touchUpInside)
-        return button
-    }()
 
     // 右部添加按钮
     private lazy var rightAddButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: CFWidth - 54.fit, y: kNavBarHeight / 2 - 12.fit, width: 24.fit, height: 24.fit))
-        button.setTitle("添加", for: .normal)
+        let button = UIButton(frame: CGRect(x: CFWidth - 54.fit, y: kNavBarHeight / 2 - 12.fit, width: 22.fit, height: 22.fit))
         button.setTitleColor(.orange, for: .normal)
         button.addTarget(self, action: #selector(clickAddButton), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var calendarImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: CFWidth - 54.fit, y: kNavBarHeight / 2 - 12.fit, width: 22.fit, height: 22.fit))
+        imageView.image = UIImage(named: "calendar");
+        return imageView
     }()
     
     // 左箭头按钮
@@ -47,11 +43,16 @@ class RecoderBarView: UIView {
     
     // 右箭头按钮
     private lazy var rightArrowButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: CFWidth / 2 + 70.fit, y: kNavBarHeight / 2 - 8.fit, width: 16.fit, height: 16.fit))
-        button.setTitle(">", for: .normal)
+        let button = UIButton(frame: CGRect(x: CFWidth / 2 + 70.fit, y: kNavBarHeight / 2 - 8.fit, width: 10.fit, height: 16.fit))
         button.setTitleColor(.orange, for: .normal)
         button.addTarget(self, action: #selector(clickRightArrowButton), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var rightArrowImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: CFWidth / 2 + 70.fit, y: kNavBarHeight / 2 - 8.fit, width: 10.fit, height: 16.fit))
+        imageView.image = UIImage(named: "rightArrow")
+        return imageView
     }()
     
     // 日期标签
@@ -69,10 +70,11 @@ class RecoderBarView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //addSubview(leftCalendarButton)
+        addSubview(calendarImageView)
         addSubview(dateTitleLabel)
         addSubview(rightAddButton)
         addSubview(leftArrowButton)
+        addSubview(rightArrowImageView)
         addSubview(rightArrowButton)
     }
     

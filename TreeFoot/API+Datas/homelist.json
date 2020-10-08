@@ -4,7 +4,7 @@
         "eats":[
             {
                 "name":"早餐",
-                "img":"header",
+                "img":"breakfast",
                 "content":[
                     {
                         "name":"苹果",
@@ -20,7 +20,7 @@
             },
             {
                 "name":"午餐",
-                "img":"header",
+                "img":"launch",
                 "content":[
                     {
                         "name":"苹果",
@@ -36,7 +36,7 @@
             },
             {
                 "name":"晚餐",
-                "img":"header",
+                "img":"dinner",
                 "content":[
                     {
                         "name":"苹果",
@@ -52,7 +52,7 @@
             },
             {
                 "name":"小食",
-                "img":"header",
+                "img":"dessert",
                 "content":[
                     {
                         "name":"苹果",
