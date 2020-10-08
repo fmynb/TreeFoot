@@ -10,7 +10,14 @@ import UIKit
 
 class DayRecommendViewController: UIViewController {
     
-    var data:[DayRecommendmore] = [DayRecommendmore(name:"早餐-鸡丝凉粉",img:"鸡丝凉粉")]
+    
+    var cellCallBack: ((DayRecommendmore) -> Void)?
+    var datas = [DayRecommendmore]()
+    
+    public func updateUI(with data:[DayRecommendmore]) {
+          datas = data
+          self.collectionView.reloadData()
+      }
     
     lazy var collectionView:UICollectionView = {
           let layout = UICollectionViewFlowLayout()
@@ -54,7 +61,7 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return datas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -68,8 +75,16 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
         cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         cell.layer.cornerRadius = 8
         cell.alpha = 1
-        cell.updataUI(with: data[0])
+        cell.updataUI(with: datas[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailvc = RecipeDetailViewController()
+        navigationController?.pushViewController(detailvc, animated: true)
+        if let callback = cellCallBack {
+            callback(datas[indexPath.row])
+        }
     }
     
     
@@ -95,31 +110,22 @@ class DayRecommendViewControllerCell:UICollectionViewCell {
     
     func updataUI(with data: DayRecommendmore){
         contentImage.image = UIImage(named: data.img)
-        nameLabel.numberOfLines = 1
-        let attrString = NSMutableAttributedString(string: data.name)
-        nameLabel.numberOfLines = 2
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Regular", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-               attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-        nameLabel.attributedText = attrString
-        nameLabel.alpha = 1
+        nameLabel.text = data.name
     }
     
     
     lazy var nameLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 1
+        let attrString = NSMutableAttributedString(string: "素食拼盘")
+        label.numberOfLines = 2
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Regular", size: 15)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
+                      attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+        label.attributedText = attrString
+        label.alpha = 1
         return label
     }()//菜品名字
     
-//    lazy var materialsLabel: UILabel = {
-//        let label = UILabel()
-//        let attrString = NSMutableAttributedString(string: "素食拼盘")
-//        label.numberOfLines = 2
-//        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Regular", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-//        attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-//        label.attributedText = attrString
-//        label.alpha = 1
-//        return label
-//    }()//原料内容
     
     lazy var contentImage: UIImageView = {
         let imageview = UIImageView()

@@ -22,7 +22,7 @@ class birthdayViewController: UIViewController {
 
        lazy var nameLabel:UILabel={
            let label = UILabel()
-           let attrString = NSMutableAttributedString(string: "   请正确填写你的生日哦")
+           let attrString = NSMutableAttributedString(string: "   请正确选择你的生日哦")
            label.numberOfLines = 0
            let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16),.foregroundColor: UIColor(red: 0.6, green: 0.56, blue: 0.56,alpha:1), ]
            attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
@@ -45,13 +45,28 @@ class birthdayViewController: UIViewController {
            return textfield
        }()
     
+       
+    lazy var datePicker:UIDatePicker = {
+       let picker = UIDatePicker()
+        picker.center = CGPoint(x: 210, y: 400)
+        picker.tag = 1
+        picker.setDate(Date(), animated: true)
+        picker.datePickerMode = .date
+        picker.minimumDate = Date(timeInterval: -93312000, since: Date())
+        picker.maximumDate = Date(timeIntervalSinceNow: 93312000)
+        return picker
+    }()
     
        
        @objc func clickbutton(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = datePicker.date
+        let dateText = formatter.string(from: date)
            guard (self.closure != nil) else {
                 return
             }
-           closure(textField.text!)
+           closure(dateText)
            self.navigationController?.popViewController(animated: true)
        }
 
@@ -67,20 +82,21 @@ class birthdayViewController: UIViewController {
        }
        
        func configUI(){
-           view.addSubview(textField)
-           textField.snp.makeConstraints{ (make) in
-               make.width.equalTo(CFWidth)
-               make.height.equalTo(62.fit)
-               make.top.equalToSuperview().offset(146.fit)
-               make.left.equalToSuperview().offset(0)
-           }
+           //view.addSubview(textField)
+//           textField.snp.makeConstraints{ (make) in
+//               make.width.equalTo(CFWidth)
+//               make.height.equalTo(62.fit)
+//               make.top.equalToSuperview().offset(146.fit)
+//               make.left.equalToSuperview().offset(0)
+//           }
            view.addSubview(nameLabel)
            nameLabel.snp.makeConstraints{ (make) in
                       make.width.equalTo(200.fit)
                       make.height.equalTo(22.fit)
-                      make.top.equalToSuperview().offset(96.fit)
+                      make.top.equalToSuperview().offset(105.fit)
                       make.left.equalToSuperview().offset(0.fit)
                   }
+        view.addSubview(datePicker)
        }
 }
 
