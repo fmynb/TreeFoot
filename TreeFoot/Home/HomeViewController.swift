@@ -293,7 +293,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
-                let vc = RecipeDetailViewController()
+                let vc = SupplementDetailViewController()
+                vc.updateUI(with: data)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.updateUI(with: homeData.paln)
