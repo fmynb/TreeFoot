@@ -1,36 +1,269 @@
-//
-//  SupplementDetailViewController.swift
-//  TreeFoot
-//
-//  Created by zhangchi on 2020/9/24.
-//  Copyright © 2020 Hut. All rights reserved.
-//
+ //
+ //  SupplementDetailViewController.swift
+ //  TreeFoot
+ //
+ //  Created by zhangchi on 2020/9/24.
+ //  Copyright © 2020 Hut. All rights reserved.
+ //
 
-import UIKit
+ import UIKit
 
-class SupplementDetailViewController: UIViewController {
+ class SupplementDetailViewController: UIViewController {
+     
+     public func updateUI(with data: Suggest) {
+         backgroundImage.image = UIImage(named: data.img)
+         nameLabel.text = data.name
+         introducelabel.text = data.descrption
+         standardLabel.text = data.use
+         let attrString = NSMutableAttributedString(string: data.tips)
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFang SC", size: 15)!, .foregroundColor: UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         var size = attrString.size()
+         size.height = size.height * ceil(size.width / 250)
+         attenionLabel.text = data.tips
+         attenionLabel.snp.updateConstraints { (make) in
+             make.height.equalTo(size.height)
+         }
+     }
+     
+     lazy var backgroundImage: UIImageView = {
+         let img = UIImageView(frame: .zero)
+         img.image = UIImage(named: "乳清蛋白粉")
+         return img
+     }()
 
-    var datas = Suggest()
-    convenience init(data:Suggest) {
-        self.init()
-        self.datas = data
-    }
+     // 整体滚动背景view
+     lazy var scrollView: UIScrollView = {
+         let view = UIScrollView()
+         view.contentSize = CGSize(width: CFWidth, height: 570)
+         view.showsVerticalScrollIndicator = false
+         view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+         view.layer.cornerRadius = 30
+         view.alpha = 1
+         return view
+     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configUI()
-        configNavbar()
-        // Do any additional setup after loading the view.
-    }
-    
-    func configUI() {
-        self.view.backgroundColor = .white
-        //self.navigationItem.title = self.datas.name
-    }
-    
-    func configNavbar() {
-        self.navigation.bar.isShadowHidden = true
-        self.navigation.bar.alpha = 0
-    }
+     lazy var heartView: UIImageView = {
+         let view = UIImageView(frame: .zero)
+         view.alpha = 1
+         return view
+     }()
 
-}
+     lazy var numberLabel: UILabel = {
+         let label = UILabel(frame: .zero)
+         let attrString = NSMutableAttributedString(string: "4065")
+         label.frame = CGRect(x: 313, y: 401, width: 37, height: 22)
+         label.numberOfLines = 0
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFangSC-Regular", size: 17)!, .foregroundColor: UIColor(red: 0.9, green: 0.36, blue: 0.36, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         label.attributedText = attrString
+         label.alpha = 1
+         return label
+     }()
+
+     lazy var useBackgroundView: UIView = {
+         let view = UIView(frame: .zero)
+         view.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+         view.layer.cornerRadius = 2
+         view.alpha = 1
+         return view
+     }()
+
+     lazy var useView: UIView = {
+         let view = UIView(frame: .zero)
+         view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+         view.layer.cornerRadius = 14
+         view.alpha = 1
+         view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.16).cgColor
+         view.layer.shadowOffset = CGSize(width: 0, height: 2)
+         view.layer.shadowOpacity = 1
+         view.layer.shadowRadius = 6
+         return view
+     }()
+
+     lazy var nameLabel: UILabel = {
+         let label = UILabel(frame: .zero)
+         let attrString = NSMutableAttributedString(string: "乳清蛋白粉")
+         label.numberOfLines = 0
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFangSC-Medium", size: 22)!, .foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         label.attributedText = attrString
+         label.alpha = 1
+         return label
+     }()
+
+     lazy var introducelabel: UILabel = {
+         let label = UILabel(frame: .zero)
+         let attrString = NSMutableAttributedString(string: "乳清蛋白粉是采用先进工艺从牛奶分离提取出来的珍贵蛋白质，以其纯度高、吸收率高、氨基酸组成最合理等诸多优势被推为“蛋白之王”。乳清蛋白不但容易消化，而且还具有高生物价、高消化率、高蛋白质功效比和高利用率，是蛋白质中的精品。含有人体所需的所有氨基酸，其氨基酸组成模式与骨骼肌中的氨基酸组成模式几乎完全一致，极其容易被人体吸收。")
+         label.numberOfLines = 0
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFangSC-light", size: 14)!, .foregroundColor: UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         label.attributedText = attrString
+         label.alpha = 1
+         return label
+     }()
+
+     lazy var useWayLabel: UILabel = {
+         let label = UILabel(frame: .zero)
+         let attrString = NSMutableAttributedString(string: "服用方法")
+         label.numberOfLines = 0
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFangSC-Medium", size: 20)!, .foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         label.attributedText = attrString
+         label.alpha = 1
+         return label
+     }()
+
+     lazy var useThingTopLabel: UILabel = {
+         let label = UILabel(frame: .zero)
+         let attrString = NSMutableAttributedString(string: "【标准用法】")
+         label.numberOfLines = 0
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFang SC", size: 15)!, .foregroundColor: UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         label.attributedText = attrString
+         label.alpha = 1
+         return label
+     }()
+
+     lazy var useThingBottomLabel: UILabel = {
+         let label = UILabel(frame: .zero)
+         let attrString = NSMutableAttributedString(string: "【注意事项】")
+         label.numberOfLines = 0
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFang SC", size: 15)!, .foregroundColor: UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         label.attributedText = attrString
+         label.alpha = 1
+         return label
+     }()
+
+     lazy var standardLabel: UILabel = {
+         let label = UILabel(frame: .zero)
+         let attrString = NSMutableAttributedString(string: "运动后30~40分钟内，喝1~2份约22-45克）乳清蛋白")
+         label.numberOfLines = 0
+         
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFang SC", size: 15)!, .foregroundColor: UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         label.attributedText = attrString
+         label.alpha = 1
+         return label
+     }()
+
+     lazy var attenionLabel: UILabel = {
+         let label = UILabel(frame: .zero)
+         let attrString = NSMutableAttributedString(string: "兑乳清蛋白粉的水，不要使用滚开水，会破坏营养成分；另外酸性物质也会使蛋白质变性，产生絮状沉淀，影响氨基酸被人体的 吸收率，所以也尽量避免果汁等酸性饮料相兑。")
+         label.numberOfLines = 0
+         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFang SC", size: 15)!, .foregroundColor: UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)]
+         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
+         label.attributedText = attrString
+         label.alpha = 1
+         return label
+     }()
+
+     override func viewDidLoad() {
+         super.viewDidLoad()
+         configUI()
+         configNavbar()
+         // Do any additional setup after loading the view.
+     }
+
+     func configUI() {
+         view.backgroundColor = .white
+         view.addSubview(backgroundImage)
+         view.addSubview(scrollView)
+         scrollView.addSubview(heartView)
+         scrollView.addSubview(useBackgroundView)
+         scrollView.addSubview(numberLabel)
+         scrollView.addSubview(nameLabel)
+         scrollView.addSubview(introducelabel)
+         useBackgroundView.addSubview(useView)
+         useBackgroundView.addSubview(useWayLabel)
+         useView.addSubview(useThingTopLabel)
+         useView.addSubview(useThingBottomLabel)
+         useView.addSubview(standardLabel)
+         useView.addSubview(attenionLabel)
+         backgroundImage.snp.makeConstraints { make in
+             make.height.equalTo(410.fit)
+             make.width.equalTo(CFWidth.fit)
+             make.left.equalToSuperview()
+             make.top.equalToSuperview()
+         }
+         scrollView.snp.makeConstraints { make in
+             make.bottom.equalToSuperview()
+             make.right.equalToSuperview()
+             make.left.equalToSuperview()
+             make.top.equalTo(backgroundImage.snp.bottom).offset(-23.fit)
+         }
+         useBackgroundView.snp.makeConstraints { make in
+             make.left.equalToSuperview()
+             make.width.equalTo(CFWidth)
+             make.top.equalToSuperview().offset(250.fit)
+             make.height.equalTo(360.fit)
+         }
+         useView.snp.makeConstraints { make in
+             make.left.equalToSuperview().offset(24.fit)
+             make.right.equalToSuperview().offset(-24.fit)
+             make.top.equalToSuperview().offset(54.fit)
+             make.bottom.equalToSuperview().offset(-30.fit)
+         }
+         nameLabel.snp.makeConstraints { make in
+             make.height.equalTo(26.fit)
+             make.width.equalTo(130.fit)
+             make.left.equalToSuperview().offset(26.fit)
+             make.top.equalToSuperview().offset(35.fit)
+         }
+         heartView.snp.makeConstraints { make in
+             make.height.equalTo(20.fit)
+             make.width.equalTo(18.fit)
+             make.left.equalTo(nameLabel.snp.right).offset(190.fit)
+             make.top.equalToSuperview().offset(35.fit)
+         }
+         numberLabel.snp.makeConstraints { make in
+             make.top.equalToSuperview().offset(35.fit)
+             make.left.equalTo(heartView.snp.right).offset(4.fit)
+             make.width.equalTo(47.fit)
+             make.height.equalTo(22.fit)
+         }
+         introducelabel.snp.makeConstraints { make in
+             make.width.equalTo(354.fit)
+             make.bottom.equalTo(useBackgroundView.snp.top).offset(-25.fit)
+             make.top.equalTo(nameLabel.snp.bottom).offset(14.fit)
+             make.left.equalTo(30.fit)
+         }
+         useWayLabel.snp.makeConstraints { make in
+             make.height.equalTo(24.fit)
+             make.width.equalTo(380.fit)
+             make.top.equalTo(useBackgroundView.snp.top).offset(20.fit)
+             make.left.equalTo(useBackgroundView.snp.left).offset(36.fit)
+         }
+         useThingTopLabel.snp.makeConstraints { make in
+             make.height.equalTo(24.fit)
+             make.width.equalTo(90.fit)
+             make.top.equalTo(useView.snp.top).offset(25.fit)
+             make.left.equalTo(useView.snp.left).offset(6.fit)
+         }
+
+         useThingBottomLabel.snp.makeConstraints { make in
+             make.height.equalTo(24.fit)
+             make.width.equalTo(90.fit)
+             make.top.equalTo(useThingTopLabel.snp.bottom).offset(70.fit)
+             make.left.equalTo(useView.snp.left).offset(6.fit)
+         }
+         standardLabel.snp.makeConstraints { make in
+             make.height.equalTo(45.fit)
+             make.top.equalTo(useThingTopLabel.snp.top)
+             make.right.equalTo(useView.snp.right).offset(-10.fit)
+             make.left.equalTo(useThingTopLabel.snp.right).offset(10.fit)
+         }
+         attenionLabel.snp.makeConstraints { make in
+             make.height.equalTo(300.fit)
+             make.top.equalTo(useThingBottomLabel.snp.top)
+             make.right.equalToSuperview().offset(-10.fit)
+             make.left.equalTo(useThingBottomLabel.snp.right).offset(10.fit)
+         }
+     }
+
+     func configNavbar() {
+         navigation.bar.isShadowHidden = true
+         navigation.bar.alpha = 0
+     }
+ }
