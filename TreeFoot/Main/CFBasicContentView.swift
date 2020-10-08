@@ -18,7 +18,7 @@ class CFBasicContentView: ESTabBarItemContentView {
         textColor = UIColor.init(white: 175.0 / 255.0, alpha: 1.0)
         highlightTextColor = UIColor.init(red: 96/255.0, green: 114/255.0, blue: 255/255.0, alpha: 1.0)
         iconColor = UIColor.init(white: 175.0 / 255.0, alpha: 1.0)
-        highlightIconColor = UIColor.init(red: 96/255.0, green: 114/255.0, blue: 255/255.0, alpha: 1.0)
+        highlightIconColor = UIColor(red: 0.98, green: 0.59, blue: 0.48, alpha: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {

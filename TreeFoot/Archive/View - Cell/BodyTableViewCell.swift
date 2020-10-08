@@ -19,11 +19,11 @@ struct BodyInformationModel {
 
 // 身体信息数据
 let bodyData = [
-    BodyInformationModel(imageName: "素食拼盘", titleName: "心率", timeString: "4月19日 11：18", number: 75, unitString: "次/分", color: UIColor(red: 0.76, green: 0.86, blue: 0.95, alpha: 1)),
-    BodyInformationModel(imageName: "素食拼盘", titleName: "血压", timeString: "4月18日 20：28", number: 80, unitString: "mmHg", color: UIColor(red: 0.87, green: 0.93, blue: 0.61, alpha: 1)),
-    BodyInformationModel(imageName: "素食拼盘", titleName: "身高", timeString: "4月7日 11：43", number: 168, unitString: "CM", color: UIColor(red: 0.65, green: 0.86, blue: 0.9, alpha: 1)),
-    BodyInformationModel(imageName: "素食拼盘", titleName: "体重", timeString: "4月9日 11：18", number: 52, unitString: "KG", color: UIColor(red: 0.96, green: 0.79, blue: 0.56, alpha: 1)),
-    BodyInformationModel(imageName: "素食拼盘", titleName: "BMI", timeString: "4月19日 21：18", number: 17.2, unitString: "KG/m2", color: UIColor(red: 0.96, green: 0.57, blue: 0.41, alpha: 1)),
+    BodyInformationModel(imageName: "heartRate", titleName: "心率", timeString: "4月19日 11：18", number: 75, unitString: "次/分", color: UIColor(red: 0.76, green: 0.86, blue: 0.95, alpha: 1)),
+    BodyInformationModel(imageName: "bloodPressure", titleName: "血压", timeString: "4月18日 20：28", number: 80, unitString: "mmHg", color: UIColor(red: 0.87, green: 0.93, blue: 0.61, alpha: 1)),
+    BodyInformationModel(imageName: "height", titleName: "身高", timeString: "4月7日 11：43", number: 168, unitString: "CM", color: UIColor(red: 0.65, green: 0.86, blue: 0.9, alpha: 1)),
+    BodyInformationModel(imageName: "weight", titleName: "体重", timeString: "4月9日 11：18", number: 52, unitString: "KG", color: UIColor(red: 0.96, green: 0.79, blue: 0.56, alpha: 1)),
+    BodyInformationModel(imageName: "bmi", titleName: "BMI", timeString: "4月19日 21：18", number: 17.2, unitString: "KG/m2", color: UIColor(red: 0.96, green: 0.57, blue: 0.41, alpha: 1)),
 ]
 
 class BodyTableViewCell: UITableViewCell {
@@ -148,8 +148,8 @@ class BodyTableViewCell: UITableViewCell {
         leftImageView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20.fit)
             make.centerY.equalToSuperview()
-            make.width.equalTo(60.fit)
-            make.height.equalTo(60.fit)
+            make.width.equalTo(50.fit)
+            make.height.equalTo(50.fit)
         }
         
         titleLabel.snp.makeConstraints { (make) in

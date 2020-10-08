@@ -84,16 +84,16 @@ class NewSuggestControllerViewCell: UICollectionViewCell {
         var base: CGFloat = 0
         for _ in 0 ..< 5 {
             let imageView = UIImageView()
-            imageView.image = UIImage(systemName: "star.fill")
+            imageView.image = UIImage(named: "star")
             imageView.tintColor = .orange
             addSubview(imageView)
             imageView.snp.makeConstraints { (make) in
                 make.top.equalTo(self.nameLabel.snp.bottom).offset(10.fit)
                 make.left.equalToSuperview().offset(130.fit + base)
-                make.width.equalTo(16.fit)
-                make.height.equalTo(16.fit)
+                make.width.equalTo(10.fit)
+                make.height.equalTo(10.fit)
             }
-            base = base + 24.fit
+            base = base + 18.fit
         }
     }
     

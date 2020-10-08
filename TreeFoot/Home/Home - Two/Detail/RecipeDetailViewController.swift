@@ -7,13 +7,36 @@
 //
 
 import UIKit
+import EachNavigationBar
 
 class RecipeDetailViewController: UIViewController {
     
     var initialFrame = CGRect(x: 0, y: 0, width: CFWidth, height: 300.fit)
     
+    // MARK: - 顶部导航栏
+    
+    lazy var titleView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: kNavBarHeight))
+        view.addSubview(leftBackImageView)
+        view.addSubview(leftButton)
+        return view
+    }()
+    
+    lazy var leftBackImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "back"))
+        imageView.frame = CGRect(x: 12.fit, y: 7.fit, width: 30.fit, height: 30.fit)
+        return imageView
+    }()
+    
+    lazy var leftButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 12.fit, y: 7.fit, width: 30.fit, height: 30.fit)
+        button.addTarget(self, action: #selector(clickBackButton), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var bgImage: UIImageView = {
-       let img = UIImageView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: 300.fit))
+        let img = UIImageView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: 300.fit))
         img.image = UIImage(named: "素食拼盘")
         return img
     }()
@@ -26,15 +49,15 @@ class RecipeDetailViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableview = UITableView()
-         tableview.delegate = self
-         tableview.dataSource = self
-         tableview.showsVerticalScrollIndicator = false
-         tableview.separatorStyle = .none
-         tableview.register(breakfastcell.classForCoder(), forCellReuseIdentifier: "reusedcell")
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.showsVerticalScrollIndicator = false
+        tableview.separatorStyle = .none
+        tableview.register(breakfastcell.classForCoder(), forCellReuseIdentifier: "reusedcell")
         tableview.register(CalendarHeaderViewCell.self, forHeaderFooterViewReuseIdentifier: "cell")
         tableview.tableHeaderView = bgImage
         tableview.backgroundColor = .clear
-         return tableview
+        return tableview
     }()
     
     var datas = DayRecommend()
@@ -42,20 +65,16 @@ class RecipeDetailViewController: UIViewController {
         self.init()
         self.datas = data
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
         configNavbar()
-        // Do any additional setup after loading the view.
     }
     
     func configUI() {
         self.view.backgroundColor = .white
-        //self.navigationItem.title = self.datas.name
-        
         self.view.addSubview(bgImage)
-        
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.right.left.equalTo(view)
@@ -70,8 +89,16 @@ class RecipeDetailViewController: UIViewController {
     func configNavbar() {
         self.navigation.bar.isShadowHidden = true
         self.navigation.bar.alpha = 0
+        self.navigation.bar.backBarButtonItem = nil
+        // 顶部导航栏
+        self.navigation.item.titleView = titleView
     }
-
+    
+    // 返回按钮事件
+    @objc func clickBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 
@@ -97,7 +124,7 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-       
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -109,8 +136,6 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "cell") as! CalendarHeaderViewCell
-        
-        
         return headerView
     }
     
@@ -125,7 +150,7 @@ extension RecipeDetailViewController: UIScrollViewDelegate {
             let offsetY = (y + (scrollView.contentInset.top )) * -1
             initialFrame.origin.y = -offsetY * 1 //设置上下拉伸的幅度；
             initialFrame.origin.x = -offsetY / 2 //设置左右拉伸的幅度；
-
+            
             //重新设置view的frame（高度和宽度加上offsetY偏移量，达到图片放大的效果）；
             initialFrame.size.width = tableView.frame.size.width + offsetY
             initialFrame.size.height = 300.fit + offsetY

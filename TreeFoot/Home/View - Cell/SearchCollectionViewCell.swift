@@ -25,13 +25,6 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     private var datas = [Eat]()
     
-    // 背景图
-    private lazy var backView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 15.fit
-        return view
-    }()
-    
     // 搜索大背景
     private lazy var searchView: UIView = {
         let vi = UIView()
@@ -44,8 +37,6 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     private lazy var searchBarBtn: UIButton = {
         let btn = UIButton()
         btn.titleLabel?.textAlignment = .left
-        //btn.setImage(UIImage(named: "diary_icon_search"), for: .normal)
-        //btn.isUserInteractionEnabled = false
         btn.addTarget(self, action: #selector(searchBarClick), for: .touchUpInside)
         return btn
     }()
@@ -56,16 +47,13 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
         label.font = UIFont.systemFont(ofSize: 14.fit)
         label.textColor = UIColor.init(r: 56, g: 56, b: 56 )
         label.text = "搜索"
-        
         return label
     }()
     
-    private lazy var searchBtn: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(systemName: "magnifyingglass.circle"), for: .normal)
-        btn.setTitleColor(UIColor.black, for: .normal)
-        btn.isUserInteractionEnabled = false
-        return btn
+    // 左部搜索ImageView
+    private lazy var searchImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "search"))
+        return imageView
     }()
     
     private lazy var photoBtn: UIButton = {
@@ -89,8 +77,6 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     }()
     
     
-    
-    
     // MARK: - 公有方法
     
     public func updateUI(with data: [Eat]) {
@@ -101,7 +87,6 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configUI()
-        //configShadow()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -127,7 +112,7 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
         backgroundColor = .white
         addSubview(collectionView)
         addSubview(searchView)
-        searchView.addSubview(searchBtn)
+        searchView.addSubview(searchImageView)
         searchView.addSubview(titleLabel)
         searchView.addSubview(searchBarBtn)
         searchView.addSubview(photoBtn)
@@ -147,15 +132,15 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
             make.height.equalTo(40.fit)
         }
         
-        searchBtn.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(30.fit)
-            make.width.equalTo(30.fit)
+        searchImageView.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(32.fit)
+            make.width.equalTo(20.fit)
             make.centerY.equalTo(self.searchView.snp.centerY)
-            make.height.equalTo(30.fit)
+            make.height.equalTo(20.fit)
         }
         
         titleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(70.fit)
+            make.left.equalTo(self.searchImageView.snp.right).offset(6.fit)
             make.width.equalTo(40.fit)
             make.centerY.equalTo(self.searchView.snp.centerY)
             make.height.equalTo(30.fit)
@@ -171,18 +156,8 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
         photoBtn.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-30.fit)
             make.centerY.equalTo(self.searchView.snp.centerY)
-            make.width.height.equalTo(40.fit)
+            make.width.height.equalTo(30.fit)
         }
-    }
-    
-    private func configShadow() {
-        backView.backgroundColor = .white
-        backView.layer.cornerRadius = 15.fit
-        backView.layer.masksToBounds = false
-        backView.layer.shadowColor = UIColor(red: 0.43, green: 0.5, blue: 1, alpha: 0.3).cgColor
-        backView.layer.shadowOffset = CGSize(width: 0, height: 4.fit)
-        backView.layer.shadowOpacity = 1
-        backView.layer.shadowRadius = 12.fit
     }
 }
 
@@ -267,7 +242,7 @@ class SearchCell: UICollectionViewCell {
         let attrString = NSMutableAttributedString(string: "早餐")
         label.frame = CGRect(x: 45, y: 184, width: 27, height: 18)
         label.numberOfLines = 0
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Medium", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.textAlignment = .center
         label.attributedText = attrString
@@ -299,15 +274,15 @@ class SearchCell: UICollectionViewCell {
         
         imageView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(10.fit)
-            make.width.height.equalTo(44.fit)
+            make.top.equalToSuperview().offset(14.fit)
+            make.width.height.equalTo(40.fit)
         }
         
         infoLabel.snp.makeConstraints{ (make) in
             make.centerX.equalToSuperview()
             make.width.equalTo(40.fit)
-            make.height.equalTo(30.fit)
-            make.top.equalTo(self.imageView.snp.bottom).offset(2.fit)
+            make.height.equalTo(20.fit)
+            make.top.equalTo(self.imageView.snp.bottom).offset(8.fit)
         }
     }
     
