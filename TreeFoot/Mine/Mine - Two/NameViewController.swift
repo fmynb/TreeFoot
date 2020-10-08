@@ -81,7 +81,7 @@ class NameViewController: UIViewController {
         nameLabel.snp.makeConstraints{ (make) in
                    make.width.equalTo(200.fit)
                    make.height.equalTo(22.fit)
-                   make.top.equalToSuperview().offset(96.fit)
+                   make.top.equalToSuperview().offset(105.fit)
                    make.left.equalToSuperview().offset(0.fit)
                }
     }

@@ -276,6 +276,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             
             cell.moreButtonBlock = { ()
                 let vc = DayRecommendViewController()
+                vc.updateUI(with: self.homeData.dayRecommendmore)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
