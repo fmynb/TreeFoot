@@ -15,6 +15,8 @@ class RecipeViewController: UIViewController {
     public func updateUI(with data:[Mealdetail]) {
         datas = data
         self.collectionview.reloadData()
+        
+        
     }
     
     lazy var collectionview: UICollectionView = {
