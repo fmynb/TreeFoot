@@ -81,11 +81,6 @@ class containview: UIViewController {
         self.datas = data
     }
     
-    private var data = [
-        Pattern(image: "SuggestCollection-1", name: "乳清蛋白粉"),
-        Pattern(image: "SuggestCollection-2", name: "维生素C"),
-    ]
-    
     lazy var collection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collect = UICollectionView(frame: CGRect(x: -10, y: 0, width: CFWidth, height: 300.fit), collectionViewLayout: layout)

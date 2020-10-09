@@ -38,7 +38,7 @@ class AddViewController: UIViewController {
         let button = UIButton.init(type: .custom)
         button.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "custom_close")?.withRenderingMode(.alwaysTemplate)
+        imageView.image = UIImage(systemName: "xmark")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = UIColor.black
         button.tintColor = UIColor.black
         button.setImage(imageView.image, for: .normal)
@@ -256,6 +256,17 @@ extension AddViewController:UITableViewDataSource,UITableViewDelegate {
 
 class breakfastcell:UITableViewCell {
     
+    // 监听按钮点击
+    private var isClickAddButton = false {
+        didSet {
+            if (isClickAddButton) {
+                self.addButtonImageView.image = UIImage(named: "achieveAdd")
+            } else {
+                self.addButtonImageView.image = UIImage(named: "achieveAdd1")
+            }
+        }
+    }
+    
     public func updateUI(with data: Content) {
         self.foodimageview.image = UIImage(named: data.image)
         self.namelabel.text = data.name
@@ -293,13 +304,14 @@ class breakfastcell:UITableViewCell {
     
     lazy var addbutton:UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "diary_icon_add"), for: .normal)
-        button.setTitleColor(UIColor.gray, for: .normal)
-        button.setImage(UIImage(named: "custom_share"), for: .selected)
-        button.setTitleColor(UIColor.green, for: .selected)
-        button.cornerRadius = 15
         button.addTarget(self, action: #selector(clickbutton(_:)), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var addButtonImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "achieveAdd1")
+        return imageView
     }()
     
     lazy var lineView: UIView = {
@@ -314,6 +326,7 @@ class breakfastcell:UITableViewCell {
     
     func configUI(){
         addSubview(foodimageview)
+        addSubview(addButtonImageView)
         addSubview(addbutton)
         addSubview(heatlabel)
         addSubview(namelabel)
@@ -338,6 +351,13 @@ class breakfastcell:UITableViewCell {
             make.width.equalTo(90.fit)
             make.top.equalToSuperview().offset(44.fit)
             make.left.equalToSuperview().offset(96.fit)
+        }
+        
+        addButtonImageView.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-26.fit)
+            make.width.equalTo(28.fit)
+            make.height.equalTo(28.fit)
         }
         
         addbutton.snp.makeConstraints { (make) in
@@ -366,7 +386,7 @@ class breakfastcell:UITableViewCell {
     }
     
     @objc func clickbutton(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        isClickAddButton = !isClickAddButton
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addBag"), object: self, userInfo: ["caloris": 43])
     }
     

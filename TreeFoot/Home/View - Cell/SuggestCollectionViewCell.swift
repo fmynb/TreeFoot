@@ -24,11 +24,6 @@ class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
         self.collectionView.reloadData()
     }
     
-    private var data = [
-        Pattern(image: "SuggestCollection-1", name: "乳清蛋白粉"),
-        Pattern(image: "SuggestCollection-2", name: "维生素C"),
-    ]
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configUI()
