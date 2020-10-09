@@ -8,17 +8,27 @@
 
 import UIKit
 
-struct Pattern  {
-    let image: String
-    let name: String
-}
-
 class NewSuggestControllerViewCell: UICollectionViewCell {
-    
     
     public func updateUI(with data:Suggest) {
         self.leftImageView.image = UIImage(named: "素食拼盘")
         self.nameLabel.text = data.name
+        
+        // star
+        var base: CGFloat = 0
+        for _ in 0 ..< data.star {
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "star")
+            imageView.tintColor = .orange
+            addSubview(imageView)
+            imageView.snp.makeConstraints { (make) in
+                make.top.equalTo(self.nameLabel.snp.bottom).offset(10.fit)
+                make.left.equalToSuperview().offset(130.fit + base)
+                make.width.equalTo(10.fit)
+                make.height.equalTo(10.fit)
+            }
+            base = base + 18.fit
+        }
     }
     
     private lazy var backView: UIView = {
@@ -79,21 +89,6 @@ class NewSuggestControllerViewCell: UICollectionViewCell {
             make.left.equalToSuperview().offset(130.fit)
             make.width.equalTo(150.fit)
             make.height.equalTo(26.fit)
-        }
-        
-        var base: CGFloat = 0
-        for _ in 0 ..< 5 {
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: "star")
-            imageView.tintColor = .orange
-            addSubview(imageView)
-            imageView.snp.makeConstraints { (make) in
-                make.top.equalTo(self.nameLabel.snp.bottom).offset(10.fit)
-                make.left.equalToSuperview().offset(130.fit + base)
-                make.width.equalTo(10.fit)
-                make.height.equalTo(10.fit)
-            }
-            base = base + 18.fit
         }
     }
     

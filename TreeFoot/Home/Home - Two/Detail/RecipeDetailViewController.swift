@@ -16,24 +16,41 @@ class RecipeDetailViewController: UIViewController {
     // MARK: - 顶部导航栏
     
     lazy var titleView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: kNavBarHeight))
-        view.addSubview(leftBackImageView)
-        view.addSubview(leftButton)
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 390, height: kNavBarHeight))
+        view.addSubview(self.leftBackImageView)
+        view.addSubview(self.leftButton)
+        view.addSubview(self.rightShareImageView)
+        view.addSubview(self.rightButton)
         return view
     }()
     
     lazy var leftBackImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "back"))
-        imageView.frame = CGRect(x: 12.fit, y: 7.fit, width: 30.fit, height: 30.fit)
+        imageView.frame = CGRect(x: 10.fit, y: 7.fit, width: 30.fit, height: 30.fit)
         return imageView
     }()
     
     lazy var leftButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 12.fit, y: 7.fit, width: 30.fit, height: 30.fit)
-        button.addTarget(self, action: #selector(clickBackButton), for: .touchUpInside)
+        button.frame = CGRect(x: 10.fit, y: 7.fit, width: 30.fit, height: 30.fit)
+        button.addTarget(self, action: #selector(clickLeftBackButton), for: .touchUpInside)
         return button
     }()
+    
+    lazy var rightButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 390 - 40.fit, y: 7.fit, width: 30.fit, height: 30.fit)
+        button.addTarget(self, action: #selector(clickRightShareButton), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var rightShareImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "share"))
+        imageView.frame = CGRect(x: 390 - 40.fit, y: 7.fit, width: 30.fit, height: 30.fit)
+        return imageView
+    }()
+    
+    
     
     lazy var bgImage: UIImageView = {
         let img = UIImageView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: 300.fit))
@@ -61,6 +78,7 @@ class RecipeDetailViewController: UIViewController {
     }()
     
     var datas = DayRecommend()
+    
     convenience init(data:DayRecommend) {
         self.init()
         self.datas = data
@@ -87,6 +105,8 @@ class RecipeDetailViewController: UIViewController {
     }
     
     func configNavbar() {
+        // 状态栏白色
+        self.navigation.bar.statusBarStyle = .lightContent
         self.navigation.bar.isShadowHidden = true
         self.navigation.bar.alpha = 0
         self.navigation.bar.backBarButtonItem = nil
@@ -95,10 +115,13 @@ class RecipeDetailViewController: UIViewController {
     }
     
     // 返回按钮事件
-    @objc func clickBackButton() {
+    @objc func clickLeftBackButton() {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func clickRightShareButton() {
+        // TODO: - 分享
+    }
 }
 
 
