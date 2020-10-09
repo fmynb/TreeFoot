@@ -1,5 +1,5 @@
 # 树食
 
 <p align="center">
-    <img src="show.png" width="414">
+    <img src="preview.png" width="414">
 </p>
