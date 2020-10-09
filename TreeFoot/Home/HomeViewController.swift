@@ -55,10 +55,10 @@ class HomeViewController: UIViewController {
     private lazy var fanMenu: FanMenu = {
         let fanMenu = FanMenu()
         let items = [
-            ("breakfast", 0x9F85FF),
-            ("lunch", 0x85B1FF),
-            ("dinner", 0xFF703B),
-            ("refreshments", 0xF55B58),
+            ("breakfast", 0xFFFFFF),
+            ("launch", 0xFFFFFF),
+            ("dinner", 0xFFFFFF),
+            ("dessert", 0xFFFFFF),
         ]
         fanMenu.button = FanMenuButton(
             id: "main",
@@ -69,12 +69,12 @@ class HomeViewController: UIViewController {
         fanMenu.items = items.map { button in
             FanMenuButton(
                 id: button.0,
-                image: UIImage(named: "menu_\(button.0)"),
+                image: UIImage(named: "\(button.0)"),
                 color: Color(val: button.1)
             )
         }
         
-        fanMenu.menuRadius = 90.0
+        fanMenu.menuRadius = 120.0
         fanMenu.duration = 0.2
         fanMenu.interval = (Double.pi + Double.pi/6, Double.pi + 5 * Double.pi/6)
         fanMenu.radius = 25.0
@@ -215,8 +215,8 @@ class HomeViewController: UIViewController {
         fanMenu.snp.makeConstraints { (make) in
             make.centerX.equalTo(centerView.snp.centerX)
             make.centerY.equalTo(centerView.snp.top).offset(0.fit)
-            make.height.equalTo(value*3)
-            make.width.equalTo(CFWidth/2)
+            make.height.equalTo(value*5)
+            make.width.equalTo(CFWidth)
         }
     }
     
@@ -290,6 +290,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             
             cell.moreButtonBlock = { ()
                 let vc = SupplementViewController()
+                vc.updateUI(with: self.homeData.paln)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
@@ -303,11 +304,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuggestCollectionViewCellID, for: indexPath) as! SuggestCollectionViewCell
             
             cell.moreButtonBlock = { ()
-                let vc = FavViewController()
+                let vc = SupplementViewController()
+                vc.updateUI(with: self.homeData.paln)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
-                let vc = RecipeDetailViewController()
+                let vc = SupplementDetailViewController()
+                vc.updateUI(with: data)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.updateUI(with: homeData.suggest)
