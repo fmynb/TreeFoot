@@ -31,6 +31,7 @@ struct DataClass: HandyJSON {
     let mealdetail = [Mealdetail]()
     let dayRecommendmore = [DayRecommendmore]()
     let supplement = [Supplement]()
+    let favmore = [FavMore]()
 }
 
 // MARK: - DayRecommend
@@ -112,4 +113,9 @@ struct Supplement: HandyJSON {
     let standarduseway: String = ""
     let attention: String = ""
     let img = ""
+}
+// MARK: - favmore
+struct FavMore:HandyJSON{
+    let name:String = ""
+    let img:String = ""
 }
