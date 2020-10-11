@@ -14,6 +14,8 @@ class ArchiveBaseController: UIViewController {
     
         public var pageIndex = 0
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
