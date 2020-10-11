@@ -95,6 +95,8 @@ class birthdayViewController: UIViewController {
                       make.height.equalTo(22.fit)
                       make.top.equalToSuperview().offset(105.fit)
                       make.left.equalToSuperview().offset(0.fit)
+            
+            
                   }
         view.addSubview(datePicker)
        }

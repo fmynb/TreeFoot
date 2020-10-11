@@ -34,11 +34,15 @@ class RecoderBarView: UIView {
     
     // 左箭头按钮
     private lazy var leftArrowButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: CFWidth / 2 - 86.fit, y: kNavBarHeight / 2 - 8.fit, width: 16.fit, height: 16.fit))
-        button.setTitle("<", for: .normal)
-        button.setTitleColor(.orange, for: .normal)
+        let button = UIButton(frame: CGRect(x: CFWidth / 2 - 80.fit, y: kNavBarHeight / 2 - 8.fit, width: 10.fit, height: 16.fit))
         button.addTarget(self, action: #selector(clickLeftArrowButton), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var leftArrowImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: CFWidth / 2 - 80.fit, y: kNavBarHeight / 2 - 8.fit, width: 10.fit, height: 16.fit))
+        imageView.image = UIImage(named: "leftArrow")
+        return imageView
     }()
     
     // 右箭头按钮
@@ -73,6 +77,7 @@ class RecoderBarView: UIView {
         addSubview(calendarImageView)
         addSubview(dateTitleLabel)
         addSubview(rightAddButton)
+        addSubview(leftArrowImageView)
         addSubview(leftArrowButton)
         addSubview(rightArrowImageView)
         addSubview(rightArrowButton)
