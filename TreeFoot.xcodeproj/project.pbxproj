@@ -74,6 +74,8 @@
 		941153A6252C047E003ED869 /* SexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A5252C047E003ED869 /* SexViewController.swift */; };
 		941153A8252C0484003ED869 /* HeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A7252C0484003ED869 /* HeightViewController.swift */; };
 		941153AA252C048B003ED869 /* WeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A9252C048B003ED869 /* WeightViewController.swift */; };
+		941153AD25341D22003ED869 /* IngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153AC25341D22003ED869 /* IngredientsTableViewCell.swift */; };
+		941153AF25343AEE003ED869 /* CalorisTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153AE25343AEE003ED869 /* CalorisTotalTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -149,6 +151,8 @@
 		941153A5252C047E003ED869 /* SexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SexViewController.swift; sourceTree = "<group>"; };
 		941153A7252C0484003ED869 /* HeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeightViewController.swift; sourceTree = "<group>"; };
 		941153A9252C048B003ED869 /* WeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightViewController.swift; sourceTree = "<group>"; };
+		941153AC25341D22003ED869 /* IngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewCell.swift; sourceTree = "<group>"; };
+		941153AE25343AEE003ED869 /* CalorisTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorisTotalTableViewCell.swift; sourceTree = "<group>"; };
 		EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TreeFoot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -307,6 +311,7 @@
 		84A40E47251C37ED0084287F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				941153AB25341CF1003ED869 /* View - Cell */,
 				94115395251EFFE2003ED869 /* RecipeDetailHeaderView.swift */,
 				842744722512044600281150 /* RecipeDetailViewController.swift */,
 				84A40E45251C37E60084287F /* SupplementDetailViewController.swift */,
@@ -438,6 +443,15 @@
 			children = (
 				94115391251EFF69003ED869 /* BodyTableViewCell.swift */,
 				94115392251EFF69003ED869 /* ChangeTableViewCell.swift */,
+			);
+			path = "View - Cell";
+			sourceTree = "<group>";
+		};
+		941153AB25341CF1003ED869 /* View - Cell */ = {
+			isa = PBXGroup;
+			children = (
+				941153AC25341D22003ED869 /* IngredientsTableViewCell.swift */,
+				941153AE25343AEE003ED869 /* CalorisTotalTableViewCell.swift */,
 			);
 			path = "View - Cell";
 			sourceTree = "<group>";
@@ -618,12 +632,14 @@
 				842744732512044600281150 /* RecipeDetailViewController.swift in Sources */,
 				84A40E44251C343C0084287F /* SearchViewController.swift in Sources */,
 				8427448C25120F0500281150 /* EditUserInfoViewController.swift in Sources */,
+				941153AF25343AEE003ED869 /* CalorisTotalTableViewCell.swift in Sources */,
 				84CE62D52510F6E500A36915 /* CFBasicContentView.swift in Sources */,
 				941153A2252C046B003ED869 /* birthdayViewController.swift in Sources */,
 				84A40E59251C7A620084287F /* AddModel.swift in Sources */,
 				84274480251207E000281150 /* CalendarViewController.swift in Sources */,
 				84274490251222BC00281150 /* EditBodyTableViewCell.swift in Sources */,
 				5241159C2514F7070090C0F4 /* NewSuggestControllerViewCell.swift in Sources */,
+				941153AD25341D22003ED869 /* IngredientsTableViewCell.swift in Sources */,
 				8427448825120E9B00281150 /* MineHeaderTableViewCell.swift in Sources */,
 				84A20BEB251B25F3009B8A27 /* ResultView.swift in Sources */,
 				842744622511FDA500281150 /* HomeHeaderView.swift in Sources */,
