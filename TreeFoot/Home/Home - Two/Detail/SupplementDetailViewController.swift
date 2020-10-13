@@ -229,7 +229,7 @@
         useView.addSubview(standardLabel)
         useView.addSubview(attenionLabel)
         backgroundImage.snp.makeConstraints { make in
-            make.height.equalTo(410.fit)
+            make.height.equalTo(400.fit)
             make.width.equalTo(CFWidth.fit)
             make.left.equalToSuperview()
             make.top.equalToSuperview()
@@ -238,7 +238,7 @@
             make.bottom.equalToSuperview()
             make.right.equalToSuperview()
             make.left.equalToSuperview()
-            make.top.equalTo(backgroundImage.snp.bottom).offset(-23.fit)
+            make.top.equalTo(backgroundImage.snp.bottom).offset(-20.fit)
         }
         useBackgroundView.snp.makeConstraints { make in
             make.left.equalToSuperview()

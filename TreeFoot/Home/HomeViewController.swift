@@ -265,8 +265,18 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                     let vc = RecipeViewController()
                     vc.updateUI(with: self.homeData.mealdetail)
                     self.navigationController?.pushViewController(vc, animated: true)
-                default:
-                    break;
+                case .Launch:
+                    let vc = RecipeViewController()
+                    vc.updateUI(with: self.homeData.mealdetail)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                case .Dinner:
+                    let vc = RecipeViewController()
+                    vc.updateUI(with: self.homeData.mealdetail)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                case .Snacks:
+                    let vc = RecipeViewController()
+                    vc.updateUI(with: self.homeData.mealdetail)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
             cell.updateUI(with: homeData.eats)
@@ -320,6 +330,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             cell.updateUI(with: homeData.fav)
             cell.moreButtonBlock = { ()
                 let vc = FavViewController()
+                vc.updateUI(with: self.homeData.favmore)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
