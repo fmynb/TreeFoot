@@ -10,14 +10,17 @@ import UIKit
 let editid="reusedcell"
 let bodycell="EditBodyTableViewCell"
 let headercell="EditHeaderTableViewCell"
+let filePath: String = NSHomeDirectory() + "/Documents/test.plist"
+var plistdata = NSMutableArray(contentsOfFile: filePath)
 
-var bodydata:[EditModel] = [EditModel(leftText: "修改名字", centerText: "去冰无糖"),EditModel(leftText: "身高", centerText: "168"),EditModel(leftText: "体重", centerText: "52"),EditModel(leftText: "性别", centerText: "女"),EditModel(leftText: "生日", centerText: "2001-07-15")]
+//var bodydata:[EditModel] = [EditModel(leftText: "修改名字", centerText: "去冰无糖"),EditModel(leftText: "身高", centerText: "168"),EditModel(leftText: "体重", centerText: "52"),EditModel(leftText: "性别", centerText: "女"),EditModel(leftText: "生日", centerText: "2001-07-15")]
+
+var bodydata = [EditModel]()
+
 
 class EditUserInfoViewController: UIViewController{
     
      
-     
-   
     var imagepick:UIImagePickerController!
     var headerimage = UIImage(named: "去冰无糖头像")
     
@@ -101,22 +104,36 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
             cell.centertext.numberOfLines = 0
             cell.centertext.font = UIFont(name: "PingFang SC", size: 16)
             cell.centertext.textColor = UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1)
-            cell.centertext.alpha = 1;
+            cell.centertext.alpha = 1
+            for item in plistdata!{
+                let data = item as! NSDictionary
+                let center = data.value(forKey: "centerText") as! String
+                let sss = EditModel(centerText: center)
+                if(bodydata.count == 5)
+                {
+                    break
+                }
+                else
+                {
+                    bodydata.append(sss)
+                }
+                
+            }
             switch index {
             case 1:
-                cell.lefttext.text = bodydata[index-1].leftText
+                cell.lefttext.text = "修改名字"
                 cell.centertext.text = bodydata[index-1].centerText
             case 2:
-                cell.lefttext.text = bodydata[index-1].leftText
+                cell.lefttext.text = "身高"
                 cell.centertext.text = bodydata[index-1].centerText + "cm"
             case 3:
-                cell.lefttext.text = bodydata[index-1].leftText
+                cell.lefttext.text = "体重"
                 cell.centertext.text = bodydata[index-1].centerText + "kg"
             case 4:
-                cell.lefttext.text = bodydata[index-1].leftText
+                cell.lefttext.text = "性别"
                 cell.centertext.text = bodydata[index-1].centerText
             case 5:
-                cell.lefttext.text = bodydata[index-1].leftText
+                cell.lefttext.text = "生日"
                 cell.centertext.text = bodydata[index-1].centerText
             default :
                 break
@@ -144,12 +161,21 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                 switch index {
                 case 0:
                     alert1()
-                    
                 case 1:
                     let nameView = NameViewController()
                     nameView.callBack { (value) in
                     bodydata[0].centerText = value
-                    tableView.reloadData()
+                    let array:NSMutableArray = NSMutableArray()
+                    for item in bodydata{
+                                            let dictionary:NSMutableDictionary = [ : ]
+                                            let center = item.centerText as NSString
+                                            dictionary.setValue(center, forKey: "centerText")
+                                            array.add(dictionary)
+                                        }
+                             plistdata?.removeAllObjects()
+                             array.write(toFile: filePath, atomically: false)
+                             print(filePath)
+                             tableView.reloadData()
                     }
                     self.navigationController?.pushViewController(nameView, animated: true)
                     
@@ -157,7 +183,17 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                     let heightView = HeightViewController()
                     heightView.callBack { (value) in
                     bodydata[1].centerText = value
-                    tableView.reloadData()
+                        let array:NSMutableArray = NSMutableArray()
+                        for item in bodydata{
+                            let dictionary:NSMutableDictionary = [ : ]
+                            let center = item.centerText as NSString
+                            dictionary.setValue(center, forKey: "centerText")
+                            array.add(dictionary)
+                        }
+                        plistdata?.removeAllObjects()
+                        array.write(toFile: filePath, atomically: false)
+                       
+                        tableView.reloadData()
                     }
                    self.navigationController?.pushViewController(heightView, animated: true)
                     
@@ -165,7 +201,17 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                     let weightView = WeightViewController()
                     weightView.callBack { (value) in
                     bodydata[2].centerText = value
-                    tableView.reloadData()
+                        let array:NSMutableArray = NSMutableArray()
+                        for item in bodydata{
+                                                let dictionary:NSMutableDictionary = [ : ]
+                                                let center = item.centerText as NSString
+                                                dictionary.setValue(center, forKey: "centerText")
+                                                array.add(dictionary)
+                                            }
+                                 plistdata?.removeAllObjects()
+                                 array.write(toFile: filePath, atomically: false)
+                                
+                                 tableView.reloadData()
                     }
                   self.navigationController?.pushViewController(weightView, animated: true)
 
@@ -173,6 +219,16 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                     let sexView = SexViewController()
                     sexView.callBack { (value) in
                       bodydata[3].centerText = value
+                        let array:NSMutableArray = NSMutableArray()
+                        for item in bodydata{
+                                let dictionary:NSMutableDictionary = [ : ]
+                                let center = item.centerText as NSString
+                                dictionary.setValue(center, forKey: "centerText")
+                                array.add(dictionary)
+                                }
+                                 plistdata?.removeAllObjects()
+                                 array.write(toFile: filePath, atomically: false)
+                                 
                       tableView.reloadData()
                       }
                     self.navigationController?.pushViewController(sexView, animated: true)
@@ -182,6 +238,16 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                     let birthdayView = birthdayViewController()
                     birthdayView.callBack { (value) in
                     bodydata[4].centerText = value
+                    let array:NSMutableArray = NSMutableArray()
+                    for item in bodydata{
+                    let dictionary:NSMutableDictionary = [ : ]
+                    let center = item.centerText as NSString
+                    dictionary.setValue(center, forKey: "centerText")
+                    array.add(dictionary)
+                    }
+                    plistdata?.removeAllObjects()
+                    array.write(toFile: filePath, atomically: false)
+                    
                     tableView.reloadData()
                     }
                     self.navigationController?.pushViewController(birthdayView, animated: true)

@@ -275,14 +275,14 @@
 		8427448A25120EE700281150 /* Mine - Two */ = {
 			isa = PBXGroup;
 			children = (
-				941153A1252C046B003ED869 /* birthdayViewController.swift */,
 				8427448B25120F0500281150 /* EditUserInfoViewController.swift */,
+				842744912512230C00281150 /* EditHeaderTableViewCell.swift */,
 				8427448F251222BC00281150 /* EditBodyTableViewCell.swift */,
-				941153A7252C0484003ED869 /* HeightViewController.swift */,
 				941153A3252C0474003ED869 /* NameViewController.swift */,
+				941153A7252C0484003ED869 /* HeightViewController.swift */,
 				941153A9252C048B003ED869 /* WeightViewController.swift */,
 				941153A5252C047E003ED869 /* SexViewController.swift */,
-				842744912512230C00281150 /* EditHeaderTableViewCell.swift */,
+				941153A1252C046B003ED869 /* birthdayViewController.swift */,
 				842744932512235200281150 /* EditModel.swift */,
 			);
 			path = "Mine - Two";
@@ -794,7 +794,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9Z3S272VTB;
 				INFOPLIST_FILE = TreeFoot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -817,7 +817,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9Z3S272VTB;
 				INFOPLIST_FILE = TreeFoot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

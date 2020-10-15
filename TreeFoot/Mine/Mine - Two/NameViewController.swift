@@ -35,7 +35,7 @@ class NameViewController: UIViewController {
     
     lazy var textField:UITextField={
        let textfield = UITextField()
-        var information:String = "   "+bodydata[0].centerText
+        var information:String = bodydata[0].centerText
         let attrString = NSMutableAttributedString(string: information)
         let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 17)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1),]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))

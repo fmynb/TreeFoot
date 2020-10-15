@@ -9,6 +9,5 @@
 import Foundation
 
 struct EditModel {
-    var leftText = ""
     var centerText = ""
 }
