@@ -11,5 +11,5 @@ import HandyJSON
 
 // MARK: - DataClass
 struct AddModel: HandyJSON {
-    let eats = [Eat]()
+    let eats = [Dishes]()
 }

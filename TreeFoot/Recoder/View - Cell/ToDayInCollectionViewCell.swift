@@ -158,6 +158,5 @@ class ToDayInCollectionViewCell: UICollectionViewCell {
     
     @objc func clickAddButton() {
         // TODO: - 按钮点击事件
-        let vc = ViewController()
     }
 }

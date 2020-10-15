@@ -62,7 +62,6 @@ class RecipeDetailViewController: UIViewController {
     private lazy var contentScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.contentSize = CGSize(width: CFWidth, height: CFHeight + 200.fit)
-        print(CFHeight)
         scrollView.backgroundColor = .clear
         scrollView.layer.cornerRadius = 30
         scrollView.delegate = self
@@ -149,20 +148,26 @@ class RecipeDetailViewController: UIViewController {
         label.attributedText = attrString
         return label
     }()
-    
-    var datas = DayRecommend()
+
+    // 食材数据
+    private var data = [Ingredient]()
+    private var caloris = 0
     
     // MARK: - 公有方法
-    
-    convenience init(data:DayRecommend) {
-        self.init()
-        self.datas = data
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
         configNavbar()
+    }
+    
+    public func updateUI(_ data: Dish) {
+        backImageView.image = UIImage(named: data.image)
+        titleLabel.text = data.name
+        descriptionLabel.text = data.description
+        ingredientsTableView.reloadData()
+        caloris = data.totalCaloris
+        self.data = data.ingredients
     }
     
     // MARK: - 私有方法
@@ -296,7 +301,7 @@ extension RecipeDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 5
+            return data.count
         case 1:
             return 1
         default:
@@ -308,17 +313,18 @@ extension RecipeDetailViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsCellIdentifier, for: indexPath) as! IngredientsTableViewCell
-            cell.minusButtonBlock = {
-                print("minus - \(indexPath.row)")
-            }
-            cell.addButtonBlock = {
-                print("add - \(indexPath.row)")
-            }
+            cell.updateUI(data[indexPath.row])
+//            cell.minusButtonBlock = {
+//                print("minus - \(indexPath.row)")
+//            }
+//            cell.addButtonBlock = {
+//                print("add - \(indexPath.row)")
+//            }
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: CalorisTotalCellIdentifier, for: indexPath)
             as! CalorisTotalTableViewCell
-            cell.updateUI(300)
+            cell.updateUI(caloris)
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -344,7 +350,6 @@ extension RecipeDetailViewController: UITableViewDataSource {
 
 extension RecipeDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
         let y = scrollView.contentOffset.y
         if y < 0 {
             scrollView.contentOffset.y = 0

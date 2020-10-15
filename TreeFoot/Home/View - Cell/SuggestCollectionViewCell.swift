@@ -16,11 +16,12 @@ let Height = Frame.height
 class SuggestCollectionViewCell: HomeBaseCollectionViewCell {
     
     
-    var cellCallBack: ((Suggest) -> ())?
+    var cellCallBack: ((Supplement) -> ())?
     
-    var datas = [Suggest]()
-    public func updateUI(with data: [Suggest]){
-        self.datas = data
+    var data = SuggestSupplement()
+    
+    public func updateUI(with data: SuggestSupplement){
+        self.data = data
         self.collectionView.reloadData()
     }
     
@@ -63,7 +64,7 @@ extension SuggestCollectionViewCell: UICollectionViewDataSource,UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: suggestId, for: indexPath) as! NewSuggestControllerViewCell
-        cell.updateUI(with: datas[indexPath.row])
+        cell.updateUI(with: data.supplements[indexPath.row])
         return cell
     }
     
@@ -75,7 +76,7 @@ extension SuggestCollectionViewCell: UICollectionViewDataSource,UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let callback = self.cellCallBack {
             print("建议cell回调")
-            callback(datas[indexPath.row])
+            callback(data.supplements[indexPath.row])
         }
     }
     

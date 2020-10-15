@@ -12,14 +12,14 @@ import DNSPageView
 // TODO: 营养补给Cell
 class SupplementCollectionViewCell: HomeBaseCollectionViewCell {
     
-    var cellCallBack: ((Suggest) -> ())?
+    var cellCallBack: ((Supplement) -> ())?
     
-    public func updateUI(with data:[Paln]) {
+    public func updateUI(with data: [NutritionalSupplement]) {
         var titles = [String]()
         var controllers = [UIViewController]()
-        for paln in data {
-            titles.append(paln.name)
-            let vc = containview(data: paln)
+        for item in data {
+            titles.append(item.categoryName)
+            let vc = SupplementCollectionViewController(data: item.supplements)
             if let callback = self.cellCallBack {
                 vc.cellCallBack = callback
             }
@@ -71,14 +71,15 @@ class SupplementCollectionViewCell: HomeBaseCollectionViewCell {
     }
 }
 
-class containview: UIViewController {
+class SupplementCollectionViewController: UIViewController {
     
-    var cellCallBack: ((Suggest) -> ())?
+    var cellCallBack: ((Supplement) -> ())?
     
-    var datas = Paln()
-    convenience init(data: Paln) {
+    private var data = [Supplement]()
+    
+    convenience init(data: [Supplement]) {
         self.init()
-        self.datas = data
+        self.data = data
     }
     
     lazy var collection: UICollectionView = {
@@ -97,11 +98,11 @@ class containview: UIViewController {
     }
 }
 
-extension containview: UICollectionViewDataSource,UICollectionViewDelegate{
+extension SupplementCollectionViewController: UICollectionViewDataSource,UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: suggestId, for: indexPath) as! NewSuggestControllerViewCell
-        cell.updateUI(with: datas.content[indexPath.row])//datas[indexPath.row])
+        cell.updateUI(with: data[indexPath.row])
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -109,19 +110,18 @@ extension containview: UICollectionViewDataSource,UICollectionViewDelegate{
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let callback = self.cellCallBack {
-            print("营养补给cell回调")
-            callback(datas.content[indexPath.row])
+            callback(data[indexPath.row])
         }
     }
 }
-extension containview: UICollectionViewDelegateFlowLayout {
+extension SupplementCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: CFWidth, height: 100.fit)
-    }//设置collectionviewcell的高宽
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20.fit
-    }//设置cell的间隔
+    }
     
 }

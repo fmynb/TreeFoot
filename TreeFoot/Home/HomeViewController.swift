@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
     
     private var homeData = DataClass()
     
+    private var supplements = [Supplement]()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
         let collection = UICollectionView.init(frame:.zero, collectionViewLayout: layout)
@@ -232,6 +234,12 @@ class HomeViewController: UIViewController {
         //3 解析json内容
         let json = JSON(jsonData!)
         homeData = JSONDeserializer<DataClass>.deserializeFrom(json: json["data"].description)!
+        // 所有补给
+        for item in self.homeData.nutritionalSupplement {
+            for supplement in item.supplements {
+                self.supplements.append(supplement)
+            }
+        }
     }
     
 }
@@ -263,44 +271,44 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 switch type {
                 case .BreakFast:
                     let vc = RecipeViewController()
-                    vc.updateUI(with: self.homeData.mealdetail)
+                    vc.updateUI(with: self.homeData.dishes[0])
                     self.navigationController?.pushViewController(vc, animated: true)
                 case .Launch:
                     let vc = RecipeViewController()
-                    vc.updateUI(with: self.homeData.mealdetail)
+                    vc.updateUI(with: self.homeData.dishes[1])
                     self.navigationController?.pushViewController(vc, animated: true)
                 case .Dinner:
                     let vc = RecipeViewController()
-                    vc.updateUI(with: self.homeData.mealdetail)
+                    vc.updateUI(with: self.homeData.dishes[2])
                     self.navigationController?.pushViewController(vc, animated: true)
                 case .Snacks:
                     let vc = RecipeViewController()
-                    vc.updateUI(with: self.homeData.mealdetail)
+                    vc.updateUI(with: self.homeData.dishes[3])
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
-            cell.updateUI(with: homeData.eats)
+            cell.updateUI(with: homeData.dishes)
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayRecommendCollectionViewCellID, for: indexPath) as! DayRecommendCollectionViewCell
-            
             cell.moreButtonBlock = { ()
                 let vc = DayRecommendViewController()
-                vc.updateUI(with: self.homeData.dayRecommendmore)
+                vc.updateUI(with: self.homeData.dailyRecommendation)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
-                let vc = RecipeDetailViewController(data: data)
+                let vc = RecipeDetailViewController()
+                vc.updateUI(data)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            cell.updateUI(with: homeData.dayRecommend)
+            cell.updateUI(with: homeData.dailyRecommendation)
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SupplementCollectionViewCellID, for: indexPath) as! SupplementCollectionViewCell
             
             cell.moreButtonBlock = { ()
                 let vc = SupplementViewController()
-                vc.updateUI(with: self.homeData.paln)
+                vc.updateUI(with: self.supplements)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
@@ -308,14 +316,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 vc.updateUI(with: data)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            cell.updateUI(with: homeData.paln)
+            cell.updateUI(with: homeData.nutritionalSupplement)
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuggestCollectionViewCellID, for: indexPath) as! SuggestCollectionViewCell
             
             cell.moreButtonBlock = { ()
                 let vc = SupplementViewController()
-                vc.updateUI(with: self.homeData.paln)
+                vc.updateUI(with: self.supplements)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
@@ -323,7 +331,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 vc.updateUI(with: data)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            cell.updateUI(with: homeData.suggest)
+            cell.updateUI(with: homeData.suggestSupplement)
             return cell
         case 4:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavCollectionViewCellID, for: indexPath) as! FavCollectionViewCell

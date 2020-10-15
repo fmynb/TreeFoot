@@ -9,14 +9,14 @@
 import UIKit
 
 class RecipeViewController: UIViewController {
-    var cellCallBack: ((Mealdetail) -> Void)?
+    
+    var cellCallBack: ((Dish) -> Void)?
 
-    var datas = [Mealdetail]()
-    public func updateUI(with data:[Mealdetail]) {
-        datas = data
+    private var data = Dishes()
+    
+    public func updateUI(with data: Dishes) {
+        self.data = data
         self.collectionview.reloadData()
-        
-        
     }
     
     lazy var collectionview: UICollectionView = {
@@ -40,11 +40,6 @@ class RecipeViewController: UIViewController {
     func configUI() {
         view.backgroundColor = .white
         view.addSubview(collectionview)
-        print(datas.count)
-        
-        print(datas.count)
-        print(datas.count)
-        print(datas.count)
         collectionview.snp.makeConstraints { make in
             make.width.equalTo(CFWidth.fit)
             make.height.equalTo(834.fit)
@@ -63,7 +58,7 @@ class RecipeViewController: UIViewController {
 
 extension RecipeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datas.count
+        return data.content.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,15 +69,16 @@ extension RecipeViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.layer.shadowRadius = 6
         cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         cell.layer.cornerRadius = 8
-        cell.updateUI(with: datas[indexPath.row])
+        cell.updateUI(with: data.content[indexPath.row])
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailvc = RecipeDetailViewController()
+        detailvc.updateUI(data.content[indexPath.row])
         navigationController?.pushViewController(detailvc, animated: true)
         if let callback = cellCallBack {
-            callback(datas[indexPath.row])
+            callback(data.content[indexPath.row])
         }
     }
 }
@@ -107,10 +103,11 @@ extension RecipeViewController: UICollectionViewDelegateFlowLayout {
 
 
 class RecipeViewControllerMealCell: UICollectionViewCell {
-    public func updateUI(with data: Mealdetail) {
+    
+    public func updateUI(with data: Dish) {
         namelabel.text = data.name
-        materialslabel.text = data.materialslabel
-        contentimage.image = UIImage(named: data.img)
+        materialslabel.text = data.description
+        contentimage.image = UIImage(named: data.image)
     }
 
     lazy var contentimage: UIImageView = {

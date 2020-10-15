@@ -23,7 +23,7 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     // MARK: - 私有属性
     
-    private var datas = [Eat]()
+    private var datas = [Dishes]()
     
     // 搜索大背景
     private lazy var searchView: UIView = {
@@ -79,7 +79,7 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     // MARK: - 公有方法
     
-    public func updateUI(with data: [Eat]) {
+    public func updateUI(with data: [Dishes]) {
         self.datas = data
         self.collectionView.reloadData()
     }
@@ -175,7 +175,6 @@ extension SearchCollectionViewCell: UICollectionViewDataSource, UICollectionView
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //print(indexPath.row)
         if let callback = eatCallBack {
             switch indexPath.row {
             case 0:
@@ -210,9 +209,9 @@ extension SearchCollectionViewCell: UICollectionViewDelegateFlowLayout {
 
 class SearchCell: UICollectionViewCell {
     
-    public func updateUI(with data: Eat) {
-        self.imageView.image = UIImage(named: data.img)
-        self.infoLabel.text = data.name
+    public func updateUI(with data: Dishes) {
+        self.imageView.image = UIImage(named: data.imageName)
+        self.infoLabel.text = data.speciesName
     }
     
     private lazy var backView: UIView = {
