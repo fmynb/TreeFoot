@@ -17,7 +17,7 @@ let number4 = [Int](0...300)
 class WeightViewController: UIViewController {
 
     
-    var string:String = ""
+    var string:String = "50"
  
     func callBack(closure:@escaping ClosureName)  {
                   self.closure = closure
@@ -36,18 +36,6 @@ class WeightViewController: UIViewController {
            return label
        }()
        
-//       lazy var textField:UITextField={
-//          let textfield = UITextField()
-//           var information:String = "   "+bodydata[2].centerText
-//           let attrString = NSMutableAttributedString(string: information)
-//           let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 17),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
-//           attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
-//           textfield.attributedText = attrString
-//           textfield.backgroundColor = UIColor.white
-//           textfield.alpha = 1
-//           textfield.keyboardType = .default
-//           return textfield
-//       }()
     
     lazy var emojiPickerView: UIPickerView = {
         let pickerView = UIPickerView(frame: CGRect(x: 10, y: CFHeight / 2 - 150, width: CFWidth - 20, height: 200))
@@ -62,7 +50,6 @@ class WeightViewController: UIViewController {
            guard (self.closure != nil) else {
                 return
             }
-           //closure(textField.text!)
            closure(string)
            self.navigationController?.popViewController(animated: true)
        }
@@ -79,13 +66,6 @@ class WeightViewController: UIViewController {
        }
        
        func configUI(){
-//           view.addSubview(textField)
-//           textField.snp.makeConstraints{ (make) in
-//               make.width.equalTo(CFWidth)
-//               make.height.equalTo(62.fit)
-//               make.top.equalToSuperview().offset(146.fit)
-//               make.left.equalToSuperview().offset(0)
-//           }
            view.addSubview(nameLabel)
            nameLabel.snp.makeConstraints{ (make) in
                       make.width.equalTo(200.fit)
@@ -124,29 +104,11 @@ extension WeightViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         let pickerLabel = UILabel()
         pickerLabel.textAlignment = .center
         pickerLabel.font = UIFont.systemFont(ofSize: 60)
-//        if component == 0 {
-//            pickerLabel.text = String(number1[row])
-//        } else if component == 1 {
-//            pickerLabel.text = String(number2[row])
-//        } else {
-//            pickerLabel.text = String(number3[row])
-//        }
         pickerLabel.text = String(number4[row])
         return pickerLabel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        if(pickerView.selectedRow(inComponent: 0) == 0 && pickerView.selectedRow(inComponent: 1) != 0)
-//        {
-//             string = String(pickerView.selectedRow(inComponent: 1))+String(pickerView.selectedRow(inComponent: 2))
-//        }
-//        else if(pickerView.selectedRow(inComponent: 1) == 0 && pickerView.selectedRow(inComponent: 0) == 0)
-//        {
-//            string = String(pickerView.selectedRow(inComponent: 2))
-//        }
-//        else{
-//            string = String(pickerView.selectedRow(inComponent: 0))+String(pickerView.selectedRow(inComponent: 1))+String(pickerView.selectedRow(inComponent: 2))
-//        }
         string = String(pickerView.selectedRow(inComponent: 0))
     }
     
