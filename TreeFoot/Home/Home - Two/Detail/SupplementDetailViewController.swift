@@ -10,17 +10,17 @@
  
  class SupplementDetailViewController: UIViewController {
     
-    public func updateUI(with data: Suggest) {
-        backgroundImage.image = UIImage(named: data.img)
+    public func updateUI(with data: Supplement) {
+        backgroundImage.image = UIImage(named: data.image)
         nameLabel.text = data.name
-        introducelabel.text = data.descrption
-        standardLabel.text = data.use
-        let attrString = NSMutableAttributedString(string: data.tips)
+        introducelabel.text = data.description
+        standardLabel.text = data.usage
+        let attrString = NSMutableAttributedString(string: data.precautions)
         let attr: [NSAttributedString.Key: Any] = [.font: UIFont(name: "PingFang SC", size: 15)!, .foregroundColor: UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         var size = attrString.size()
         size.height = size.height * ceil(size.width / 250)
-        attenionLabel.text = data.tips
+        attenionLabel.text = data.precautions
         attenionLabel.snp.updateConstraints { (make) in
             make.height.equalTo(size.height)
         }

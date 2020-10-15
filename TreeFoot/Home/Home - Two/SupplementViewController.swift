@@ -24,7 +24,7 @@ class SupplementViewController: UIViewController {
         return tableView
     }()
     
-    private var data = [Suggest]()
+    private var data = [Supplement]()
     
     // MARK: - 公有方法
 
@@ -35,14 +35,9 @@ class SupplementViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    public func updateUI(with data: [Paln]) {
+    public func updateUI(with data: [Supplement]) {
         // 获取数据
-        for paln in data {
-            let content = paln.content
-            for suggest in content {
-                self.data.append(suggest)
-            }
-        }
+        self.data = data
         tableView.reloadData()
     }
     
@@ -100,8 +95,8 @@ class SupplementCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func updateUI(_ data: Suggest) {
-        leftImageView.image = UIImage(named: data.img)
+    public func updateUI(_ data: Supplement) {
+        leftImageView.image = UIImage(named: data.image)
         nameLabel.text = data.name
         // star
         var base: CGFloat = 0

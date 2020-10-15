@@ -23,7 +23,7 @@ class HeightViewController: UIViewController {
            let label = UILabel()
            let attrString = NSMutableAttributedString(string: "   请正确选择你的身高哦")
            label.numberOfLines = 0
-           let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16),.foregroundColor: UIColor(red: 0.6, green: 0.56, blue: 0.56,alpha:1), ]
+           let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16)!,.foregroundColor: UIColor(red: 0.6, green: 0.56, blue: 0.56,alpha:1), ]
            attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
            label.attributedText = attrString
            label.alpha = 1;

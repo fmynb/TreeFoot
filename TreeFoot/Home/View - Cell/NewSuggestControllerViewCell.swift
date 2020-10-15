@@ -10,8 +10,8 @@ import UIKit
 
 class NewSuggestControllerViewCell: UICollectionViewCell {
     
-    public func updateUI(with data:Suggest) {
-        self.leftImageView.image = UIImage(named: "素食拼盘")
+    public func updateUI(with data: Supplement) {
+        self.leftImageView.image = UIImage(named: data.image)
         self.nameLabel.text = data.name
         
         // star
