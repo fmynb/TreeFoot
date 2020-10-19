@@ -166,12 +166,23 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
 extension SearchCollectionViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datas.count
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchId, for: indexPath) as! SearchCell
-        cell.updateUI(with: datas[indexPath.row])
+        switch indexPath.row {
+        case 0:
+            cell.updateUI(with: .breakfast)
+        case 1:
+            cell.updateUI(with: .launch)
+        case 2:
+            cell.updateUI(with: .dinner)
+        case 3:
+            cell.updateUI(with: .dessert)
+        default:
+            cell.updateUI(with: .breakfast)
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -206,12 +217,19 @@ extension SearchCollectionViewCell: UICollectionViewDelegateFlowLayout {
     }
 }
 
+enum TopCellType: String {
+    case breakfast = "早餐"
+    case launch = "午餐"
+    case dinner = "晚餐"
+    case dessert = "小食"
+}
+
 
 class SearchCell: UICollectionViewCell {
     
-    public func updateUI(with data: Dishes) {
-        self.imageView.image = UIImage(named: data.imageName)
-        self.infoLabel.text = data.speciesName
+    public func updateUI(with type: TopCellType) {
+        self.imageView.image = UIImage(named: type.rawValue)
+        self.infoLabel.text = type.rawValue
     }
     
     private lazy var backView: UIView = {

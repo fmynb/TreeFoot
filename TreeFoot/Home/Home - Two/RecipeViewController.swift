@@ -50,7 +50,7 @@ class RecipeViewController: UIViewController {
 
     func configNavbar() {
         navigation.bar.isShadowHidden = true
-        navigation.bar.alpha = 0
+//        navigation.bar.alpha = 0
     }
 }
 
@@ -113,6 +113,8 @@ class RecipeViewControllerMealCell: UICollectionViewCell {
     lazy var contentimage: UIImageView = {
         let imageview = UIImageView()
         imageview.image = UIImage(named: "素食拼盘")
+        imageview.contentMode = .scaleAspectFill
+        imageview.clipsToBounds = true
         return imageview
     }() // 菜品图片
     
