@@ -55,6 +55,8 @@ class RecipeDetailViewController: UIViewController {
     // 背景
     private lazy var backImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "素食拼盘"))
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
