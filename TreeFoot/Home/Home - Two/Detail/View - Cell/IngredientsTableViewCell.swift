@@ -12,9 +12,9 @@ class IngredientsTableViewCell: UITableViewCell {
     
     // MARK: - 公有属性
     
-    public var minusButtonBlock: (() -> ())?
-    
-    public var addButtonBlock: (() -> ())?
+    //    public var minusButtonBlock: (() -> ())?
+    //
+    //    public var addButtonBlock: (() -> ())?
     
     // MARK: - 私有属性
     
@@ -40,7 +40,7 @@ class IngredientsTableViewCell: UITableViewCell {
     }()
     
     // 内容
-    private lazy var contentLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "生鸡蛋(两个)")
         label.numberOfLines = 0
@@ -51,45 +51,45 @@ class IngredientsTableViewCell: UITableViewCell {
         return label
     }()
     
-    // 减按钮
-    private lazy var minusButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(clickMinusButton), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var minusButtonImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "minus")
-        return imageView
-    }()
-    
-    // 加按钮
-    private lazy var addButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(clickAddButton), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var addButtonImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "add_")
-        return imageView
-    }()
-    
-    private lazy var backCalorisImageView: UIImageView = {
+    //    // 减按钮
+    //    private lazy var minusButton: UIButton = {
+    //        let button = UIButton()
+    //        button.addTarget(self, action: #selector(clickMinusButton), for: .touchUpInside)
+    //        return button
+    //    }()
+    //
+    //    private lazy var minusButtonImageView: UIImageView = {
+    //        let imageView = UIImageView()
+    //        imageView.image = UIImage(named: "minus")
+    //        return imageView
+    //    }()
+    //
+    //    // 加按钮
+    //    private lazy var addButton: UIButton = {
+    //        let button = UIButton()
+    //        button.addTarget(self, action: #selector(clickAddButton), for: .touchUpInside)
+    //        return button
+    //    }()
+    //
+    //    private lazy var addButtonImageView: UIImageView = {
+    //        let imageView = UIImageView()
+    //        imageView.image = UIImage(named: "add_")
+    //        return imageView
+    //    }()
+    //
+    private lazy var backImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "backColor")
         return imageView
     }()
-    
-    // 卡路里数值
-    private lazy var calorisLabel: UILabel = {
+    //
+    // 用量
+    private lazy var useLabel: UILabel = {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "50g")
         label.numberOfLines = 0
         label.textAlignment = .center
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 17)!,.foregroundColor: UIColor(red: 0.23, green: 0.23, blue: 0.23,alpha:1), ]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Medium", size: 16)!,.foregroundColor: UIColor(red: 0.23, green: 0.23, blue: 0.23,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         return label
@@ -106,6 +106,12 @@ class IngredientsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func updateUI(_ data: Ingredient) {
+        leftImageView.image = UIImage(named: data.image)
+        nameLabel.text = data.name
+        useLabel.text = data.dosage
+    }
+    
     // MARK: - 私有方法
     
     private func configureUI() {
@@ -113,13 +119,15 @@ class IngredientsTableViewCell: UITableViewCell {
         selectionStyle = .none
         addSubview(backView)
         backView.addSubview(leftImageView)
-        backView.addSubview(contentLabel)
-        backView.addSubview(minusButtonImageView)
-        backView.addSubview(minusButton)
-        backView.addSubview(addButtonImageView)
-        backView.addSubview(addButton)
-        backView.addSubview(backCalorisImageView)
-        backView.addSubview(calorisLabel)
+        backView.addSubview(nameLabel)
+        backView.addSubview(backImageView)
+        backImageView.addSubview(useLabel)
+        //        backView.addSubview(minusButtonImageView)
+        //        backView.addSubview(minusButton)
+        //        backView.addSubview(addButtonImageView)
+        //        backView.addSubview(addButton)
+        //        backView.addSubview(backCalorisImageView)
+        //        backView.addSubview(calorisLabel)
         
         backView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(24.fit)
@@ -134,62 +142,73 @@ class IngredientsTableViewCell: UITableViewCell {
             make.left.equalToSuperview().offset(14.fit)
         }
         
-        contentLabel.snp.makeConstraints { (make) in
+        nameLabel.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.left.equalTo(self.leftImageView.snp.right).offset(8.fit)
+            make.left.equalTo(self.leftImageView.snp.right).offset(10.fit)
             make.width.equalTo(100.fit)
             make.height.equalTo(30.fit)
         }
         
-        addButtonImageView.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().offset(-14.fit)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(16.fit)
-            make.height.equalTo(19.fit)
-        }
-        
-        addButton.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().offset(-14.fit)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(16.fit)
-            make.height.equalTo(19.fit)
-        }
-        
-        minusButtonImageView.snp.makeConstraints { (make) in
-            make.right.equalTo(self.addButton.snp.left).offset(-70.fit)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(16.fit)
-            make.height.equalTo(19.fit)
-        }
-        
-        minusButton.snp.makeConstraints { (make) in
-            make.right.equalTo(self.addButton.snp.left).offset(-70.fit)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(16.fit)
-            make.height.equalTo(19.fit)
-        }
-        
-        backCalorisImageView.snp.makeConstraints { (make) in
-            make.right.equalTo(self.addButton.snp.left).offset(-5.fit)
-            make.left.equalTo(self.minusButton.snp.right).offset(5.fit)
+        backImageView.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().offset(-20.fit)
+            make.width.equalTo(100.fit)
             make.centerY.equalToSuperview()
             make.height.equalTo(30.fit)
         }
         
-        calorisLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(self.addButton.snp.left).offset(-5.fit)
-            make.left.equalTo(self.minusButton.snp.right).offset(5.fit)
-            make.centerY.equalToSuperview()
-            make.height.equalTo(30.fit)
+        useLabel.snp.makeConstraints { (make) in
+            make.left.right.bottom.top.equalToSuperview()
         }
+        
+        //        addButtonImageView.snp.makeConstraints { (make) in
+        //            make.right.equalToSuperview().offset(-14.fit)
+        //            make.centerY.equalToSuperview()
+        //            make.width.equalTo(16.fit)
+        //            make.height.equalTo(19.fit)
+        //        }
+        //
+        //        addButton.snp.makeConstraints { (make) in
+        //            make.right.equalToSuperview().offset(-14.fit)
+        //            make.centerY.equalToSuperview()
+        //            make.width.equalTo(16.fit)
+        //            make.height.equalTo(19.fit)
+        //        }
+        //
+        //        minusButtonImageView.snp.makeConstraints { (make) in
+        //            make.right.equalTo(self.addButton.snp.left).offset(-70.fit)
+        //            make.centerY.equalToSuperview()
+        //            make.width.equalTo(16.fit)
+        //            make.height.equalTo(19.fit)
+        //        }
+        //
+        //        minusButton.snp.makeConstraints { (make) in
+        //            make.right.equalTo(self.addButton.snp.left).offset(-70.fit)
+        //            make.centerY.equalToSuperview()
+        //            make.width.equalTo(16.fit)
+        //            make.height.equalTo(19.fit)
+        //        }
+        //
+        //        backCalorisImageView.snp.makeConstraints { (make) in
+        //            make.right.equalTo(self.addButton.snp.left).offset(-5.fit)
+        //            make.left.equalTo(self.minusButton.snp.right).offset(5.fit)
+        //            make.centerY.equalToSuperview()
+        //            make.height.equalTo(30.fit)
+        //        }
+        //
+        //        calorisLabel.snp.makeConstraints { (make) in
+        //            make.right.equalTo(self.addButton.snp.left).offset(-5.fit)
+        //            make.left.equalTo(self.minusButton.snp.right).offset(5.fit)
+        //            make.centerY.equalToSuperview()
+        //            make.height.equalTo(30.fit)
+        //        }
     }
     
-    @objc private func clickMinusButton() {
-        minusButtonBlock?()
-    }
-    
-    @objc private func clickAddButton() {
-        addButtonBlock?()
-    }
+    //    @objc private func clickMinusButton() {
+    //        minusButtonBlock?()
+    //    }
+    //
+    //    @objc private func clickAddButton() {
+    //        addButtonBlock?()
+    //    }
 }
 

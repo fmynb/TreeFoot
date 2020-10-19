@@ -10,11 +10,12 @@ import UIKit
 
 class DayRecommendViewController: UIViewController {
     
-    var cellCallBack: ((DayRecommendmore) -> Void)?
-    var datas = [DayRecommendmore]()
+    public var cellCallBack: ((Dish) -> Void)?
     
-    public func updateUI(with data:[DayRecommendmore]) {
-        datas = data
+    private var data = DailyRecommendation()
+    
+    public func updateUI(with data: DailyRecommendation) {
+        self.data = data
         self.collectionView.reloadData()
     }
     
@@ -34,7 +35,6 @@ class DayRecommendViewController: UIViewController {
         super.viewDidLoad()
         configUI()
         configNavbar()
-        // Do any additional setup after loading the view.
     }
     
     func configUI() {
@@ -60,17 +60,18 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datas.count
+        return data.dishes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reusedcell", for: indexPath) as! DayRecommendViewControllerCell
-        cell.updataUI(with: datas[indexPath.row])
+        cell.updataUI(with: data.dishes[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailvc = RecipeDetailViewController()
+        detailvc.updateUI(data.dishes[indexPath.row])
         navigationController?.pushViewController(detailvc, animated: true)
     }
     
@@ -95,8 +96,8 @@ extension DayRecommendViewController: UICollectionViewDelegateFlowLayout {
 class DayRecommendViewControllerCell:UICollectionViewCell {
     
     
-    func updataUI(with data: DayRecommendmore){
-        contentImage.image = UIImage(named: data.img)
+    func updataUI(with data: Dish){
+        contentImage.image = UIImage(named: data.image)
         nameLabel.text = data.name
     }
     

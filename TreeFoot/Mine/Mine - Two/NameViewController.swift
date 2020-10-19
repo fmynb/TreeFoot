@@ -26,7 +26,7 @@ class NameViewController: UIViewController {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "   请设置2-24个字符")
         label.numberOfLines = 0
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16),.foregroundColor: UIColor(red: 0.6, green: 0.56, blue: 0.56,alpha:1), ]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16)!,.foregroundColor: UIColor(red: 0.6, green: 0.56, blue: 0.56,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         label.alpha = 1
@@ -35,9 +35,9 @@ class NameViewController: UIViewController {
     
     lazy var textField:UITextField={
        let textfield = UITextField()
-        var information:String = "   "+bodydata[0].centerText
+        var information:String = bodydata[0].centerText
         let attrString = NSMutableAttributedString(string: information)
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 17),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1),]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 17)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1),]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         textfield.attributedText = attrString
         textfield.backgroundColor = UIColor.white

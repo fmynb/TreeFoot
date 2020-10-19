@@ -15,10 +15,10 @@ let dayId = "reusedcell"
 class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
     // MARK: - 公有属性
-    public var cellCallBack: ((DayRecommend) -> ())?
+    public var cellCallBack: ((Dish) -> ())?
     
     // MARK: - 私有属性
-    private var datas = [DayRecommend]()
+    private var data = DailyRecommendation()
     
     private lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,8 +34,8 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
     // MARK: - 公有方法
     
-    public func updateUI(with data: [DayRecommend]) {
-        datas = data
+    public func updateUI(with data: DailyRecommendation) {
+        self.data = data
         self.collectionview.reloadData()
     }
     
@@ -69,20 +69,19 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datas.count
+        return data.dishes.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: dayId, for: indexPath) as! DayRecommendCollectionViewChildCell
-        cell.updateUI(with: datas[indexPath.row])
+        cell.updateUI(with: data.dishes[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let callback = self.cellCallBack {
-            print("每日推荐cell 回调")
-            callback(datas[indexPath.row])
+            callback(data.dishes[indexPath.row])
         }
     }
     
@@ -148,10 +147,10 @@ class DayRecommendCollectionViewChildCell: UICollectionViewCell {
         return imageview
     }()
     
-    public func updateUI(with data: DayRecommend) {
+    public func updateUI(with data: Dish) {
         self.nameLabel.text = data.name
-        self.materialslabel.text = data.descrption
-        self.contentImageView.image = UIImage(named: data.img)
+        self.materialslabel.text = data.description
+        self.contentImageView.image = UIImage(named: data.image)
     }
     
     override init(frame: CGRect) {

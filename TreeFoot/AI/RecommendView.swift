@@ -15,7 +15,7 @@ class RecommendView: UIView {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "用料：牛油果、鸡蛋、青菜、山楂")
         label.numberOfLines = 0
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 10),.foregroundColor: UIColor(red: 0.71, green: 0.68, blue: 0.68,alpha:1), ]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 10)!,.foregroundColor: UIColor(red: 0.71, green: 0.68, blue: 0.68,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         label.alpha = 1;
@@ -26,7 +26,7 @@ class RecommendView: UIView {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "素食拼盘")
         label.numberOfLines = 2
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 13),.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 13)!,.foregroundColor: UIColor(red: 0.33, green: 0.33, blue: 0.33,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         label.alpha = 1

@@ -13,74 +13,84 @@ struct HomeCellUIModel {
     
 }
 
-// MARK: - Welcome
-struct Welcome: HandyJSON {
-    
+// MARK: - 返回数据
+struct ReturnData: HandyJSON {
     let code: Int = 0
     let data: DataClass = DataClass()
 }
 
-// MARK: - DataClass
+// MARK: - 主页面所有数据
 struct DataClass: HandyJSON {
-    
-    let eats = [Eat]()
-    let dayRecommend = [DayRecommend]()
-    let paln = [Paln]()
-    let suggest = [Suggest]()
+    // 菜品
+    let dishes = [Dishes]()
+    // 每日推荐
+    let dailyRecommendation = DailyRecommendation()
+    // 营养补给
+    let nutritionalSupplement = [NutritionalSupplement]()
+    // 建议补充
+    let suggestSupplement = SuggestSupplement()
     let fav = [Fav]()
-    let mealdetail = [Mealdetail]()
-    let dayRecommendmore = [DayRecommendmore]()
-    let supplement = [Supplement]()
     let favmore = [FavMore]()
 }
 
-// MARK: - DayRecommend
-struct DayRecommend: HandyJSON {
-
-    let name = ""
-    let descrption: String = ""
-    let toUse = [String]()
-    let img = ""
+// MARK: - 所有菜品
+struct Dishes: HandyJSON {
     
-    enum CodingKeys: String, CodingKey {
-        case name, descrption
-        case toUse = "to_use"
-    }
+    let imageName = ""
+    let speciesName = ""
+    let content = [Dish]()
 }
 
-// MARK: - Eat
-struct Eat: HandyJSON {
-    
-    let img = ""
-    let name: String = ""
-    let content = [Content]()
-}
-
-// MARK: - Content
-struct Content: HandyJSON {
+// MARK: - 菜
+struct Dish: HandyJSON {
     
     let name = ""
     let image = ""
-    let kaluli: String = ""
+    // 描述
+    let description = ""
+    // 食材
+    let ingredients = [Ingredient]()
+    // 总卡路里
+    let totalCaloris: Int = 200
 }
 
-// MARK: - Paln
-struct Paln: HandyJSON {
-    
-    let name: String = ""
-    let star: Int = 5
-    let content = [Suggest]()
-}
-
-// MARK: - Suggest
-struct Suggest: HandyJSON {
-    
+// MARK: - 食材
+struct Ingredient: HandyJSON {
+    let image = ""
     let name = ""
-    let descrption = ""
-    let use = ""
-    let tips: String = ""
-    let star = 1
-    let img = ""
+    // 用量
+    let dosage = ""
+}
+
+// MARK: - 每日推荐
+struct DailyRecommendation: HandyJSON {
+    let dishes = [Dish]()
+}
+
+// MARK: - 营养补给
+struct NutritionalSupplement: HandyJSON {
+    let categoryName = ""
+    let supplements = [Supplement]()
+}
+
+// MARK: - 补给
+struct Supplement: HandyJSON {
+    let image = ""
+    let name = ""
+    let description = ""
+    // 用法
+    let usage = ""
+    // 注意事项
+    let precautions = ""
+    // 热度
+    let heat: Int = 4396
+    // 评星
+    let star: Int = 3
+}
+
+// MARK: - 建议补充
+struct SuggestSupplement: HandyJSON {
+    let supplements = [Supplement]()
 }
 
 // MARK: - Suggest
@@ -91,28 +101,10 @@ struct Fav: HandyJSON {
     let use = ""
     let img = ""
 }
-
-// MARK: - mealDetail
-struct Mealdetail: HandyJSON {
-    
-    let name = ""
-    let materialslabel: String = ""
-    let img = ""
-}
 // MARK: - DayRecommendmore
 struct DayRecommendmore:HandyJSON {
     let name:String = ""
     let img:String = ""
-}
-
-// MARK: - supplement
-struct Supplement: HandyJSON {
-    
-    let name = ""
-    let introduce: String = ""
-    let standarduseway: String = ""
-    let attention: String = ""
-    let img = ""
 }
 // MARK: - favmore
 struct FavMore:HandyJSON{

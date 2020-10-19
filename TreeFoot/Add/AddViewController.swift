@@ -17,7 +17,7 @@ class AddViewController: UIViewController {
     
     
     var addDatas = AddModel()
-    var datas = [Content]()
+    var datas = [Dish]()
     var type: IntakeOfType = .BreakFast
     
     private var bagCount = 0
@@ -222,7 +222,7 @@ class AddViewController: UIViewController {
         }
     }
     
-    func updateUI(with data:[Content]) {
+    func updateUI(with data:[Dish]) {
         self.datas = data
         self.breakfasttableview.reloadData()
     }
@@ -267,10 +267,10 @@ class breakfastcell:UITableViewCell {
         }
     }
     
-    public func updateUI(with data: Content) {
+    public func updateUI(with data: Dish) {
         self.foodimageview.image = UIImage(named: data.image)
         self.namelabel.text = data.name
-        self.heatlabel.text = data.kaluli
+        self.heatlabel.text = "\(data.totalCaloris)"
     }
     
     lazy var foodimageview:UIImageView = {

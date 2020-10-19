@@ -24,7 +24,7 @@ class EditHeaderTableViewCell: UITableViewCell {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "修改头像")
         label.numberOfLines = 0
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16),.foregroundColor: UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1), ]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16)!,.foregroundColor: UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         label.alpha = 1
