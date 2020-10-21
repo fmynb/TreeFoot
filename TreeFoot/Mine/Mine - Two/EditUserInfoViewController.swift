@@ -13,7 +13,7 @@ let headercell="EditHeaderTableViewCell"
 let filePath: String = NSHomeDirectory() + "/Documents/test.plist"
 var plistdata = NSMutableArray(contentsOfFile: filePath)
 
-//var bodydata:[EditModel] = [EditModel(leftText: "修改名字", centerText: "去冰无糖"),EditModel(leftText: "身高", centerText: "168"),EditModel(leftText: "体重", centerText: "52"),EditModel(leftText: "性别", centerText: "女"),EditModel(leftText: "生日", centerText: "2001-07-15")]
+var origindata:[EditModel] = [EditModel(centerText: "去冰无糖"),EditModel(centerText: "168"),EditModel(centerText: "52"),EditModel(centerText: "女"),EditModel(centerText: "2001-07-15")]
 
 var bodydata = [EditModel]()
 
@@ -105,20 +105,37 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
             cell.centertext.font = UIFont(name: "PingFang SC", size: 16)
             cell.centertext.textColor = UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1)
             cell.centertext.alpha = 1
-            for item in plistdata!{
-                let data = item as! NSDictionary
-                let center = data.value(forKey: "centerText") as! String
-                let sss = EditModel(centerText: center)
-                if(bodydata.count == 5)
-                {
-                    break
+            
+            if(plistdata!.count == 0)
+            {
+                let array:NSMutableArray = NSMutableArray()
+                for item in origindata{
+                    let dictionary:NSMutableDictionary = [ : ]
+                    let center = item.centerText as NSString
+                    dictionary.setValue(center, forKey: "centerText")
+                    array.add(dictionary)
                 }
-                else
-                {
-                    bodydata.append(sss)
-                }
-                
+                array.write(toFile: filePath, atomically: false)
+                bodydata = origindata
             }
+            else
+            {
+                for item in plistdata!{
+                                
+                            let data = item as! NSDictionary
+                            let center = data.value(forKey: "centerText") as! String
+                            let sss = EditModel(centerText: center)
+                            if(bodydata.count == 5)
+                            {
+                                break
+                            }
+                            else
+                            {
+                                bodydata.append(sss)
+                            }
+                        }
+            }
+            print(bodydata.count)
             switch index {
             case 1:
                 cell.lefttext.text = "修改名字"
