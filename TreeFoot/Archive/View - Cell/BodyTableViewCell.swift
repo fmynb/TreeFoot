@@ -120,7 +120,7 @@ class BodyTableViewCell: UITableViewCell {
     
     private func configureUI() {
         selectionStyle = .none
-        
+        backgroundColor = .white
         backView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.16).cgColor
         backView.layer.shadowOffset = CGSize(width: 0, height: 2)
         backView.layer.shadowOpacity = 1
