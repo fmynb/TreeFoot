@@ -57,10 +57,10 @@ class HomeViewController: UIViewController {
     private lazy var fanMenu: FanMenu = {
         let fanMenu = FanMenu()
         let items = [
-            ("breakfast", 0xFFFFFF),
-            ("launch", 0xFFFFFF),
-            ("dinner", 0xFFFFFF),
-            ("dessert", 0xFFFFFF),
+            ("早餐", 0xFFFFFF),
+            ("午餐", 0xFFFFFF),
+            ("晚餐", 0xFFFFFF),
+            ("小食", 0xFFFFFF),
         ]
         fanMenu.button = FanMenuButton(
             id: "main",
@@ -200,6 +200,7 @@ class HomeViewController: UIViewController {
         self.navigation.bar.isHidden = true
         self.navigation.bar.isShadowHidden = true
         self.navigation.bar.alpha = 0
+        self.navigation.bar.statusBarStyle = .darkContent
     }
     
     private func configCenterButton() {

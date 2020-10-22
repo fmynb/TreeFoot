@@ -41,10 +41,10 @@ class RecipeViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(collectionview)
         collectionview.snp.makeConstraints { make in
-            make.width.equalTo(CFWidth.fit)
-            make.height.equalTo(834.fit)
-            make.left.equalTo(0.fit)
-            make.top.equalTo(11.fit)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.top.equalToSuperview().offset(10.fit)
+            make.bottom.equalToSuperview()
         }
     }
 
