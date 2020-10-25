@@ -76,6 +76,7 @@
 		941153AA252C048B003ED869 /* WeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A9252C048B003ED869 /* WeightViewController.swift */; };
 		941153AD25341D22003ED869 /* IngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153AC25341D22003ED869 /* IngredientsTableViewCell.swift */; };
 		941153AF25343AEE003ED869 /* CalorisTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153AE25343AEE003ED869 /* CalorisTotalTableViewCell.swift */; };
+		941153B12545A422003ED869 /* AddMune.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153B02545A422003ED869 /* AddMune.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +154,7 @@
 		941153A9252C048B003ED869 /* WeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightViewController.swift; sourceTree = "<group>"; };
 		941153AC25341D22003ED869 /* IngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewCell.swift; sourceTree = "<group>"; };
 		941153AE25343AEE003ED869 /* CalorisTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorisTotalTableViewCell.swift; sourceTree = "<group>"; };
+		941153B02545A422003ED869 /* AddMune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMune.swift; sourceTree = "<group>"; };
 		EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TreeFoot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -174,13 +176,6 @@
 				EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8412E9B0251AE3AB006A9FF9 /* CommonUI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CommonUI;
 			sourceTree = "<group>";
 		};
 		8427445C2511F6B800281150 /* DataBase */ = {
@@ -341,7 +336,6 @@
 			isa = PBXGroup;
 			children = (
 				84A20BF3251B6D5F009B8A27 /* API+Datas */,
-				8412E9B0251AE3AB006A9FF9 /* CommonUI */,
 				848121B8251A1DF20093F006 /* AI */,
 				8427445C2511F6B800281150 /* DataBase */,
 				84CE62C52510EBD300A36915 /* Mine */,
@@ -355,6 +349,7 @@
 				84CE62AD2510A09800A36915 /* SceneDelegate.swift */,
 				84CE62AF2510A09800A36915 /* ViewController.swift */,
 				84CE62B12510A09800A36915 /* Main.storyboard */,
+				941153B02545A422003ED869 /* AddMune.swift */,
 				84CE62B42510A09900A36915 /* Assets.xcassets */,
 				84CE62B62510A09900A36915 /* LaunchScreen.storyboard */,
 				84CE62B92510A09900A36915 /* Info.plist */,
@@ -641,6 +636,7 @@
 				5241159C2514F7070090C0F4 /* NewSuggestControllerViewCell.swift in Sources */,
 				941153AD25341D22003ED869 /* IngredientsTableViewCell.swift in Sources */,
 				8427448825120E9B00281150 /* MineHeaderTableViewCell.swift in Sources */,
+				941153B12545A422003ED869 /* AddMune.swift in Sources */,
 				84A20BEB251B25F3009B8A27 /* ResultView.swift in Sources */,
 				842744622511FDA500281150 /* HomeHeaderView.swift in Sources */,
 				84CE62D32510EC6200A36915 /* Const.swift in Sources */,

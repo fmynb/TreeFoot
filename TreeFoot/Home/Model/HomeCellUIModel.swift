@@ -101,3 +101,8 @@ struct FavMore:HandyJSON{
     let name:String = ""
     let img:String = ""
 }
+
+struct BagFood {
+    let name: String
+    let caloris: Int
+}

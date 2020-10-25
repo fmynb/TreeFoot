@@ -55,64 +55,64 @@ class HomeViewController: UIViewController {
     
     
     // 标签栏中间按钮
-    private lazy var fanMenu: FanMenu = {
-        let fanMenu = FanMenu()
-        let items = [
-            ("早餐", 0xFFFFFF),
-            ("午餐", 0xFFFFFF),
-            ("晚餐", 0xFFFFFF),
-            ("小食", 0xFFFFFF),
-        ]
-        fanMenu.button = FanMenuButton(
-            id: "main",
-            image: UIImage(named: "menu_plus"),
-            color: Color(val: 0xF57555)
-        )
-        
-        fanMenu.items = items.map { button in
-            FanMenuButton(
-                id: button.0,
-                image: UIImage(named: "\(button.0)"),
-                color: Color(val: button.1)
-            )
-        }
-        
-        fanMenu.menuRadius = 120.0
-        fanMenu.duration = 0.2
-        fanMenu.interval = (Double.pi + Double.pi/6, Double.pi + 5 * Double.pi/6)
-        fanMenu.radius = 25.0
-        fanMenu.delay = 0.0
-        fanMenu.onItemDidClick = { button in
-//            print("ItemDidClick: \(button.id)")
-            var vc = UIViewController()
-            switch button.id {
-            case "早餐":
-                vc = AddViewController(type: .BreakFast)
-                let nav = MainNavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                self.tabBarController?.present(nav, animated: true, completion: nil)
-            case "午餐":
-                vc = AddViewController(type: .Launch)
-                let nav = MainNavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                self.tabBarController?.present(nav, animated: true, completion: nil)
-            case "晚餐":
-                vc = AddViewController(type: .Dinner)
-                let nav = MainNavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                self.tabBarController?.present(nav, animated: true, completion: nil)
-            case "小食":
-                vc = AddViewController(type: .Snacks)
-                let nav = MainNavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                self.tabBarController?.present(nav, animated: true, completion: nil)
-            default:
-                break
-            }
-        }
-        fanMenu.backgroundColor = .clear
-        return fanMenu
-    }()
+    private var fanMenu = AddMune.getSharedInstance().fanMenu
+    //    private lazy var fanMenu: FanMenu = {
+    //        let fanMenu = FanMenu()
+    //        let items = [
+    //            ("早餐", 0xFFFFFF),
+    //            ("午餐", 0xFFFFFF),
+    //            ("晚餐", 0xFFFFFF),
+    //            ("小食", 0xFFFFFF),
+    //        ]
+    //        fanMenu.button = FanMenuButton(
+    //            id: "main",
+    //            image: UIImage(named: "menu_plus"),
+    //            color: Color(val: 0xF57555)
+    //        )
+    //
+    //        fanMenu.items = items.map { button in
+    //            FanMenuButton(
+    //                id: button.0,
+    //                image: UIImage(named: "\(button.0)"),
+    //                color: Color(val: button.1)
+    //            )
+    //        }
+    //
+    //        fanMenu.menuRadius = 120.0
+    //        fanMenu.duration = 0.2
+    //        fanMenu.interval = (Double.pi + Double.pi/6, Double.pi + 5 * Double.pi/6)
+    //        fanMenu.radius = 25.0
+    //        fanMenu.delay = 0.0
+    //        fanMenu.onItemDidClick = { button in
+    //            var vc = UIViewController()
+    //            switch button.id {
+    //            case "早餐":
+    //                vc = AddViewController(type: .BreakFast)
+    //                let nav = MainNavigationController(rootViewController: vc)
+    //                nav.modalPresentationStyle = .fullScreen
+    //                self.tabBarController?.present(nav, animated: true, completion: nil)
+    //            case "午餐":
+    //                vc = AddViewController(type: .Launch)
+    //                let nav = MainNavigationController(rootViewController: vc)
+    //                nav.modalPresentationStyle = .fullScreen
+    //                self.tabBarController?.present(nav, animated: true, completion: nil)
+    //            case "晚餐":
+    //                vc = AddViewController(type: .Dinner)
+    //                let nav = MainNavigationController(rootViewController: vc)
+    //                nav.modalPresentationStyle = .fullScreen
+    //                self.tabBarController?.present(nav, animated: true, completion: nil)
+    //            case "小食":
+    //                vc = AddViewController(type: .Snacks)
+    //                let nav = MainNavigationController(rootViewController: vc)
+    //                nav.modalPresentationStyle = .fullScreen
+    //                self.tabBarController?.present(nav, animated: true, completion: nil)
+    //            default:
+    //                break
+    //            }
+    //        }
+    //        fanMenu.backgroundColor = .clear
+    //        return fanMenu
+    //    }()
     
     private lazy var centerView:CenterUIView = {
         let vi = CenterUIView()
@@ -186,6 +186,33 @@ class HomeViewController: UIViewController {
             make.right.equalTo(self.view.snp.right).offset(0)
             make.bottom.equalToSuperview()
             make.top.equalTo(self.navigation.bar.snp.top).offset(0.fit)
+        }
+        fanMenu.onItemDidClick = { button in
+            var vc = UIViewController()
+            switch button.id {
+            case "早餐":
+                vc = AddViewController(type: .BreakFast)
+                let nav = MainNavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.tabBarController?.present(nav, animated: true, completion: nil)
+            case "午餐":
+                vc = AddViewController(type: .Launch)
+                let nav = MainNavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.tabBarController?.present(nav, animated: true, completion: nil)
+            case "晚餐":
+                vc = AddViewController(type: .Dinner)
+                let nav = MainNavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.tabBarController?.present(nav, animated: true, completion: nil)
+            case "小食":
+                vc = AddViewController(type: .Snacks)
+                let nav = MainNavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.tabBarController?.present(nav, animated: true, completion: nil)
+            default:
+                break
+            }
         }
     }
     

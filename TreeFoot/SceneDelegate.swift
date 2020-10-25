@@ -88,26 +88,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = ESTabBarController()
         
-        tabBarController.shouldHijackHandler = {
-            tabbarController, viewController, index in
-            if index == 2 {
-                return true
-            }
-            return false
-        }
-        tabBarController.didHijackHandler = {
-            [weak tabBarController] tabbarController, viewController, index in
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
-                let takePhotoAction = UIAlertAction(title: "Take a photo", style: .default, handler: nil)
-                alertController.addAction(takePhotoAction)
-                let selectFromAlbumAction = UIAlertAction(title: "Select from album", style: .default, handler: nil)
-                alertController.addAction(selectFromAlbumAction)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                alertController.addAction(cancelAction)
-            }
-        }
+//        tabBarController.shouldHijackHandler = {
+//            tabbarController, viewController, index in
+//            if index == 2 {
+//                return true
+//            }
+//            return false
+//        }
+//        tabBarController.didHijackHandler = {
+//            tabbarController, viewController, index in
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//                let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
+//                let takePhotoAction = UIAlertAction(title: "Take a photo", style: .default, handler: nil)
+//                alertController.addAction(takePhotoAction)
+//                let selectFromAlbumAction = UIAlertAction(title: "Select from album", style: .default, handler: nil)
+//                alertController.addAction(selectFromAlbumAction)
+//                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//                alertController.addAction(cancelAction)
+//            }
+//        }
         
         UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().tintColor = .white
@@ -115,7 +115,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.tabBar.layer.shadowColor = UIColor.black.cgColor
         tabBarController.tabBar.layer.shadowOffset = CGSize(width: 0, height: -3.fit)
         tabBarController.tabBar.layer.shadowOpacity = 0.2
-        tabBarController.viewControllers = [homeNav,recoderNav,addNav, archiveNav,mineNav]
+        tabBarController.viewControllers = [homeNav, recoderNav, addNav, archiveNav, mineNav]
         tabBarController.tabBar.backgroundColor = .white
         tabBarController.tabBar.shadowImage = UIImage(named: "background")
         tabBarController.tabBar.barTintColor = UIColor.red
