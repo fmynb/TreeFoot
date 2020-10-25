@@ -51,6 +51,7 @@ class ArchiveViewController: ArchiveBaseController{
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .white
         tableView.register(ChangeTableViewCell.classForCoder(), forCellReuseIdentifier: ChangeCellIdentifier)
         tableView.rowHeight = 300.fit
         tableView.separatorStyle = .none

@@ -12,11 +12,11 @@ class DayRecommendViewController: UIViewController {
     
     public var cellCallBack: ((Dish) -> Void)?
     
-    private var data = DailyRecommendation()
+    private var data = [Dish]()
     
-    public func updateUI(with data: DailyRecommendation) {
+    public func updateUI(with data: [Dish]) {
         self.data = data
-        self.collectionView.reloadData()
+        collectionView.reloadData()
     }
     
     lazy var collectionView:UICollectionView = {
@@ -38,10 +38,10 @@ class DayRecommendViewController: UIViewController {
     }
     
     func configUI() {
-        self.view.backgroundColor = .white
-        self.view.addSubview(collectionView)
-        self.collectionView.snp.makeConstraints{ (make) in
-            make.height.equalTo(CFHeight - 150.fit)
+        view.backgroundColor = .white
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints{ (make) in
+            make.height.equalTo(CFHeight - 120.fit)
             make.width.equalTo(CFWidth - 60.fit)
             make.top.equalToSuperview().offset(110.fit)
             make.left.equalToSuperview().offset(30.fit)
@@ -60,18 +60,18 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.dishes.count
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reusedcell", for: indexPath) as! DayRecommendViewControllerCell
-        cell.updataUI(with: data.dishes[indexPath.row])
+        cell.updataUI(with: data[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailvc = RecipeDetailViewController()
-        detailvc.updateUI(data.dishes[indexPath.row])
+        detailvc.updateUI(data[indexPath.row])
         navigationController?.pushViewController(detailvc, animated: true)
     }
     
@@ -117,6 +117,8 @@ class DayRecommendViewControllerCell:UICollectionViewCell {
     
     lazy var contentImage: UIImageView = {
         let imageview = UIImageView()
+        imageview.contentMode = .scaleAspectFill
+        imageview.clipsToBounds = true
         return imageview
     }()
     

@@ -18,7 +18,7 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     public var cellCallBack: ((Dish) -> ())?
     
     // MARK: - 私有属性
-    private var data = DailyRecommendation()
+    private var data = [Dish]()
     
     private lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,7 +34,7 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
     // MARK: - 公有方法
     
-    public func updateUI(with data: DailyRecommendation) {
+    public func updateUI(with data: [Dish]) {
         self.data = data
         self.collectionview.reloadData()
     }
@@ -69,19 +69,19 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.dishes.count
+        return data.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: dayId, for: indexPath) as! DayRecommendCollectionViewChildCell
-        cell.updateUI(with: data.dishes[indexPath.row])
+        cell.updateUI(with: data[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let callback = self.cellCallBack {
-            callback(data.dishes[indexPath.row])
+            callback(data[indexPath.row])
         }
     }
     
@@ -126,6 +126,7 @@ class DayRecommendCollectionViewChildCell: UICollectionViewCell {
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         label.alpha = 1
+        label.textAlignment = .left
         return label
     }()
     
@@ -171,7 +172,7 @@ class DayRecommendCollectionViewChildCell: UICollectionViewCell {
         }
         nameLabel.snp.makeConstraints{ (make) in
             make.height.equalTo(20.fit)
-            make.width.equalTo(80.fit)
+            make.right.equalToSuperview().offset(-14.fit)
             make.left.equalToSuperview().offset(14.fit)
             make.top.equalTo(self.contentImageView.snp.bottom).offset(10.fit)
         }

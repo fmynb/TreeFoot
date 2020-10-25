@@ -275,6 +275,8 @@ class RecipeDetailViewController: UIViewController {
         self.navigation.bar.backBarButtonItem = nil
         // 顶部导航栏
         self.navigation.item.titleView = titleView
+        // 状态栏白色
+        self.navigation.bar.statusBarStyle = .lightContent
     }
     
     // 返回按钮事件

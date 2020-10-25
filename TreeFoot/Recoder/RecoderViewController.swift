@@ -170,6 +170,11 @@ class RecoderViewController: UIViewController {
         self.titleView.updateTilte(with: self.datas.time)
         self.collectionView.reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
 
 }
 
@@ -202,7 +207,9 @@ extension RecoderViewController: UICollectionViewDelegateFlowLayout, UICollectio
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ToDayInCollectionViewCellID, for: indexPath) as! ToDayInCollectionViewCell
+            let instance = AddMune.getSharedInstance()
             cell.setType(type: .Dinner)
+            cell.updateUI(instance.imageNames[indexPath.row])
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaterInCollectionViewCellID, for: indexPath) as! WaterInCollectionViewCell

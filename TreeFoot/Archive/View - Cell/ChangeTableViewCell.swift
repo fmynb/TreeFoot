@@ -39,9 +39,10 @@ class ChangeTableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
+        backgroundColor = .white
         selectionStyle = .none
         addSubview(backView)
-        
+        backView.backgroundColor = .white
         backView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(24.fit)
             make.top.equalToSuperview().offset(20.fit)

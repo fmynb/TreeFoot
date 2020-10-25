@@ -67,7 +67,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate {
          tableview.dataSource = self
          tableview.showsVerticalScrollIndicator = false
          tableview.separatorStyle = .none
-         tableview.register(breakfastcell.classForCoder(), forCellReuseIdentifier: "reusedcell")
+         tableview.register(AddFoodTableViewCell.classForCoder(), forCellReuseIdentifier: "reusedcell")
         tableview.register(CalendarHeaderViewCell.self, forHeaderFooterViewReuseIdentifier: "cell")
         tableview.tableHeaderView = tableViewHeader
         tableview.backgroundColor = .clear
@@ -194,8 +194,8 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reusedcell") as! breakfastcell
-        cell.foodimageview.image = UIImage(named: "素食拼盘")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reusedcell") as! AddFoodTableViewCell
+        cell.foodImageView.image = UIImage(named: "素食拼盘")
         return cell
     }
     
