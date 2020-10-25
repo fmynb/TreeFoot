@@ -268,11 +268,6 @@ extension AddViewController:UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -357,12 +352,12 @@ class AddFoodTableViewCell: UITableViewCell {
     
     
     func configUI(){
-        addSubview(foodImageView)
-        addSubview(addButtonImageView)
-        addSubview(addbutton)
-        addSubview(heatlabel)
-        addSubview(namelabel)
-        addSubview(lineView)
+        contentView.addSubview(foodImageView)
+        contentView.addSubview(addButtonImageView)
+        contentView.addSubview(addbutton)
+        contentView.addSubview(heatlabel)
+        contentView.addSubview(namelabel)
+        contentView.addSubview(lineView)
         
         foodImageView.snp.makeConstraints{ (make) in
             make.height.equalTo(60.fit)
