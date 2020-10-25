@@ -10,27 +10,37 @@ import UIKit
 import HandyJSON
 import SwiftyJSON
 
+struct BagFood {
+    let name: String
+    let caloris: Int
+}
+
 class AddViewController: UIViewController {
     
     var searchVC: UISearchController!
+    
     var searchResultVC: SearchResultViewController = SearchResultViewController()
     
-    
-    var addDatas = AddModel()
-    var datas = [Dish]()
-    var type: IntakeOfType = .BreakFast
-    
+    // MARK: - 私有变量
+    private var addDatas = AddModel()
+    private var data = [Ingredient]()
+    private var type: IntakeOfType = .BreakFast
+    // 背包总数
     private var bagCount = 0
-    
+    // 卡路里总数
     private var calorisCount = 0
+    // 背包
+    private var bagData = [BagFood]()
     
-    convenience init(type:IntakeOfType) {
+    convenience init(type: IntakeOfType) {
         self.init()
         self.type = type
     }
     
     deinit {
+        // 移除通知
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "addBag"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.init(rawValue: "deleteBag"), object: nil)
     }
     
     // 左边按钮
@@ -51,33 +61,13 @@ class AddViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    // 右边按钮
-    private lazy var rightBarButton: UIButton = {
-        let button = UIButton.init(type: .custom)
-        button.frame = CGRect(x: 10, y: 0, width:30, height: 30)
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "mine_icon_set")?.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = UIColor.black
-        button.tintColor = UIColor.black
-        button.setImage(imageView.image, for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.addTarget(self, action: #selector(addClick), for: UIControl.Event.touchUpInside)
-        button.setTitleColor(UIColor.black, for: .normal)
-        return button
-    }()
-    
-    @objc func addClick() {
-        let vc = RecognizeViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    lazy var breakfasttableview: UITableView = {
+    lazy var tableView: UITableView = {
         let tableview = UITableView()
         tableview.delegate = self
         tableview.dataSource = self
         tableview.showsVerticalScrollIndicator = false
         tableview.separatorStyle = .none
-        tableview.register(breakfastcell.classForCoder(), forCellReuseIdentifier: "reusedcell")
+        tableview.register(AddFoodTableViewCell.classForCoder(), forCellReuseIdentifier: "reusedcell")
         return tableview
     }()
     
@@ -131,31 +121,67 @@ class AddViewController: UIViewController {
         configUI()
         configNavbar()
         configData()
-        
+        // 注册通知
         NotificationCenter.default.addObserver(self, selector: #selector(addItem), name: NSNotification.Name.init("addBag"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteItem), name: NSNotification.Name.init("deleteBag"), object: nil)
     }
     
     @objc func addItem(_ notification: Notification) {
-        let userInfo = notification.userInfo as! [String: Int]
-        let value = userInfo["caloris"]!
-        bagCount = bagCount + 1
-        calorisCount = calorisCount + value
-        countNumberLabel.text = "\(bagCount)"
-        calorisLabel.text = "\(calorisCount)千卡"
+        let userInfo = notification.userInfo as! [String: Any]
+        let value = userInfo["caloris"] as! Int
+        let name = userInfo["name"] as! String
+//        print("name : \(name) + value : \(value)")
+        let food = BagFood(name: name, caloris: value)
+        var isHasFood = false
+        for hasFood in bagData {
+            if food.name == hasFood.name && food.caloris == hasFood.caloris {
+                isHasFood = true
+            }
+        }
+        if !isHasFood {
+            bagData.append(food)
+            bagCount = bagCount + 1
+            calorisCount = calorisCount + value
+            countNumberLabel.text = "\(bagCount)"
+            calorisLabel.text = "\(calorisCount)千卡"
+        }
     }
     
-    func configUI() {
+    @objc func deleteItem(_ notification: Notification) {
+        let userInfo = notification.userInfo as! [String: Any]
+        let value = userInfo["caloris"] as! Int
+        let name = userInfo["name"] as! String
+//        print("name : \(name) + value : \(value)")
+        let food = BagFood(name: name, caloris: value)
+        var isHasFood = false
+        var deleteIndex = 0
+        for (index, hasFood) in bagData.enumerated() {
+            if food.name == hasFood.name && food.caloris == hasFood.caloris {
+                isHasFood = true
+                deleteIndex = index
+            }
+        }
+        if isHasFood {
+            bagData.remove(at: deleteIndex)
+            bagCount = bagCount - 1
+            calorisCount = calorisCount - value
+            countNumberLabel.text = "\(bagCount)"
+            calorisLabel.text = "\(calorisCount)千卡"
+        }
+    }
+    
+    private func configUI() {
         view.backgroundColor = .white
         definesPresentationContext = true
         view.backgroundColor = UIColor.white
         navigationItem.title = getIntakeOfTypeString(self.type)
-        view.addSubview(breakfasttableview)
+        view.addSubview(tableView)
         view.addSubview(bottomBarView)
         bottomBarView.addSubview(countNumberLabel)
         bottomBarView.addSubview(calorisLabel)
         bottomBarView.addSubview(achieveButton)
         
-        breakfasttableview.snp.makeConstraints { (make) in
+        tableView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(10.fit)
             make.bottom.equalToSuperview().offset(-80.fit)
             make.left.right.equalToSuperview()
@@ -192,7 +218,6 @@ class AddViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftBarButton)
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = UINavigationItem.LargeTitleDisplayMode.automatic
-            // self.navigationController?.navigationBar.prefersLargeTitles = true
             searchVC = UISearchController(searchResultsController: searchResultVC)
             searchVC.searchBar.placeholder = "请输入搜索内容"
             searchVC.searchResultsUpdater = self
@@ -222,9 +247,9 @@ class AddViewController: UIViewController {
         }
     }
     
-    func updateUI(with data:[Dish]) {
-        self.datas = data
-        self.breakfasttableview.reloadData()
+    func updateUI(with data: [Ingredient]) {
+        self.data = data
+        self.tableView.reloadData()
     }
     
     @objc func clickArchieveButton() {
@@ -234,17 +259,17 @@ class AddViewController: UIViewController {
 
 extension AddViewController:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.datas.count
+        return self.data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reusedcell") as! breakfastcell
-        cell.updateUI(with: datas[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reusedcell") as! AddFoodTableViewCell
+        cell.updateUI(with: data[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.breakfasttableview.deselectRow(at: indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
@@ -254,44 +279,51 @@ extension AddViewController:UITableViewDataSource,UITableViewDelegate {
 }
 
 
-class breakfastcell:UITableViewCell {
+class AddFoodTableViewCell: UITableViewCell {
     
     // 监听按钮点击
     private var isClickAddButton = false {
         didSet {
             if (isClickAddButton) {
                 self.addButtonImageView.image = UIImage(named: "achieveAdd")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addBag"), object: self, userInfo: ["caloris": self.ingredient.calorisNumber, "name": self.ingredient.name])
             } else {
                 self.addButtonImageView.image = UIImage(named: "achieveAdd1")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "deleteBag"), object: self, userInfo: ["caloris": self.ingredient.calorisNumber, "name": self.ingredient.name])
             }
         }
     }
     
-    public func updateUI(with data: Dish) {
-        self.foodimageview.image = UIImage(named: data.image)
-        self.namelabel.text = data.name
-        self.heatlabel.text = "\(data.totalCaloris)"
+    private var ingredient: Ingredient!
+    
+    public func updateUI(with data: Ingredient) {
+        ingredient = data
+        foodImageView.image = UIImage(named: data.image)
+        namelabel.text = "\(data.image) (\(data.dosage))"
+        heatlabel.text = "\(data.calorisNumber)"
     }
     
-    lazy var foodimageview:UIImageView = {
-        let imageview = UIImageView()
-        imageview.image = UIImage(named: "素食拼盘")
-        imageview.backgroundColor = UIColor.black
-        return imageview
+    lazy var foodImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "素食拼盘")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
     }()
     
-    lazy var namelabel:UILabel = {
+    lazy var namelabel: UILabel = {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "苹果")
         label.numberOfLines = 0
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 15)!,.foregroundColor: UIColor(red: 0.26, green: 0.26, blue: 0.26,alpha:1), ]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Medium", size: 15)!,.foregroundColor: UIColor(red: 0.26, green: 0.26, blue: 0.26,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
-        label.alpha = 1;
+        label.alpha = 1
+        label.textAlignment = .left
         return label
     }()
     
-    lazy var heatlabel:UILabel = {
+    lazy var heatlabel: UILabel = {
         let label = UILabel()
         let attrString = NSMutableAttributedString(string: "53千卡/100g")
         label.numberOfLines = 0
@@ -302,7 +334,7 @@ class breakfastcell:UITableViewCell {
         return label
     }()
     
-    lazy var addbutton:UIButton = {
+    lazy var addbutton: UIButton = {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(clickbutton(_:)), for: .touchUpInside)
         return button
@@ -325,14 +357,14 @@ class breakfastcell:UITableViewCell {
     
     
     func configUI(){
-        addSubview(foodimageview)
+        addSubview(foodImageView)
         addSubview(addButtonImageView)
         addSubview(addbutton)
         addSubview(heatlabel)
         addSubview(namelabel)
         addSubview(lineView)
         
-        foodimageview.snp.makeConstraints{ (make) in
+        foodImageView.snp.makeConstraints{ (make) in
             make.height.equalTo(60.fit)
             make.width.equalTo(60.fit)
             make.top.equalToSuperview().offset(10.fit)
@@ -341,14 +373,14 @@ class breakfastcell:UITableViewCell {
         
         namelabel.snp.makeConstraints{ (make) in
             make.height.equalTo(20.fit)
-            make.width.equalTo(60.fit)
+            make.width.equalTo(300.fit)
             make.top.equalToSuperview().offset(20.fit)
             make.left.equalToSuperview().offset(96.fit)
         }
         
         heatlabel.snp.makeConstraints{ (make) in
             make.height.equalTo(20.fit)
-            make.width.equalTo(90.fit)
+            make.width.equalTo(300.fit)
             make.top.equalToSuperview().offset(44.fit)
             make.left.equalToSuperview().offset(96.fit)
         }
@@ -387,7 +419,6 @@ class breakfastcell:UITableViewCell {
     
     @objc func clickbutton(_ sender: UIButton) {
         isClickAddButton = !isClickAddButton
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addBag"), object: self, userInfo: ["caloris": 43])
     }
     
 }

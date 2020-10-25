@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
     
     private var homeData = DataClass()
     
+    private var recommendData = [Dish]()
+    
     private var supplements = [Supplement]()
     
     private lazy var collectionView: UICollectionView = {
@@ -44,7 +46,6 @@ class HomeViewController: UIViewController {
         collection.register(SupplementCollectionViewCell.self, forCellWithReuseIdentifier: SupplementCollectionViewCellID)
         collection.register(SuggestCollectionViewCell.self, forCellWithReuseIdentifier: SuggestCollectionViewCellID)
         collection.register(FavCollectionViewCell.self, forCellWithReuseIdentifier: FavCollectionViewCellID)
-        
         collection.register(HomeHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeHeaderViewID)
         
         collection.backgroundColor = .white
@@ -82,40 +83,33 @@ class HomeViewController: UIViewController {
         fanMenu.radius = 25.0
         fanMenu.delay = 0.0
         fanMenu.onItemDidClick = { button in
-            print("ItemDidClick: \(button.id)")
+//            print("ItemDidClick: \(button.id)")
             var vc = UIViewController()
             switch button.id {
-            case "breakfast":
+            case "早餐":
                 vc = AddViewController(type: .BreakFast)
                 let nav = MainNavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.tabBarController?.present(nav, animated: true, completion: nil)
-            case "lunch":
+            case "午餐":
                 vc = AddViewController(type: .Launch)
                 let nav = MainNavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.tabBarController?.present(nav, animated: true, completion: nil)
-            case "dinner":
+            case "晚餐":
                 vc = AddViewController(type: .Dinner)
                 let nav = MainNavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.tabBarController?.present(nav, animated: true, completion: nil)
-            case "refreshments":
+            case "小食":
                 vc = AddViewController(type: .Snacks)
                 let nav = MainNavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 self.tabBarController?.present(nav, animated: true, completion: nil)
             default:
-                break;
+                break
             }
-            
-            
         }
-        
-        fanMenu.onItemWillClick = { button in
-            print("ItemWillClick: \(button.id)")
-        }
-        
         fanMenu.backgroundColor = .clear
         return fanMenu
     }()
@@ -166,7 +160,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     override func viewDidLoad() {
@@ -241,6 +234,38 @@ class HomeViewController: UIViewController {
                 self.supplements.append(supplement)
             }
         }
+        
+        // 所有菜品
+        var allDishes = [Dish]()
+        for item in self.homeData.dishes {
+            for content in item.content {
+                allDishes.append(content)
+            }
+        }
+        
+        // 随机生成菜品推荐
+        let dishesCount = UInt32(allDishes.count)
+        recommendData.removeAll()
+        var needCount = 0
+        for _ in 0 ..< 20 {
+            var isHas = false
+            let number = arc4random() % dishesCount
+            let dish = allDishes[Int(number)]
+            for data in recommendData {
+                if dish.name == data.name {
+                    isHas = true
+                    break
+                }
+            }
+            if isHas {
+                continue
+            }
+            recommendData.append(allDishes[Int(number)])
+            needCount += 1
+            if needCount == 8 {
+                break
+            }
+        }
     }
     
 }
@@ -294,7 +319,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayRecommendCollectionViewCellID, for: indexPath) as! DayRecommendCollectionViewCell
             cell.moreButtonBlock = { ()
                 let vc = DayRecommendViewController()
-                vc.updateUI(with: self.homeData.dailyRecommendation)
+                vc.updateUI(with: self.recommendData)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             cell.cellCallBack = { (data) in
@@ -302,7 +327,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 vc.updateUI(data)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            cell.updateUI(with: homeData.dailyRecommendation)
+            cell.updateUI(with: recommendData)
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SupplementCollectionViewCellID, for: indexPath) as! SupplementCollectionViewCell
