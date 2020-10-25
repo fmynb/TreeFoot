@@ -10,10 +10,7 @@ import UIKit
 import HandyJSON
 import SwiftyJSON
 
-struct BagFood {
-    let name: String
-    let caloris: Int
-}
+
 
 class AddViewController: UIViewController {
     
@@ -28,7 +25,7 @@ class AddViewController: UIViewController {
     // 背包总数
     private var bagCount = 0
     // 卡路里总数
-    private var calorisCount = 0
+    private var totalCalorisCount = 0
     // 背包
     private var bagData = [BagFood]()
     
@@ -93,7 +90,7 @@ class AddViewController: UIViewController {
     
     lazy var calorisLabel: UILabel = {
         let label = UILabel()
-        let attrString = NSMutableAttributedString(string: "\(self.calorisCount)千卡")
+        let attrString = NSMutableAttributedString(string: "\(self.totalCalorisCount)千卡")
         label.numberOfLines = 0
         let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFang SC", size: 16)!,.foregroundColor: UIColor(red: 0.3, green: 0.29, blue: 0.27,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
@@ -141,9 +138,9 @@ class AddViewController: UIViewController {
         if !isHasFood {
             bagData.append(food)
             bagCount = bagCount + 1
-            calorisCount = calorisCount + value
+            totalCalorisCount = totalCalorisCount + value
             countNumberLabel.text = "\(bagCount)"
-            calorisLabel.text = "\(calorisCount)千卡"
+            calorisLabel.text = "\(totalCalorisCount)千卡"
         }
     }
     
@@ -164,9 +161,9 @@ class AddViewController: UIViewController {
         if isHasFood {
             bagData.remove(at: deleteIndex)
             bagCount = bagCount - 1
-            calorisCount = calorisCount - value
+            totalCalorisCount = totalCalorisCount - value
             countNumberLabel.text = "\(bagCount)"
-            calorisLabel.text = "\(calorisCount)千卡"
+            calorisLabel.text = "\(totalCalorisCount)千卡"
         }
     }
     
@@ -254,6 +251,9 @@ class AddViewController: UIViewController {
     
     @objc func clickArchieveButton() {
         // TODO: - Archieve
+        let instance = AddMune.getSharedInstance()
+        instance.imageNames[0] = self.bagData[0].name
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -295,7 +295,7 @@ class AddFoodTableViewCell: UITableViewCell {
         ingredient = data
         foodImageView.image = UIImage(named: data.image)
         namelabel.text = "\(data.image) (\(data.dosage))"
-        heatlabel.text = "\(data.calorisNumber)"
+        heatlabel.text = "\(data.calorisNumber) 千卡"
     }
     
     lazy var foodImageView: UIImageView = {

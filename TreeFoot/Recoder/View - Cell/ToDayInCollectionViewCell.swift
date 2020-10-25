@@ -156,6 +156,20 @@ class ToDayInCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    public func updateUI(_ str: String) {
+        if str == "" {
+            return
+        }
+        let imageView = UIImageView(image: UIImage(named: str))
+        backView.addSubview(imageView)
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
+        imageView.clipsToBounds = true
+        imageView.snp.makeConstraints { (make) in
+            make.left.top.right.bottom.equalToSuperview()
+        }
+    }
+    
     @objc func clickAddButton() {
         // TODO: - 按钮点击事件
     }
