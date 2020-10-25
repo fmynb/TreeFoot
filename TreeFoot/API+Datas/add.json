@@ -1,82 +1,75 @@
 {
     "code": 200,
     "data": {
-        "eats":[
+        "eats": [
             {
-                "name":"早餐",
-                "img":"shop_coffee",
-                "content":[
+                "categoryName": "早餐",
+                "content": [
                     {
-                        "name":"苹果",
-                        "image":"素食拼盘",
-                        "kaluli":"53kg/100g"
+                        "image": "鳕鱼",
+                        "name": "鳕鱼",
+                        "dosage": "680g",
+                        "calorisNumber": 200
                     },
                     {
-                        "name":"梨子",
-                        "image":"素食拼盘",
-                        "kaluli":"53kg/100g"
-                    },
-                    {
-                        "name":"苹果",
-                        "image":"素食拼盘",
-                        "kaluli":"53kg/100g"
-                    },
-                    {
-                        "name":"梨子",
-                        "image":"素食拼盘",
-                        "kaluli":"53kg/100g"
+                        "image": "甜椒",
+                        "name": "甜椒",
+                        "dosage": "3个",
+                        "calorisNumber": 69
                     }
                 ]
             },
             {
-                "name":"午餐",
-                "img":"shop_coffee",
-                "content":[
+                "categoryName": "午餐",
+                "content": [
                     {
-                        "name":"苹果午餐",
-                        "image":"apple",
-                        "kaluli":"53kg/100g"
+                        "image": "鳕鱼",
+                        "name": "鳕鱼",
+                        "dosage": "680g",
+                        "calorisNumber": 200
                     },
                     {
-                        "name":"梨子午餐",
-                        "image":"pari",
-                        "kaluli":"53kg/100g"
+                        "image": "甜椒",
+                        "name": "甜椒",
+                        "dosage": "3个",
+                        "calorisNumber": 69
                     }
                 ]
             },
             {
-                "name":"晚餐",
-                "img":"shop_coffee",
-                "content":[
+                "categoryName": "晚餐",
+                "content": [
                     {
-                        "name":"苹果晚餐",
-                        "image":"apple",
-                        "kaluli":"53kg/100g"
+                        "image": "鳕鱼",
+                        "name": "鳕鱼",
+                        "dosage": "680g",
+                        "calorisNumber": 200
                     },
                     {
-                        "name":"梨子晚餐",
-                        "image":"pari",
-                        "kaluli":"53kg/100g"
+                        "image": "甜椒",
+                        "name": "甜椒",
+                        "dosage": "3个",
+                        "calorisNumber": 69
                     }
                 ]
             },
             {
-                "name":"小食",
-                "img":"shop_coffee",
-                "content":[
+                "categoryName": "小食",
+                "content": [
                     {
-                        "name":"苹果零食",
-                        "image":"apple",
-                        "kaluli":"53kg/100g"
+                        "image": "鳕鱼",
+                        "name": "鳕鱼",
+                        "dosage": "680g",
+                        "calorisNumber": 200
                     },
                     {
-                        "name":"梨子零食",
-                        "image":"pari",
-                        "kaluli":"53kg/100g"
+                        "image": "甜椒",
+                        "name": "甜椒",
+                        "dosage": "3个",
+                        "calorisNumber": 69
                     }
                 ]
             }
-        ],
-        
+        ]
     }
 }
