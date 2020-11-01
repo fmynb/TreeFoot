@@ -10,6 +10,14 @@ import UIKit
 import FSCalendar
 
 class CalendarViewController: UIViewController,UIGestureRecognizerDelegate {
+    
+    
+    private var data:[TimeAndFood] = []
+    
+    public func updateUI(with data: [TimeAndFood]) {
+           self.data = data
+           self.tableView.reloadData()
+       }
 
     lazy var calendar: FSCalendar = {
         let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: CFWidth, height: 300.fit))
@@ -41,7 +49,8 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate {
     lazy var tableViewHeader: UIView = {
         let vi = UIView(frame: CGRect(x: 0, y: 0, width: CFWidth, height: 50.fit))
         let button = UIButton()
-        button.setImage(UIImage(named: "shop_star_selected"), for: .normal)
+        //button.setImage(UIImage(named: "shop_star_selected"), for: .normal)
+        button.setImage(UIImage(named: "double arrow"), for: .normal)
         vi.addSubview(button)
         button.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
@@ -52,7 +61,6 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate {
         vi.backgroundColor = .white
         return vi
     }()
-    
     @objc func loadNext() {
         if self.calendar.scope == .month {
             self.calendar.setScope(.week, animated: true)
@@ -67,7 +75,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate {
          tableview.dataSource = self
          tableview.showsVerticalScrollIndicator = false
          tableview.separatorStyle = .none
-         tableview.register(AddFoodTableViewCell.classForCoder(), forCellReuseIdentifier: "reusedcell")
+         tableview.register(CalendarCollectionViewCell.classForCoder(), forCellReuseIdentifier: "reusedcell")
         tableview.register(CalendarHeaderViewCell.self, forHeaderFooterViewReuseIdentifier: "cell")
         tableview.tableHeaderView = tableViewHeader
         tableview.backgroundColor = .clear
@@ -111,6 +119,7 @@ class CalendarViewController: UIViewController,UIGestureRecognizerDelegate {
         }
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
+          //  make.height.equalTo(100.fit)
             make.right.left.equalTo(view)
             make.top.equalTo(calendar.snp.bottom).offset(5.fit)
             make.bottom.equalTo(view)
@@ -166,7 +175,7 @@ extension CalendarViewController: FSCalendarDataSource,FSCalendarDelegate {
         //self.calendarHeightConstraint.constant = bounds.height
         self.view.layoutIfNeeded()
     }
-    
+
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print("did select date \(self.dateFormatter.string(from: date))")
         let selectedDates = calendar.selectedDates.map({self.dateFormatter.string(from: $0)})
@@ -185,44 +194,51 @@ extension CalendarViewController: FSCalendarDataSource,FSCalendarDelegate {
 extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK:- UITableViewDataSource
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return [2,20][section]
+        return 3
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reusedcell") as! AddFoodTableViewCell
-        cell.foodImageView.image = UIImage(named: "素食拼盘")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reusedcell") as! CalendarCollectionViewCell
+        //cell.foodImageView.image = UIImage(named: "素食拼盘")
+        switch indexPath.row
+        {
+        case 0:
+            cell.title.text = "早餐"
+            //cell.updateUI(with: data[0])
+        case 1:
+            cell.title.text = "中餐"
+            cell.label.text = "12:30 AM"
+            //cell.updateUI(with: data[1])
+        default:
+            cell.title.text = "晚餐"
+            cell.label.text = "17:30 PM"
+            //cell.updateUI(with: data[2])
+        }
         return cell
     }
     
-    
+
     // MARK:- UITableViewDelegate
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 {
-            let scope: FSCalendarScope = (indexPath.row == 0) ? .month : .week
-           // self.calendar.setScope(scope, animated: self.animationSwitch.isOn)
-        }
+        
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40.fit
+        return 60.fit
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.fit
+        return 220.fit
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "cell") as! CalendarHeaderViewCell
-        
-        
+        headerView.cornerRadius = 40.fit
+        headerView.alpha = 1
         return headerView
     }
-    
+
 }
 

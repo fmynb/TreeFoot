@@ -69,3 +69,10 @@ struct WaterAttract: HandyJSON {
     let attracted = 0
 }
 
+// MARK: - food
+struct TimeAndFood {
+    var time:String = ""
+    var food:String = ""
+}
+
+
