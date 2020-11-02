@@ -135,7 +135,7 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                             }
                         }
             }
-            print(bodydata.count)
+         //   print(filePath)
             switch index {
             case 1:
                 cell.lefttext.text = "修改名字"
@@ -191,7 +191,7 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                                         }
                              plistdata?.removeAllObjects()
                              array.write(toFile: filePath, atomically: false)
-                             print(filePath)
+                             plistdata = NSMutableArray(contentsOfFile: filePath)
                              tableView.reloadData()
                     }
                     self.navigationController?.pushViewController(nameView, animated: true)
