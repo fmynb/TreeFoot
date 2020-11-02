@@ -76,11 +76,8 @@
 		941153AA252C048B003ED869 /* WeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153A9252C048B003ED869 /* WeightViewController.swift */; };
 		941153AD25341D22003ED869 /* IngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153AC25341D22003ED869 /* IngredientsTableViewCell.swift */; };
 		941153AF25343AEE003ED869 /* CalorisTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153AE25343AEE003ED869 /* CalorisTotalTableViewCell.swift */; };
-<<<<<<< HEAD
 		941153B12545A422003ED869 /* AddMune.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153B02545A422003ED869 /* AddMune.swift */; };
-=======
-		E4EEAB1F254990260079B357 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EEAB1E254990260079B357 /* CalendarCollectionViewCell.swift */; };
->>>>>>> feature/calender
+		E4922D3B2550273000B150B9 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4922D3A2550273000B150B9 /* CalendarCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,11 +155,8 @@
 		941153A9252C048B003ED869 /* WeightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightViewController.swift; sourceTree = "<group>"; };
 		941153AC25341D22003ED869 /* IngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewCell.swift; sourceTree = "<group>"; };
 		941153AE25343AEE003ED869 /* CalorisTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorisTotalTableViewCell.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		941153B02545A422003ED869 /* AddMune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMune.swift; sourceTree = "<group>"; };
-=======
-		E4EEAB1E254990260079B357 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
->>>>>>> feature/calender
+		E4922D3A2550273000B150B9 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		EC10B68D444D6679F012FCB3 /* Pods_TreeFoot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TreeFoot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -251,8 +245,8 @@
 		842744762512055700281150 /* Recoder - Two */ = {
 			isa = PBXGroup;
 			children = (
+				E4922D3A2550273000B150B9 /* CalendarCollectionViewCell.swift */,
 				8427447F251207E000281150 /* CalendarViewController.swift */,
-				E4EEAB1E254990260079B357 /* CalendarCollectionViewCell.swift */,
 				84A40E52251C75B00084287F /* CalendarHeaderViewCell.swift */,
 				84A40E54251C76970084287F /* CalandarTableViewCell.swift */,
 			);
@@ -603,7 +597,6 @@
 				84274471251203F400281150 /* RecipeViewController.swift in Sources */,
 				84CE62B02510A09800A36915 /* ViewController.swift in Sources */,
 				8427447E251206B300281150 /* WaterInCollectionViewCell.swift in Sources */,
-				E4EEAB1F254990260079B357 /* CalendarCollectionViewCell.swift in Sources */,
 				8427446A251201D700281150 /* SupplementCollectionViewCell.swift in Sources */,
 				84CE62AC2510A09800A36915 /* AppDelegate.swift in Sources */,
 				941153A6252C047E003ED869 /* SexViewController.swift in Sources */,
@@ -645,6 +638,7 @@
 				84274490251222BC00281150 /* EditBodyTableViewCell.swift in Sources */,
 				5241159C2514F7070090C0F4 /* NewSuggestControllerViewCell.swift in Sources */,
 				941153AD25341D22003ED869 /* IngredientsTableViewCell.swift in Sources */,
+				E4922D3B2550273000B150B9 /* CalendarCollectionViewCell.swift in Sources */,
 				8427448825120E9B00281150 /* MineHeaderTableViewCell.swift in Sources */,
 				941153B12545A422003ED869 /* AddMune.swift in Sources */,
 				84A20BEB251B25F3009B8A27 /* ResultView.swift in Sources */,
