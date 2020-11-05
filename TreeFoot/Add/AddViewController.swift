@@ -252,7 +252,7 @@ class AddViewController: UIViewController {
     @objc func clickArchieveButton() {
         // TODO: - Archieve
         let instance = AddMune.getSharedInstance()
-        instance.imageNames[0] = self.bagData[0].name
+        instance.imageNames[0].append(self.bagData[0].name)
         dismiss(animated: true, completion: nil)
     }
 }
@@ -277,17 +277,17 @@ extension AddViewController:UITableViewDataSource,UITableViewDelegate {
 class AddFoodTableViewCell: UITableViewCell {
     
     // 监听按钮点击
-//    private var isClickAddButton = false {
-//        didSet {
-//            if (isClickAddButton) {
-//                self.addButtonImageView.image = UIImage(named: "achieveAdd")
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addBag"), object: self, userInfo: ["caloris": self.ingredient.calorisNumber, "name": self.ingredient.name])
-//            } else {
-//                self.addButtonImageView.image = UIImage(named: "achieveAdd1")
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "deleteBag"), object: self, userInfo: ["caloris": self.ingredient.calorisNumber, "name": self.ingredient.name])
-//            }
-//        }
-//    }
+    private var isClickAddButton = false {
+        didSet {
+            if (isClickAddButton) {
+                self.addButtonImageView.image = UIImage(named: "achieveAdd")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addBag"), object: self, userInfo: ["caloris": self.ingredient.calorisNumber, "name": self.ingredient.name])
+            } else {
+                self.addButtonImageView.image = UIImage(named: "achieveAdd1")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "deleteBag"), object: self, userInfo: ["caloris": self.ingredient.calorisNumber, "name": self.ingredient.name])
+            }
+        }
+    }
     
     private var ingredient: Ingredient!
     
@@ -331,7 +331,7 @@ class AddFoodTableViewCell: UITableViewCell {
     
     lazy var addbutton: UIButton = {
         let button = UIButton(type: .custom)
-       // button.addTarget(self, action: #selector(clickbutton(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(clickbutton(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -351,13 +351,13 @@ class AddFoodTableViewCell: UITableViewCell {
     }()
     
     
-    func configUI(){
+    func configUI() {
         contentView.addSubview(foodImageView)
-        contentView.addSubview(addButtonImageView)
-        contentView.addSubview(addbutton)
         contentView.addSubview(heatlabel)
         contentView.addSubview(namelabel)
         contentView.addSubview(lineView)
+        contentView.addSubview(addButtonImageView)
+        contentView.addSubview(addbutton)
         
         foodImageView.snp.makeConstraints{ (make) in
             make.height.equalTo(60.fit)
@@ -412,9 +412,9 @@ class AddFoodTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    @objc func clickbutton(_ sender: UIButton) {
-//        isClickAddButton = !isClickAddButton
-//    }
+    @objc func clickbutton(_ sender: UIButton) {
+        isClickAddButton = !isClickAddButton
+    }
     
 }
 

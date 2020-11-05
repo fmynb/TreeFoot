@@ -55,6 +55,13 @@ class WaterInCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var waterImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "water"))
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
     // MARK: - 公有方法
     
     override init(frame: CGRect) {
@@ -88,6 +95,7 @@ class WaterInCollectionViewCell: UICollectionViewCell {
         addSubview(backView)
         backView.addSubview(targetLabel)
         backView.addSubview(accomplishLabel)
+        backView.addSubview(waterImageView)
         
         targetLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(6.fit)
@@ -103,6 +111,12 @@ class WaterInCollectionViewCell: UICollectionViewCell {
             make.centerX.equalToSuperview()
         }
     
+        waterImageView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(20.fit)
+            make.right.equalToSuperview().offset(-20.fit)
+            make.top.equalTo(self.accomplishLabel.snp.bottom).offset(10.fit)
+            make.bottom.equalToSuperview().offset(-10.fit)
+        }
         
     }
 }

@@ -32,6 +32,8 @@ class HomeViewController: UIViewController {
     
     private var recommendData = [Dish]()
     
+    private var recommendTypeString = [String]()
+    
     private var supplements = [Supplement]()
     
     private lazy var collectionView: UICollectionView = {
@@ -264,15 +266,18 @@ class HomeViewController: UIViewController {
         
         // 所有菜品
         var allDishes = [Dish]()
+        var allTypes = [String]()
         for item in self.homeData.dishes {
             for content in item.content {
                 allDishes.append(content)
+                allTypes.append(item.imageName)
             }
         }
         
         // 随机生成菜品推荐
         let dishesCount = UInt32(allDishes.count)
         recommendData.removeAll()
+        recommendTypeString.removeAll()
         var needCount = 0
         for _ in 0 ..< 20 {
             var isHas = false
@@ -287,6 +292,7 @@ class HomeViewController: UIViewController {
             if isHas {
                 continue
             }
+            recommendTypeString.append(allTypes[Int(number)])
             recommendData.append(allDishes[Int(number)])
             needCount += 1
             if needCount == 8 {
@@ -324,19 +330,19 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 switch type {
                 case .BreakFast:
                     let vc = RecipeViewController()
-                    vc.updateUI(with: self.homeData.dishes[0])
+                    vc.updateUI(with: self.homeData.dishes[0], type: .BreakFast)
                     self.navigationController?.pushViewController(vc, animated: true)
                 case .Launch:
                     let vc = RecipeViewController()
-                    vc.updateUI(with: self.homeData.dishes[1])
+                    vc.updateUI(with: self.homeData.dishes[1], type: .Launch)
                     self.navigationController?.pushViewController(vc, animated: true)
                 case .Dinner:
                     let vc = RecipeViewController()
-                    vc.updateUI(with: self.homeData.dishes[2])
+                    vc.updateUI(with: self.homeData.dishes[2], type: .Dinner)
                     self.navigationController?.pushViewController(vc, animated: true)
                 case .Snacks:
                     let vc = RecipeViewController()
-                    vc.updateUI(with: self.homeData.dishes[3])
+                    vc.updateUI(with: self.homeData.dishes[3], type: .Snacks)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -346,15 +352,15 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayRecommendCollectionViewCellID, for: indexPath) as! DayRecommendCollectionViewCell
             cell.moreButtonBlock = { ()
                 let vc = DayRecommendViewController()
-                vc.updateUI(with: self.recommendData)
+                vc.updateUI(data: self.recommendData, types: self.recommendTypeString)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            cell.cellCallBack = { (data) in
+            cell.cellCallBack = { (data, type) in
                 let vc = RecipeDetailViewController()
-                vc.updateUI(data)
+                vc.updateUI(data, type)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            cell.updateUI(with: recommendData)
+            cell.updateUI(recommendData, recommendTypeString)
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SupplementCollectionViewCellID, for: indexPath) as! SupplementCollectionViewCell

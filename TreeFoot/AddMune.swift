@@ -50,7 +50,9 @@ class AddMune: NSObject {
 
     public var achieveBlock: (() -> ())?
     
-    public var imageNames: [String] = Array(repeating: "", count: 4)
+    public var breakfastRecord: [String: String] = [:]
+    
+    public var imageNames: [[String]] = [[], [], [], []]
     
     private override init() {
         

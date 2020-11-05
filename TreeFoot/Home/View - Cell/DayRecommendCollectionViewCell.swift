@@ -14,11 +14,14 @@ import UIKit
 let dayId = "reusedcell"
 class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
+    
     // MARK: - 公有属性
-    public var cellCallBack: ((Dish) -> ())?
+    public var cellCallBack: ((Dish, IntakeOfType) -> ())?
     
     // MARK: - 私有属性
     private var data = [Dish]()
+    
+    private var typeStringArray = [String]()
     
     private lazy var collectionview: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,8 +37,9 @@ class DayRecommendCollectionViewCell: HomeBaseCollectionViewCell {
     
     // MARK: - 公有方法
     
-    public func updateUI(with data: [Dish]) {
+    public func updateUI(_ data: [Dish], _ types: [String]) {
         self.data = data
+        self.typeStringArray = types
         self.collectionview.reloadData()
     }
     
@@ -69,7 +73,7 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return min(data.count, 5)
     }
     
     
@@ -81,7 +85,7 @@ extension DayRecommendCollectionViewCell: UICollectionViewDataSource,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let callback = self.cellCallBack {
-            callback(data[indexPath.row])
+            callback(data[indexPath.row], getTypeFromString(typeStringArray[indexPath.row]))
         }
     }
     
