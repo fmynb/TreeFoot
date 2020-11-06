@@ -394,14 +394,26 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
             return cell
         case 4:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavCollectionViewCellID, for: indexPath) as! FavCollectionViewCell
-            cell.updateUI(with: homeData.fav)
+            cell.updateUI(with: self.homeData.favorite.dishes)
             cell.moreButtonBlock = { ()
-                let vc = FavViewController()
-                vc.updateUI(with: self.homeData.favmore)
+                let vc = DayRecommendViewController()
+                vc.updateUI(data: self.recommendData, types: self.recommendTypeString)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            cell.cellCallBack = { (data) in
+            cell.cellCallBack = { (data, index) in
                 let vc = RecipeDetailViewController()
+                switch index {
+                case 0:
+                    vc.updateUI(data, .BreakFast)
+                case 1:
+                    vc.updateUI(data, .Launch)
+                case 2:
+                    vc.updateUI(data, .Dinner)
+                case 3:
+                    vc.updateUI(data, .Snacks)
+                default:
+                    vc.updateUI(data, .BreakFast)
+                }
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             return cell

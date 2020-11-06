@@ -47,6 +47,8 @@ class NewSuggestControllerViewCell: UICollectionViewCell {
     
     private lazy var leftImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 4
         imageView.layer.masksToBounds = true
         imageView.alpha = 1

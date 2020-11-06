@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EAE2E0F1-1453-49A6-BB9E-57B102E7103B"
+            uuid = "6E2DF11C-2E73-4611-BAC8-0C41310C2EFD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TreeFoot/Home/Home - Two/Detail/RecipeDetailViewController.swift"
+            filePath = "TreeFoot/Add/AddViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
-            landmarkName = "clickAddButton()"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "clickArchieveButton()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

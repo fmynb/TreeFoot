@@ -75,6 +75,8 @@
     
     lazy var backgroundImage: UIImageView = {
         let img = UIImageView(frame: .zero)
+        img.contentMode = .scaleToFill
+        img.clipsToBounds = true
         img.image = UIImage(named: "乳清蛋白粉")
         return img
     }()

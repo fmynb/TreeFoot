@@ -236,7 +236,7 @@ class RecipeDetailViewController: UIViewController {
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30.fit)
             make.left.equalToSuperview().offset(25.fit)
-            make.width.equalTo(120.fit)
+            make.width.equalTo(150.fit)
             make.height.equalTo(30.fit)
         }
         
@@ -248,14 +248,14 @@ class RecipeDetailViewController: UIViewController {
         }
         
         topRightAddButtonImageView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.titleLabel.snp.right).offset(175.fit)
+            make.left.equalTo(self.titleLabel.snp.right).offset(150.fit)
             make.centerY.equalTo(self.titleLabel.snp.centerY)
             make.height.equalTo(30.fit)
             make.width.equalTo(70.fit)
         }
         
         topRightAddButton.snp.makeConstraints { (make) in
-            make.left.equalTo(self.titleLabel.snp.right).offset(175.fit)
+            make.left.equalTo(self.titleLabel.snp.right).offset(150.fit)
             make.centerY.equalTo(self.titleLabel.snp.centerY)
             make.height.equalTo(30.fit)
             make.width.equalTo(70.fit)
@@ -300,17 +300,16 @@ class RecipeDetailViewController: UIViewController {
     @objc private func clickAddButton() {
         // 添加菜
         print(self.type)
+        let instance = AddMune.getSharedInstance()
         switch self.type {
         case .BreakFast:
-            let instance = AddMune.getSharedInstance()
             instance.imageNames[0].append(self.dish.image)
-            print(AddMune.getSharedInstance().imageNames[0])
         case .Launch:
-            print(1)
+            instance.imageNames[1].append(self.dish.image)
         case .Dinner:
-            print(2)
+            instance.imageNames[2].append(self.dish.image)
         case .Snacks:
-            print(3)
+            instance.imageNames[3].append(self.dish.image)
         }
     }
 }

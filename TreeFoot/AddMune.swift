@@ -47,10 +47,6 @@ class AddMune: NSObject {
         fanMenu.backgroundColor = .clear
         return fanMenu
     }()
-
-    public var achieveBlock: (() -> ())?
-    
-    public var breakfastRecord: [String: String] = [:]
     
     public var imageNames: [[String]] = [[], [], [], []]
     
