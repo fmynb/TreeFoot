@@ -27,8 +27,7 @@ struct DataClass: HandyJSON {
     let nutritionalSupplement = [NutritionalSupplement]()
     // 建议补充
     let suggestSupplement = SuggestSupplement()
-    let fav = [Fav]()
-    let favmore = [FavMore]()
+    let favorite = Favorite()
 }
 
 // MARK: - 所有菜品
@@ -87,21 +86,12 @@ struct SuggestSupplement: HandyJSON {
     let supplements = [Supplement]()
 }
 
-// MARK: - Suggest
-struct Fav: HandyJSON {
-    
-    let name = ""
-    let descrption = ""
-    let use = ""
-    let img = ""
+// MARK: - 喜爱
+struct Favorite: HandyJSON {
+    let dishes = [Dish]()
 }
 
-// MARK: - favmore
-struct FavMore:HandyJSON{
-    let name:String = ""
-    let img:String = ""
-}
-
+// MARK: - 背包食材
 struct BagFood {
     let name: String
     let caloris: Int

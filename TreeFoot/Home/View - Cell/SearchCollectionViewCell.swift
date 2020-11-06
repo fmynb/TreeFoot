@@ -96,9 +96,9 @@ class SearchCollectionViewCell: UICollectionViewCell, UITextFieldDelegate {
     
     // MARK: - 私有方法
     @objc func searchBarClick() {
-        if let callback = searchBarCallBack {
-            callback()
-        }
+//        if let callback = searchBarCallBack {
+//            callback()
+//        }
     }
     
     @objc func photo() {

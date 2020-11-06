@@ -14,8 +14,11 @@ class RecipeViewController: UIViewController {
 
     private var data = Dishes()
     
-    public func updateUI(with data: Dishes) {
+    private var type = IntakeOfType.BreakFast
+    
+    public func updateUI(with data: Dishes, type: IntakeOfType) {
         self.data = data
+        self.type = type
         self.collectionview.reloadData()
     }
     
@@ -75,7 +78,7 @@ extension RecipeViewController: UICollectionViewDataSource, UICollectionViewDele
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailvc = RecipeDetailViewController()
-        detailvc.updateUI(data.content[indexPath.row])
+        detailvc.updateUI(data.content[indexPath.row], type)
         navigationController?.pushViewController(detailvc, animated: true)
         if let callback = cellCallBack {
             callback(data.content[indexPath.row])

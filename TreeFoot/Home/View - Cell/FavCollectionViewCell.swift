@@ -12,10 +12,10 @@ fileprivate let FavId = "reusedCell"
 // TODO 最近偏爱Cell
 class FavCollectionViewCell: HomeBaseCollectionViewCell {
     
-    var datas = [Fav]()
-    var cellCallBack: ((Fav) -> ())?
+    var datas = [Dish]()
+    var cellCallBack: ((Dish, Int) -> ())?
     
-    public func updateUI(with data:[Fav]) {
+    public func updateUI(with data:[Dish]) {
         self.datas = data
         self.FavcollectionView.reloadData()
     }
@@ -65,13 +65,13 @@ extension FavCollectionViewCell: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavId, for: indexPath) as! FavCell
         cell.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        cell.Favcontentview.image = UIImage(named: self.datas[indexPath.row].img)
+        cell.Favcontentview.image = UIImage(named: self.datas[indexPath.row].image)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let callback = self.cellCallBack {
             print("建议cell回调")
-            callback(datas[indexPath.row])
+            callback(datas[indexPath.row], indexPath.row)
         }
     }
     

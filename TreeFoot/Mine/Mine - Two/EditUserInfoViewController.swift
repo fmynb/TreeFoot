@@ -39,10 +39,10 @@ class EditUserInfoViewController: UIViewController{
     lazy var editordatalabel:UILabel = {
         let label = UILabel()
         label.text = "编辑资料"
-        label.numberOfLines = 0
-        label.font = UIFont(name: "PingFang SC", size: 16)
-        label.textColor = UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1)
-        label.alpha = 1
+        label.numberOfLines = 0.fit
+        label.font = UIFont(name: "PingFang SC", size: 16.fit)
+        label.textColor = UIColor(red: 0.57.fit, green: 0.54.fit, blue: 0.54.fit,alpha:1.fit)
+        label.alpha = 1.fit
         return label
     }()
     
@@ -106,7 +106,7 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
             cell.centertext.textColor = UIColor(red: 0.57, green: 0.54, blue: 0.54,alpha:1)
             cell.centertext.alpha = 1
             
-            if(plistdata!.count == 0)
+            if(plistdata?.count == nil)
             {
                 let array:NSMutableArray = NSMutableArray()
                 for item in origindata{
@@ -135,7 +135,7 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                             }
                         }
             }
-            print(bodydata.count)
+            print(filePath)
             switch index {
             case 1:
                 cell.lefttext.text = "修改名字"
@@ -163,11 +163,11 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0)
         {
-            return 100
+            return 100.fit
         }
         else
         {
-        return 50
+            return 50.fit
         }
     }
     
@@ -191,7 +191,7 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
                                         }
                              plistdata?.removeAllObjects()
                              array.write(toFile: filePath, atomically: false)
-                             print(filePath)
+                             plistdata = NSMutableArray(contentsOfFile: filePath)
                              tableView.reloadData()
                     }
                     self.navigationController?.pushViewController(nameView, animated: true)

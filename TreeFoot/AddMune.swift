@@ -47,10 +47,8 @@ class AddMune: NSObject {
         fanMenu.backgroundColor = .clear
         return fanMenu
     }()
-
-    public var achieveBlock: (() -> ())?
     
-    public var imageNames: [String] = Array(repeating: "", count: 4)
+    public var imageNames: [[String]] = [[], [], [], []]
     
     private override init() {
         

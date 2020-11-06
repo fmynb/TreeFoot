@@ -91,7 +91,7 @@ class IngredientsTableViewCell: UITableViewCell {
         let attrString = NSMutableAttributedString(string: "50g")
         label.numberOfLines = 0
         label.textAlignment = .center
-        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Medium", size: 16)!,.foregroundColor: UIColor(red: 0.23, green: 0.23, blue: 0.23,alpha:1), ]
+        let attr: [NSAttributedString.Key : Any] = [.font: UIFont(name: "PingFangSC-Light", size: 14)!,.foregroundColor: UIColor(red: 0.23, green: 0.23, blue: 0.23,alpha:1), ]
         attrString.addAttributes(attr, range: NSRange(location: 0, length: attrString.length))
         label.attributedText = attrString
         return label

@@ -127,6 +127,7 @@ class RecipeDetailViewController: UIViewController {
         let attr = NSAttributedString(string: "添加", attributes: [NSAttributedString.Key.font: UIFont(name: "PingFangSC-Medium", size: 14)!, .foregroundColor: UIColor.gray])
         button.setAttributedTitle(attr, for: UIControl.State.normal)
         button.setTitleColor(.gray, for: .normal)
+        button.addTarget(self, action: #selector(clickAddButton), for: .touchUpInside)
         return button
     }()
     
@@ -153,7 +154,9 @@ class RecipeDetailViewController: UIViewController {
 
     // 食材数据
     private var data = [Ingredient]()
+    private var dish = Dish()
     private var caloris = 0
+    private var type = IntakeOfType.BreakFast
     
     // MARK: - 公有方法
     
@@ -163,13 +166,19 @@ class RecipeDetailViewController: UIViewController {
         configNavbar()
     }
     
-    public func updateUI(_ data: Dish) {
+    /// 食谱详情页页面更新数据
+    /// - Parameters:
+    ///   - data: 食谱数据
+    ///   - type: 所属餐类型
+    public func updateUI(_ data: Dish, _ type: IntakeOfType) {
         backImageView.image = UIImage(named: data.image)
         titleLabel.text = data.name
         descriptionLabel.text = data.description
         ingredientsTableView.reloadData()
         caloris = data.totalCaloris
+        self.dish = data
         self.data = data.ingredients
+        self.type = type
     }
     
     // MARK: - 私有方法
@@ -227,7 +236,7 @@ class RecipeDetailViewController: UIViewController {
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(30.fit)
             make.left.equalToSuperview().offset(25.fit)
-            make.width.equalTo(120.fit)
+            make.width.equalTo(150.fit)
             make.height.equalTo(30.fit)
         }
         
@@ -239,17 +248,17 @@ class RecipeDetailViewController: UIViewController {
         }
         
         topRightAddButtonImageView.snp.makeConstraints { (make) in
-            make.left.equalTo(self.titleLabel.snp.right).offset(185.fit)
+            make.left.equalTo(self.titleLabel.snp.right).offset(150.fit)
             make.centerY.equalTo(self.titleLabel.snp.centerY)
-            make.height.equalTo(24.fit)
-            make.width.equalTo(60.fit)
+            make.height.equalTo(30.fit)
+            make.width.equalTo(70.fit)
         }
         
         topRightAddButton.snp.makeConstraints { (make) in
-            make.left.equalTo(self.titleLabel.snp.right).offset(185.fit)
+            make.left.equalTo(self.titleLabel.snp.right).offset(150.fit)
             make.centerY.equalTo(self.titleLabel.snp.centerY)
-            make.height.equalTo(24.fit)
-            make.width.equalTo(60.fit)
+            make.height.equalTo(30.fit)
+            make.width.equalTo(70.fit)
         }
         
         ingredientsTitleLabel.snp.makeConstraints { (make) in
@@ -286,6 +295,22 @@ class RecipeDetailViewController: UIViewController {
     
     @objc private func clickRightShareButton() {
         // TODO: - 分享
+    }
+    
+    @objc private func clickAddButton() {
+        // 添加菜
+        print(self.type)
+        let instance = AddMune.getSharedInstance()
+        switch self.type {
+        case .BreakFast:
+            instance.imageNames[0].append(self.dish.image)
+        case .Launch:
+            instance.imageNames[1].append(self.dish.image)
+        case .Dinner:
+            instance.imageNames[2].append(self.dish.image)
+        case .Snacks:
+            instance.imageNames[3].append(self.dish.image)
+        }
     }
 }
 

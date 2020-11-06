@@ -8,14 +8,14 @@
 
 import UIKit
 
-enum IntakeOfType: Int {
+public enum IntakeOfType: Int {
     case BreakFast = 0
     case Launch
     case Dinner
     case Snacks
 }
 
-func getIntakeOfTypeString(_ type: IntakeOfType) -> String {
+public func getIntakeOfTypeString(_ type: IntakeOfType) -> String {
     switch type {
     case .BreakFast:
         return "早餐"
@@ -28,14 +28,28 @@ func getIntakeOfTypeString(_ type: IntakeOfType) -> String {
     }
 }
 
+public func getTypeFromString(_ string: String) -> IntakeOfType {
+    switch string {
+    case "breakfast":
+        return .BreakFast
+    case "launch":
+        return .Launch
+    case "dinner":
+        return .Launch
+    default:
+        return .Snacks
+    }
+}
+
 // TODO 今日摄入Cell
 class ToDayInCollectionViewCell: UICollectionViewCell {
     // MARK: - 私有属性
     
     private var intakeType: IntakeOfType = .BreakFast
     
-    private lazy var backView: UIView = {
-        let view = UIView()
+    private lazy var backView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleToFill
         // shadowCode
         view.layer.shadowColor = UIColor(red: 0.35, green: 0.15, blue: 0, alpha: 0.16).cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -45,6 +59,7 @@ class ToDayInCollectionViewCell: UICollectionViewCell {
         view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         view.layer.cornerRadius = 10
         view.alpha = 1
+        
         return view
     }()
     
@@ -156,18 +171,25 @@ class ToDayInCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    public func updateUI(_ str: String) {
-        if str == "" {
+    public func updateUI(_ str: String?) {
+        guard let imageName = str else {
+            // TODO: - 记录页面collectionview复用bug
+            backView.image = UIImage(named: "")
+            backView.clipsToBounds = false
+            addLabel.alpha = 1
+            addButton.alpha = 1
+            leftTopView.backgroundColor = .white
+            leftTopView.layer.borderColor = UIColor(red: 1, green: 0.46, blue: 0.29, alpha: 1).cgColor
+            typeLabel.textColor = UIColor(red: 1, green: 0.46, blue: 0.29,alpha:1)
             return
         }
-        let imageView = UIImageView(image: UIImage(named: str))
-        backView.addSubview(imageView)
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
-        imageView.clipsToBounds = true
-        imageView.snp.makeConstraints { (make) in
-            make.left.top.right.bottom.equalToSuperview()
-        }
+        backView.image = UIImage(named: imageName)
+        backView.clipsToBounds = true
+        addButton.alpha = 0
+        addLabel.alpha = 0
+        leftTopView.backgroundColor = UIColor(red: 1, green: 0.68, blue: 0.49, alpha: 1)
+        leftTopView.layer.borderColor = UIColor(red: 1, green: 0.68, blue: 0.49, alpha: 1).cgColor
+        typeLabel.textColor = .white
     }
     
     @objc func clickAddButton() {

@@ -18,18 +18,18 @@ class CalendarHeaderViewCell: UITableViewHeaderFooterView {
         label.text = "6月15日"
         return label
     }()
-    
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         self.contentView.backgroundColor = .white
         setUI()
     }
-    
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setUI() {
         self.addSubview(titleLabel)
         self.titleLabel.snp.makeConstraints { (make) in

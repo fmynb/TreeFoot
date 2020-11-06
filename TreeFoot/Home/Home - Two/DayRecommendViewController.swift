@@ -14,7 +14,10 @@ class DayRecommendViewController: UIViewController {
     
     private var data = [Dish]()
     
-    public func updateUI(with data: [Dish]) {
+    private var types = [String]()
+    
+    public func updateUI(data: [Dish], types: [String]) {
+        self.types = types
         self.data = data
         collectionView.reloadData()
     }
@@ -71,7 +74,7 @@ extension DayRecommendViewController:UICollectionViewDelegate,UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailvc = RecipeDetailViewController()
-        detailvc.updateUI(data[indexPath.row])
+        detailvc.updateUI(data[indexPath.row], getTypeFromString(types[indexPath.row]))
         navigationController?.pushViewController(detailvc, animated: true)
     }
     

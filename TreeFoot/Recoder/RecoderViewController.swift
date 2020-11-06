@@ -37,6 +37,8 @@ class RecoderViewController: UIViewController {
         return button
     }()
     
+    private var typeArray = [IntakeOfType.BreakFast, .Launch, .Dinner, .Snacks]
+    
     @objc func calendarClick() {
         let calendarVC = CalendarViewController()
         self.navigationController?.pushViewController(calendarVC, animated: true)
@@ -208,8 +210,8 @@ extension RecoderViewController: UICollectionViewDelegateFlowLayout, UICollectio
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ToDayInCollectionViewCellID, for: indexPath) as! ToDayInCollectionViewCell
             let instance = AddMune.getSharedInstance()
-            cell.setType(type: .Dinner)
-            cell.updateUI(instance.imageNames[indexPath.row])
+            cell.setType(type: typeArray[indexPath.row])
+            cell.updateUI(instance.imageNames[indexPath.row].first)
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WaterInCollectionViewCellID, for: indexPath) as! WaterInCollectionViewCell

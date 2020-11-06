@@ -252,7 +252,25 @@ class AddViewController: UIViewController {
     @objc func clickArchieveButton() {
         // TODO: - Archieve
         let instance = AddMune.getSharedInstance()
-        instance.imageNames[0] = self.bagData[0].name
+        switch self.type {
+        case .BreakFast:
+            for item in bagData {
+                instance.imageNames[0].append(item.name)
+            }
+        case .Launch:
+            for item in bagData {
+                instance.imageNames[1].append(item.name)
+            }
+        case .Dinner:
+            for item in bagData {
+                instance.imageNames[2].append(item.name)
+            }
+        case .Snacks:
+            for item in bagData {
+                instance.imageNames[3].append(item.name)
+            }
+        }
+        print(instance.imageNames)
         dismiss(animated: true, completion: nil)
     }
 }
@@ -351,13 +369,13 @@ class AddFoodTableViewCell: UITableViewCell {
     }()
     
     
-    func configUI(){
+    func configUI() {
         contentView.addSubview(foodImageView)
-        contentView.addSubview(addButtonImageView)
-        contentView.addSubview(addbutton)
         contentView.addSubview(heatlabel)
         contentView.addSubview(namelabel)
         contentView.addSubview(lineView)
+        contentView.addSubview(addButtonImageView)
+        contentView.addSubview(addbutton)
         
         foodImageView.snp.makeConstraints{ (make) in
             make.height.equalTo(60.fit)
