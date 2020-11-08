@@ -16,6 +16,7 @@ var plistdata = NSMutableArray(contentsOfFile: filePath)
 var origindata:[EditModel] = [EditModel(centerText: "去冰无糖"),EditModel(centerText: "168"),EditModel(centerText: "52"),EditModel(centerText: "女"),EditModel(centerText: "2001-07-15")]
 
 var bodydata = [EditModel]()
+var tag:Int = 0
 
 
 class EditUserInfoViewController: UIViewController{
@@ -108,15 +109,19 @@ extension EditUserInfoViewController: UITableViewDataSource,UITableViewDelegate 
             
             if(plistdata?.count == nil)
             {
-                let array:NSMutableArray = NSMutableArray()
-                for item in origindata{
-                    let dictionary:NSMutableDictionary = [ : ]
-                    let center = item.centerText as NSString
-                    dictionary.setValue(center, forKey: "centerText")
-                    array.add(dictionary)
+                if(tag == 0)
+                {
+                    let array:NSMutableArray = NSMutableArray()
+                    for item in origindata{
+                        let dictionary:NSMutableDictionary = [ : ]
+                        let center = item.centerText as NSString
+                        dictionary.setValue(center, forKey: "centerText")
+                        array.add(dictionary)
+                    }
+                    array.write(toFile: filePath, atomically: false)
+                    bodydata = origindata
+                    tag = 1
                 }
-                array.write(toFile: filePath, atomically: false)
-                bodydata = origindata
             }
             else
             {
