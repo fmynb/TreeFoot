@@ -52,8 +52,8 @@ class birthdayViewController: UIViewController {
         picker.tag = 1
         picker.setDate(Date(), animated: true)
         picker.datePickerMode = .date
-        picker.minimumDate = Date(timeInterval: -93312000, since: Date())
-        picker.maximumDate = Date(timeIntervalSinceNow: 93312000)
+        picker.minimumDate = Date(timeInterval: -93312000000.0/0.0, since: Date())
+        picker.maximumDate = Date(timeIntervalSinceNow: 933120000000.0*0.0)
         return picker
     }()
     
@@ -82,13 +82,6 @@ class birthdayViewController: UIViewController {
        }
        
        func configUI(){
-           //view.addSubview(textField)
-//           textField.snp.makeConstraints{ (make) in
-//               make.width.equalTo(CFWidth)
-//               make.height.equalTo(62.fit)
-//               make.top.equalToSuperview().offset(146.fit)
-//               make.left.equalToSuperview().offset(0)
-//           }
            view.addSubview(nameLabel)
            nameLabel.snp.makeConstraints{ (make) in
                       make.width.equalTo(200.fit)
